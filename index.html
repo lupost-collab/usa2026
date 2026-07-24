@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0b1735">
+<title>🇺🇸 Road Trip USA 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & ROOT ── */
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#0b1735;--bg2:#0e1e45;--bg3:#162550;--bg4:#0d1a3a;
+  --card:#111d42;--card2:#142250;--border:#1e3070;--border2:#243880;
+  --orange:#ff8c00;--orange2:#ffa830;--red:#c8102e;--gold:#ffd700;
+  --blue:#4a8fd4;--lblue:#7eb3e8;--teal:#00c2b8;
+  --text:#dde5ff;--muted:#7888aa;--white:#ffffff;
+  --green:#2ecc71;--yellow:#f1c40f;
+  --nav-h:66px;--safe-bottom:env(safe-area-inset-bottom,0px);
+  --safe-top:env(safe-area-inset-top,0px);
+  --radius:14px;--radius-sm:10px;
+}
+html{scroll-behavior:smooth;background:var(--bg);-webkit-text-size-adjust:100%}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:15px;line-height:1.6;
+  color:var(--text);background:var(--bg);
+  min-height:100vh;
+  padding-bottom:calc(var(--nav-h) + var(--safe-bottom) + 12px);
+  overflow-x:hidden;
+}
+a{color:var(--orange);text-decoration:none}
+
+/* ── PAGES ── */
+.page{display:none;animation:fadeIn .22s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── BOTTOM NAV ── */
+.bottom-nav{
+  position:fixed;bottom:0;left:0;right:0;
+  height:calc(var(--nav-h) + var(--safe-bottom));
+  background:rgba(8,14,35,0.97);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-top:1px solid var(--border);
+  display:flex;align-items:flex-start;padding-top:6px;
+  z-index:1000;
+}
+.nav-item{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+  padding:4px 2px;cursor:pointer;
+  color:var(--muted);transition:color .18s;
+  font-family:'Montserrat',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2px;
+}
+.nav-item .nav-icon{font-size:22px;line-height:1;transition:transform .18s}
+.nav-item.active{color:var(--orange)}
+.nav-item.active .nav-icon{transform:scale(1.12)}
+.nav-item:active .nav-icon{transform:scale(.92)}
+
+/* ── HERO HOME ── */
+.home-hero{
+  position:relative;overflow:hidden;
+  background:linear-gradient(155deg,#07102b 0%,#0f2060 40%,#1a0a30 100%);
+  padding:calc(var(--safe-top) + 20px) 20px 28px;
+  text-align:center;
+  border-bottom:2px solid var(--orange);
+}
+.stars-canvas{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:twinkle var(--d,2s) infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0;transform:scale(.8)}100%{opacity:.9;transform:scale(1.2)}}
+.flag-stripe{
+  position:absolute;bottom:0;left:0;right:0;height:6px;
+  background:linear-gradient(90deg,#b22234 0%,#b22234 50%,#3c3b6e 50%);
+}
+.hero-flag{font-size:52px;margin-bottom:8px;display:block;filter:drop-shadow(0 4px 16px rgba(0,0,0,.6))}
+.hero-title{
+  font-family:'Montserrat',sans-serif;font-size:26px;font-weight:900;
+  color:#fff;letter-spacing:-.5px;line-height:1.2;
+  text-shadow:0 2px 12px rgba(0,0,0,.7);
+}
+.hero-subtitle{font-size:14px;color:var(--lblue);margin-top:6px;font-weight:500}
+.hero-dates{
+  display:inline-block;background:rgba(255,140,0,.15);
+  border:1px solid rgba(255,140,0,.4);border-radius:20px;
+  padding:5px 16px;font-size:13px;color:var(--orange2);
+  font-family:'Montserrat',sans-serif;font-weight:700;margin-top:10px;
+}
+
+/* ── STATS GRID ── */
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:16px}
+.stat-card{
+  background:linear-gradient(135deg,var(--card),var(--bg3));
+  border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:14px 12px;text-align:center;
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+}
+.stat-card .snum{font-family:'Montserrat',sans-serif;font-size:24px;font-weight:900;color:var(--orange);line-height:1}
+.stat-card .slbl{font-size:11px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.6px}
+
+/* ── SECTION TITLE ── */
+.sec-heading{
+  font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;
+  color:var(--muted);text-transform:uppercase;letter-spacing:.8px;
+  padding:12px 16px 6px;
+}
+
+/* ── TAPPA LIST ITEMS ── */
+.tappa-list{padding:0 12px 8px}
+.tappa-item{
+  display:flex;align-items:center;gap:12px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:13px 12px;margin-bottom:8px;
+  cursor:pointer;transition:all .18s;
+  box-shadow:0 2px 8px rgba(0,0,0,.25);
+}
+.tappa-item:active{background:var(--card2);transform:scale(.98)}
+.tappa-emoji{font-size:26px;flex-shrink:0;width:36px;text-align:center}
+.tappa-info{flex:1;min-width:0}
+.tappa-day{font-size:11px;color:var(--muted);font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:.3px}
+.tappa-title{font-size:14px;font-weight:600;color:var(--white);font-family:'Montserrat',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tappa-km{font-size:12px;color:var(--lblue);margin-top:1px}
+.tappa-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
+.tappa-arrow{color:var(--muted);font-size:18px}
+.weather-chip{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;padding:2px 8px;font-size:11px;color:var(--text);
+  white-space:nowrap;min-width:50px;text-align:center;
+}
+.weather-chip.loading{color:var(--muted);font-style:italic}
+
+/* ── TAPPA DETAIL HERO ── */
+.detail-hero{
+  padding:calc(var(--safe-top) + 16px) 16px 20px;
+  border-bottom:2px solid var(--orange);
+  position:relative;overflow:hidden;
+}
+.detail-hero::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,#071030 0%,#0f2060 60%,#1a1040 100%);
+  z-index:0;
+}
+.detail-hero > *{position:relative;z-index:1}
+.day-badge{
+  display:inline-block;background:var(--orange);color:#000;
+  font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;
+  padding:3px 12px;border-radius:20px;margin-bottom:10px;letter-spacing:.4px;
+}
+.detail-hero .dtitle{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:900;color:#fff;line-height:1.25}
+.detail-hero .dsub{font-size:13px;color:var(--lblue);margin-top:4px}
+.meta-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.meta-chip{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+  border-radius:20px;padding:4px 11px;font-size:12px;color:var(--text);
+}
+
+/* ── BACK BUTTON ── */
+.back-btn{
+  display:flex;align-items:center;gap:8px;
+  padding:12px 16px;font-size:14px;color:var(--orange);
+  cursor:pointer;font-family:'Montserrat',sans-serif;font-weight:600;
+  border-bottom:1px solid var(--border);
+}
+.back-btn:active{background:var(--card)}
+
+/* ── WEATHER WIDGET ── */
+.weather-widget{margin:12px;border-radius:var(--radius);overflow:hidden;background:var(--card);border:1px solid var(--border)}
+.weather-header{
+  background:linear-gradient(90deg,#0f2060,#1a3080);
+  padding:10px 14px;font-family:'Montserrat',sans-serif;
+  font-size:12px;font-weight:700;color:var(--orange2);
+  display:flex;align-items:center;gap:8px;
+}
+.weather-days{
+  display:flex;overflow-x:auto;gap:0;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+.weather-days::-webkit-scrollbar{display:none}
+.weather-day{
+  flex:0 0 80px;padding:10px 8px;text-align:center;
+  border-right:1px solid var(--border);
+}
+.weather-day:last-child{border-right:none}
+.wd-name{font-size:10px;color:var(--muted);font-family:'Montserrat',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+.wd-emoji{font-size:22px;margin:4px 0}
+.wd-temps{font-size:12px;font-weight:600;color:var(--white)}
+.wd-temps span{color:var(--muted);font-weight:400}
+.wd-precip{font-size:10px;color:var(--blue);margin-top:2px}
+.weather-loading{padding:20px;text-align:center;color:var(--muted);font-size:13px}
+.weather-error{padding:16px;text-align:center;color:var(--muted);font-size:12px}
+
+/* ── COLLAPSIBLE SECTIONS ── */
+.collapsible{margin:0 12px 8px;border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border);background:var(--card)}
+.collapsible-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 14px;cursor:pointer;
+  font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--white);
+  transition:background .15s;
+}
+.collapsible-header:active{background:var(--card2)}
+.collapsible-icon{font-size:16px;transition:transform .25s;color:var(--orange);flex-shrink:0}
+.collapsible-body{
+  display:none;padding:0 14px 14px;
+  font-size:14px;color:var(--text);line-height:1.65;
+}
+.collapsible-body.open{display:block}
+.collapsible-body ul{padding-left:18px;margin-top:6px}
+.collapsible-body ul li{margin-bottom:5px}
+.collapsible-body p{margin-bottom:8px}
+.collapsible-body strong{color:var(--white)}
+
+/* ── HOTEL BAR ── */
+.hotel-bar{
+  margin:12px;border-radius:var(--radius-sm);
+  background:linear-gradient(90deg,rgba(14,32,96,.9),rgba(26,48,112,.9));
+  border-left:4px solid var(--orange);
+  padding:13px 14px;
+}
+.hotel-bar .hb-name{font-size:14px;font-weight:700;color:var(--white);font-family:'Montserrat',sans-serif}
+.hotel-bar .hb-detail{font-size:12px;color:var(--muted);margin-top:3px}
+.hotel-bar .maps-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--orange);color:#000;
+  font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;
+  padding:6px 14px;border-radius:20px;margin-top:10px;
+  box-shadow:0 2px 8px rgba(255,140,0,.4);
+}
+
+/* ── TIP / WARNING BOXES ── */
+.tip-box,.warning-box{
+  margin:0 12px 12px;border-radius:var(--radius-sm);
+  padding:12px 14px;font-size:13px;line-height:1.6;
+}
+.tip-box{background:rgba(0,194,184,.08);border:1px solid rgba(0,194,184,.25);color:#a8eeeb}
+.warning-box{background:rgba(200,16,46,.08);border:1px solid rgba(200,16,46,.3);color:#f8a0a8}
+
+/* ── PAGE HEADER ── */
+.page-header{
+  background:linear-gradient(135deg,#07102b,var(--bg3));
+  padding:calc(var(--safe-top) + 20px) 16px 20px;
+  border-bottom:2px solid var(--orange);
+  text-align:center;
+}
+.page-header h1{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:900;color:#fff}
+.page-header .sub{font-size:13px;color:var(--muted);margin-top:4px}
+
+/* ── ITINERARY TIMELINE ── */
+.timeline{padding:16px 12px}
+.tl-item{
+  display:flex;gap:14px;padding-bottom:0;cursor:pointer;
+  position:relative;
+}
+.tl-item:last-child .tl-line{display:none}
+.tl-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:36px}
+.tl-dot{
+  width:32px;height:32px;border-radius:50%;
+  background:linear-gradient(135deg,var(--orange),var(--orange2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;flex-shrink:0;box-shadow:0 0 12px rgba(255,140,0,.4);
+}
+.tl-line{width:2px;flex:1;background:var(--border);margin:4px 0;min-height:24px}
+.tl-content{
+  flex:1;background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:10px;
+  transition:all .18s;
+}
+.tl-content:active{background:var(--card2)}
+.tl-day{font-size:10px;color:var(--muted);font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:.4px;text-transform:uppercase}
+.tl-title{font-size:14px;font-weight:600;color:var(--white);font-family:'Montserrat',sans-serif;margin-top:2px}
+.tl-km{font-size:12px;color:var(--lblue);margin-top:2px}
+
+/* ── HOTEL PAGE CARDS ── */
+.hotel-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:14px;margin-bottom:10px;
+}
+.hotel-card .hc-night{font-size:11px;color:var(--orange2);font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:.3px;text-transform:uppercase}
+.hotel-card .hc-name{font-size:16px;font-weight:700;color:var(--white);font-family:'Montserrat',sans-serif;margin-top:2px}
+.hotel-card .hc-addr{font-size:12px;color:var(--muted);margin-top:4px}
+.hotel-card .maps-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--orange);color:#000;
+  font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;
+  padding:6px 14px;border-radius:20px;margin-top:10px;
+}
+
+/* ── INFO PAGE ── */
+.emg-big{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:10px;
+  padding:0 12px 12px;
+}
+.emg-big > div{
+  background:linear-gradient(135deg,#0e1e50,var(--bg3));
+  border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:14px;text-align:center;
+}
+.emg-big .num{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:900;color:var(--red);line-height:1}
+.emg-big .lbl{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.4}
+.emg-card{
+  margin:0 12px 10px;background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:13px;
+}
+.emg-title{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px}
+.emg-num{font-size:16px;font-weight:700;color:var(--orange2);font-family:'Montserrat',sans-serif}
+.emg-sub{font-size:12px;color:var(--muted);margin-top:3px}
+.emg-sub a{color:var(--blue)}
+.info-section{margin:0 12px 10px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px}
+.info-section h3{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--orange2);margin-bottom:8px}
+.info-section ul{padding-left:16px}
+.info-section ul li{font-size:13px;color:var(--text);margin-bottom:5px;line-height:1.5}
+.info-section ul li strong{color:var(--white)}
+.park-tag{
+  display:inline-block;background:rgba(255,140,0,.15);border:1px solid rgba(255,140,0,.3);
+  border-radius:12px;padding:2px 10px;font-size:11px;color:var(--orange2);
+  font-family:'Montserrat',sans-serif;font-weight:600;margin-right:5px;margin-bottom:4px;
+}
+
+/* ── METEO CHIPS (static) ── */
+.meteo-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.meteo-chip{
+  background:rgba(74,143,212,.12);border:1px solid rgba(74,143,212,.3);
+  border-radius:12px;padding:3px 10px;font-size:12px;color:var(--lblue);
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+
+/* ── MAPS ROUTE BUTTONS ── */
+.maps-links-block{padding:4px 0 8px;display:flex;flex-direction:column;gap:6px}
+.maps-route-btn{
+  display:block;background:rgba(26,46,96,0.9);border:1px solid #2a4a8a;
+  border-radius:8px;padding:10px 14px;color:#90b4e8;font-size:13px;
+  text-decoration:none;line-height:1.4;
+  transition:background .15s;-webkit-tap-highlight-color:transparent;
+}
+.maps-route-btn:hover,.maps-route-btn:active{background:#1e3575;color:#fff;text-decoration:none}
+.maps-routes-title{font-size:12px;color:#8090b8;text-transform:uppercase;letter-spacing:.5px;font-weight:700;padding:8px 0 2px}
+
+/* ── CLIMA PAGE ── */
+.clima-card{
+  margin:0 12px 12px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+}
+.clima-card-header{
+  display:flex;align-items:center;gap:12px;
+  padding:14px;
+  background:linear-gradient(90deg,rgba(14,32,96,.95),rgba(22,50,100,.95));
+  border-bottom:1px solid var(--border);
+}
+.clima-card-emoji{font-size:32px;flex-shrink:0}
+.clima-card-title{
+  font-family:'Montserrat',sans-serif;font-size:15px;font-weight:900;color:var(--white);
+}
+.clima-card-date{font-size:11px;color:var(--muted);margin-top:2px}
+.clima-temp-badge{
+  margin-left:auto;flex-shrink:0;text-align:right;
+}
+.clima-temp-hi{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:900;color:var(--orange);line-height:1}
+.clima-temp-lo{font-size:11px;color:var(--muted);margin-top:1px}
+.clima-card-body{padding:12px 14px}
+.clima-desc{font-size:13px;color:var(--text);line-height:1.6;margin-bottom:10px}
+.clima-abbigliamento{list-style:none;padding:0;margin:0 0 8px}
+.clima-abbigliamento li{
+  font-size:12px;color:var(--text);padding:4px 0;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  display:flex;align-items:flex-start;gap:6px;
+}
+.clima-abbigliamento li::before{content:"👔";font-size:11px;flex-shrink:0;margin-top:2px}
+.clima-avviso{
+  display:flex;align-items:flex-start;gap:6px;
+  background:rgba(200,16,46,.08);border:1px solid rgba(200,16,46,.25);
+  border-radius:8px;padding:8px 10px;margin-top:6px;
+  font-size:12px;color:#f8a0a8;line-height:1.5;
+}
+.clima-avviso::before{content:"⚠️";font-size:12px;flex-shrink:0}
+
+/* ── VALIGERIA SECTION ── */
+.valigeria-section{margin:0 12px 16px}
+.valigeria-cat{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-sm);margin-bottom:10px;overflow:hidden;
+}
+.valigeria-cat-header{
+  padding:11px 14px;
+  background:linear-gradient(90deg,rgba(14,32,96,.9),rgba(22,50,100,.9));
+  font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:var(--white);
+}
+.valigeria-cat-body{padding:10px 14px}
+.valigeria-item{
+  display:flex;align-items:center;gap:8px;
+  font-size:13px;color:var(--text);padding:4px 0;
+  border-bottom:1px solid rgba(255,255,255,.04);
+}
+.valigeria-item:last-child{border-bottom:none}
+.valigeria-item-icon{font-size:16px;flex-shrink:0;width:22px;text-align:center}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE: HOME ═══════════════════════ -->
+<div id="page-home" class="page active">
+  <div class="home-hero">
+    <div class="stars-canvas" id="stars-canvas"></div>
+    <span class="hero-flag">🇺🇸</span>
+    <div class="hero-title">Road Trip USA 2026</div>
+    <div class="hero-subtitle">Costa Ovest · Grandi Parchi · Yellowstone</div>
+    <div class="hero-dates">31 Luglio – 14 Agosto 2026</div>
+    <div class="flag-stripe"></div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card"><div class="snum">3.904</div><div class="slbl">Km totali</div></div>
+    <div class="stat-card"><div class="snum">2.426</div><div class="slbl">Miglia totali</div></div>
+    <div class="stat-card"><div class="snum">12</div><div class="slbl">Tappe</div></div>
+    <div class="stat-card"><div class="snum">7</div><div class="slbl">Stati USA</div></div>
+    <div class="stat-card"><div class="snum">15</div><div class="slbl">Giorni</div></div>
+    <div class="stat-card"><div class="snum">~$657</div><div class="slbl">Carburante</div></div>
+  </div>
+
+  <div class="sec-heading">📍 Le Tappe del Viaggio</div>
+  <div class="tappa-list" id="home-tappa-list">
+    <div class="tappa-item" onclick="showTappa('t1')">
+      <div class="tappa-emoji">✈️</div>
+      <div class="tappa-info">
+        <div class="tappa-day">Giorno 1 · 31 Luglio</div>
+        <div class="tappa-title">Napoli → San Francisco</div>
+        <div class="tappa-km">~13h volo · arrivo in California</div>
+      </div>
+      <div class="tappa-right"><span class="tappa-arrow">›</span></div>
+    </div>
+
+    <div class="tappa-item" onclick="showTappa('t2')">
+      <div class="tappa-emoji">🌲</div>
+      <div class="tappa-info">
+        <div class="tappa-day">Giorno 3 · 2 Agosto</div>
+        <div class="tappa-title">San Francisco → Yosemite</div>
+        <div class="tappa-km">169 mi / 272 km · 3h41</div>
+      </div>
+      <div class="tappa-right">
+        <span class="tappa-arrow">›</span>
+        <span class="weather-chip loading" id="wchip-yosemite">🌤️ --°</span>
+      </div>
+    </div>
+
+    <div class="tappa-item" onclick="showTappa('t3')">
+      <div class="tappa-emoji">🏜️</div>
+      <div class="tappa-info">
+        <div class="tappa-day">Giorno 4 · 3 Agosto</div>
+        <div class="tappa-title">Yosemite → Death Valley</div>
+        <div class="tappa-km">302 mi / 486 km · 6h20</div>
+      </div>
+      <div class="tappa-right">
+        <span class="tappa-arrow">›</span>
+        <span class="weather-chip loading" id="wchip-deathvalley">🌤️ --°</span>
+      </div>
+    </div>
+
+    <div class="tappa-item" onclick="showTappa('t4')">
+      <div class="tappa-emoji">🎰</div>
+      <div class="tappa-info">
+        <div class="tappa-day">Giorno 5–6 · 4 Agosto</div>
+        <div class="tappa-title">Death Valley → Las Vegas</div>
+        <div class="tappa-km">163 mi / 262 km · 3h10</div>
+      </div>
+      <div class="tappa-right">
+        <span class="tappa-arrow">›</span>
+        <span class="weather-chip loading" id="wchip-lasvegas">🌤️ --°</span>
+      </div>
+    </div>
+
+    <div class="tappa-item" onclick="showTappa('t5')">
+      <div class="tappa-emoji">🏔️</div>
+      <div class="tappa-info">
+        <div class="tappa-day">Giorno 6 · 5 Agosto</div>
+        <div class="tappa-title">Las Vegas → Grand Canyon → Williams</div>
+        <div class="tappa-km">344 mi / 554 km · 5h45</div>
+      </div>
+      <div class="tappa-right">
+        <span class="tappa-arrow">›</span>
+        <span class="weather-chip loading" id="wchip-grandcanyon">🌤️ --°</span>
+      </div>
+    </div>
+
+    <div class="tappa-item" onclick="showTappa('t6')">
+      <div class="tappa-emoji">🗿</div>
+      <div class="tappa-info">
+        <div class="tappa-day">Giorno 7 · 6 Agosto</div>
+        <div class="tappa-title">Williams → Monument Valley</div>
+        <div class="tappa-km">232 mi / 374 km · 4h17</div>
+      </div>
+      <div class="tappa-right">
+        <span class="tappa-arrow">›</span>
+        <span class="weather-chip loading" id="wchip-monumentvalley">🌤️ --°</span>
+      </div>
+    </div>
+
+    <div class="tappa-item" onclick="showTappa('t7')">
+      <div class="tappa-emoji">🌊</div>
+      <div class="tappa-info">
+        <div class="tappa-day">Giorno 8 · 7 Agosto</div>
+        <div class="tappa-title">Monument Valley → Antelope Canyon → Kanab</div>
+        <div class="tappa-km">217 mi / 349 km · 3h40</div>
+      </div>
+      <div class="tappa-right">
+        <span class="tappa-arrow">›</span>
+        <span class="weather-chip loading" id="wchip-antelopecanyon">🌤️ --°</span>
+      </div>
+    </div>
+
+    <div class="tappa-item" onclick="showTappa('t8')">
+      <div class="tappa-emoji">🔴</div>
+      <div class="tappa-info">
+        <div class="tappa-day">Giorno 9 · 8 Agosto</div>
+        <div class="tappa-title">Kanab → Bryce Canyon → Salt Lake City</div>
+        <div class="tappa-km">345 mi / 555 km · 5h12</div>
+      </div>
+      <div class="tappa-right">
+        <span class="tappa-arrow">›</span>
+        <span class="weather-chip loading" id="wchip-brycecanyon">🌤️ --°</span>
+      </div>
+    </div>
+
+    <div class="tappa-item" onclick="showTappa('t9')">
+      <div class="tappa-emoji">🌋</div>
+      <div class="tappa-info">
+        <div class="tappa-day">Giorni 10–11 · 9–10 Agosto</div>
+        <div class="tappa-title">Salt Lake City → Island Park → Yellowstone</div>
+        <div class="tappa-km">288 mi / 463 km · 4h13</div>
+      </div>
+      <div class="tappa-right">
+        <span class="tappa-arrow">›</span>
+        <span class="weather-chip loading" id="wchip-yellowstone">🌤️ --°</span>
+      </div>
+    </div>
+
+    <div class="tappa-item" onclick="showTappa('t10')">
+      <div class="tappa-emoji">✈️</div>
+      <div class="tappa-info">
+        <div class="tappa-day">Giorno 12 · 11 Agosto</div>
+        <div class="tappa-title">Island Park → Bozeman ✈️ San Diego</div>
+        <div class="tappa-km">131 mi / 211 km · volo BZN→SAN</div>
+      </div>
+      <div class="tappa-right">
+        <span class="tappa-arrow">›</span>
+        <span class="weather-chip loading" id="wchip-sandiego">🌤️ --°</span>
+      </div>
+    </div>
+
+    <div class="tappa-item" onclick="showTappa('t11')">
+      <div class="tappa-emoji">🌊</div>
+      <div class="tappa-info">
+        <div class="tappa-day">Giorni 12–14 · 11–13 Agosto</div>
+        <div class="tappa-title">San Diego</div>
+        <div class="tappa-km">Spiagge · Zoo · Centro storico</div>
+      </div>
+      <div class="tappa-right"><span class="tappa-arrow">›</span></div>
+    </div>
+
+    <div class="tappa-item" onclick="showTappa('t12')">
+      <div class="tappa-emoji">🏠</div>
+      <div class="tappa-info">
+        <div class="tappa-day">Giorni 14–15 · 13–15 Ago</div>
+        <div class="tappa-title">San Diego ✈️ San Francisco → Napoli</div>
+        <div class="tappa-km">Volo SAN→SFO · Ultima sera SF · Volo di ritorno</div>
+      </div>
+      <div class="tappa-right"><span class="tappa-arrow">›</span></div>
+    </div>
+  </div>
+</div>
+<!-- END HOME -->
+
+<!-- ═══════════════════════ PAGE: TAPPE (overview) ═══════════════════════ -->
+<div id="page-tappe" class="page">
+  <div class="page-header">
+    <h1>🗺️ Tappe</h1>
+    <div class="sub">12 tappe · 7 stati · 15 giorni</div>
+  </div>
+  <div style="padding:8px 0">
+    <div class="sec-heading">Clicca una tappa per i dettagli</div>
+    <div class="tappa-list">
+      <div class="tappa-item" onclick="showTappa('t1')"><div class="tappa-emoji">✈️</div><div class="tappa-info"><div class="tappa-day">Giorno 1 · 31 Lug</div><div class="tappa-title">Napoli → San Francisco</div><div class="tappa-km">Volo intercontinentale</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
+      <div class="tappa-item" onclick="showTappa('t2')"><div class="tappa-emoji">🌲</div><div class="tappa-info"><div class="tappa-day">Giorno 3 · 2 Ago</div><div class="tappa-title">SF → Yosemite NP</div><div class="tappa-km">169 mi · 3h41</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
+      <div class="tappa-item" onclick="showTappa('t3')"><div class="tappa-emoji">🏜️</div><div class="tappa-info"><div class="tappa-day">Giorno 4 · 3 Ago</div><div class="tappa-title">Yosemite → Death Valley</div><div class="tappa-km">302 mi · 6h20</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
+      <div class="tappa-item" onclick="showTappa('t4')"><div class="tappa-emoji">🎰</div><div class="tappa-info"><div class="tappa-day">Giorno 5–6 · 4 Ago</div><div class="tappa-title">Death Valley → Las Vegas</div><div class="tappa-km">163 mi · 3h10</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
+      <div class="tappa-item" onclick="showTappa('t5')"><div class="tappa-emoji">🏔️</div><div class="tappa-info"><div class="tappa-day">Giorno 6 · 5 Ago</div><div class="tappa-title">Las Vegas → Grand Canyon</div><div class="tappa-km">344 mi · 5h45</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
+      <div class="tappa-item" onclick="showTappa('t6')"><div class="tappa-emoji">🗿</div><div class="tappa-info"><div class="tappa-day">Giorno 7 · 6 Ago</div><div class="tappa-title">Williams → Monument Valley</div><div class="tappa-km">232 mi · 4h17</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
+      <div class="tappa-item" onclick="showTappa('t7')"><div class="tappa-emoji">🌊</div><div class="tappa-info"><div class="tappa-day">Giorno 8 · 7 Ago</div><div class="tappa-title">Monument Valley → Antelope Canyon</div><div class="tappa-km">217 mi · 3h40</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
+      <div class="tappa-item" onclick="showTappa('t8')"><div class="tappa-emoji">🔴</div><div class="tappa-info"><div class="tappa-day">Giorno 9 · 8 Ago</div><div class="tappa-title">Kanab → Bryce Canyon → SLC</div><div class="tappa-km">345 mi · 5h12</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
+      <div class="tappa-item" onclick="showTappa('t9')"><div class="tappa-emoji">🌋</div><div class="tappa-info"><div class="tappa-day">Giorni 10–11 · 9–10 Ago</div><div class="tappa-title">SLC → Island Park → Yellowstone</div><div class="tappa-km">288 mi · 4h13</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
+      <div class="tappa-item" onclick="showTappa('t10')"><div class="tappa-emoji">✈️</div><div class="tappa-info"><div class="tappa-day">Giorno 12 · 11 Ago</div><div class="tappa-title">Island Park → Bozeman → San Diego</div><div class="tappa-km">Volo BZN→SAN</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
+      <div class="tappa-item" onclick="showTappa('t11')"><div class="tappa-emoji">🌊</div><div class="tappa-info"><div class="tappa-day">Giorni 12–13 · 11–12 Ago</div><div class="tappa-title">San Diego (2 notti)</div><div class="tappa-km">Spiagge · Balboa Park · Old Town · USS Midway</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
+      <div class="tappa-item" onclick="showTappa('t12')"><div class="tappa-emoji">🏙️</div><div class="tappa-info"><div class="tappa-day">Giorni 14–16 · 13–15 Ago</div><div class="tappa-title">San Francisco (finale) ✈️ Napoli</div><div class="tappa-km">Volo SAN→SFO · Hotel Fiona · 14 Ago in città · 15 Ago ritorno</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
+    </div>
+  </div>
+</div>
+<!-- END TAPPE -->
+
+<!-- ═══════════════════════ PAGE: ITINERARIO ═══════════════════════ -->
+<div id="page-itinerario" class="page">
+  <div class="page-header">
+    <h1>📅 Itinerario</h1>
+    <div class="sub">Timeline giorno per giorno</div>
+  </div>
+  <div class="timeline">
+    <div class="tl-item" onclick="showTappa('t1')">
+      <div class="tl-left"><div class="tl-dot">✈️</div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-day">Giorno 1 · 31 Luglio</div><div class="tl-title">Napoli → San Francisco</div><div class="tl-km">Volo + arrivo + Hotel Fiona</div></div>
+    </div>
+    <div class="tl-item" onclick="showTappa('t1')">
+      <div class="tl-left"><div class="tl-dot">🌉</div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-day">Giorno 2 · 1 Agosto</div><div class="tl-title">San Francisco</div><div class="tl-km">Golden Gate · Fisherman's Wharf · Lombard St · Hotel Fiona</div></div>
+    </div>
+    <div class="tl-item" onclick="showTappa('t2')">
+      <div class="tl-left"><div class="tl-dot">🌲</div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-day">Giorno 3 · 2 Agosto</div><div class="tl-title">SF → Yosemite NP</div><div class="tl-km">169 mi · 3h41 · Chalet Groveland</div></div>
+    </div>
+    <div class="tl-item" onclick="showTappa('t3')">
+      <div class="tl-left"><div class="tl-dot">🏜️</div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-day">Giorno 4 · 3 Agosto</div><div class="tl-title">Yosemite → Mono Lake → Death Valley</div><div class="tl-km">302 mi · 6h20 · Death Valley Inn, Beatty NV</div></div>
+    </div>
+    <div class="tl-item" onclick="showTappa('t4')">
+      <div class="tl-left"><div class="tl-dot">🎰</div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-day">Giorni 5–6 · 4–5 Agosto</div><div class="tl-title">Death Valley → Las Vegas</div><div class="tl-km">163 mi · 3h10 · The LINQ Las Vegas (2 notti)</div></div>
+    </div>
+    <div class="tl-item" onclick="showTappa('t5')">
+      <div class="tl-left"><div class="tl-dot">🏔️</div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-day">Giorno 6 · 5 Agosto</div><div class="tl-title">Las Vegas → Grand Canyon → Williams</div><div class="tl-km">344 mi · 5h45 · Rodeway Inn Williams, Rte 66</div></div>
+    </div>
+    <div class="tl-item" onclick="showTappa('t6')">
+      <div class="tl-left"><div class="tl-dot">🗿</div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-day">Giorno 7 · 6 Agosto</div><div class="tl-title">Williams → Desert View → Monument Valley</div><div class="tl-km">232 mi · 4h17 · Mexican Hat Lodge, UT</div></div>
+    </div>
+    <div class="tl-item" onclick="showTappa('t7')">
+      <div class="tl-left"><div class="tl-dot">🌊</div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-day">Giorno 8 · 7 Agosto</div><div class="tl-title">Mexican Hat → Antelope Canyon X → Kanab</div><div class="tl-km">217 mi · 3h40 · Comfort Suites Kanab, UT</div></div>
+    </div>
+    <div class="tl-item" onclick="showTappa('t8')">
+      <div class="tl-left"><div class="tl-dot">🔴</div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-day">Giorno 9 · 8 Agosto</div><div class="tl-title">Kanab → Bryce Canyon → Salt Lake City</div><div class="tl-km">345 mi · 5h12 · Park Inn Radisson SLC</div></div>
+    </div>
+    <div class="tl-item" onclick="showTappa('t9')">
+      <div class="tl-left"><div class="tl-dot">🌋</div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-day">Giorno 10 · 9 Agosto</div><div class="tl-title">Salt Lake City → Island Park (base Yellowstone)</div><div class="tl-km">288 mi · 4h13 · Blue Buffalo Resort, ID</div></div>
+    </div>
+    <div class="tl-item" onclick="showTappa('t9')">
+      <div class="tl-left"><div class="tl-dot">♨️</div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-day">Giorno 11 · 10 Agosto</div><div class="tl-title">Yellowstone National Park</div><div class="tl-km">Old Faithful · Grand Prismatic · Lamar Valley · Blue Buffalo Resort</div></div>
+    </div>
+    <div class="tl-item" onclick="showTappa('t10')">
+      <div class="tl-left"><div class="tl-dot">✈️</div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-day">Giorno 12 · 11 Agosto</div><div class="tl-title">Island Park → Bozeman (BZN) ✈️ San Diego (SAN)</div><div class="tl-km">131 mi + volo · Baymont Wyndham San Diego</div></div>
+    </div>
+    <div class="tl-item" onclick="showTappa('t11')">
+      <div class="tl-left"><div class="tl-dot">🌊</div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-day">Giorni 13–14 · 12–13 Agosto</div><div class="tl-title">San Diego</div><div class="tl-km">Zoo · Balboa Park · Old Town · Spiagge · Baymont Wyndham</div></div>
+    </div>
+    <div class="tl-item" onclick="showTappa('t11')">
+      <div class="tl-left"><div class="tl-dot">🚗</div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-day">Giorno 14 · 13 Agosto</div><div class="tl-title">San Diego ✈️ San Francisco SFO</div><div class="tl-km">Volo SAN→SFO (~1h30) · Hotel Fiona, San Francisco</div></div>
+    </div>
+    <div class="tl-item" onclick="showTappa('t12')">
+      <div class="tl-left"><div class="tl-dot">🏠</div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-day">Giorno 15 · 14 Agosto</div><div class="tl-title">San Francisco → SFO ✈️ Napoli</div><div class="tl-km">Ultima giornata a SF · Uber/Lyft SFO · Volo di ritorno</div></div>
+    </div>
+  </div>
+</div>
+<!-- END ITINERARIO -->
+
+<!-- ═══════════════════════ PAGE: HOTEL ═══════════════════════ -->
+<div id="page-hotel" class="page">
+  <div class="page-header">
+    <h1>🏨 Hotel &amp; Alloggi</h1>
+    <div class="sub">11 strutture · 15 notti</div>
+  </div>
+  <div style="padding:12px">
+    <div class="hotel-card"><div class="hc-night">31 Lug – 2 Ago · 2 notti</div><div class="hc-name">Hotel Fiona</div><div class="hc-addr">📍 140 7th St, San Francisco, CA 94103 · SoMa District</div><a class="maps-btn" href="https://maps.app.goo.gl/mXMn5W2Q3Epq6PeT9" target="_blank">📍 Apri in Maps</a></div>
+    <div class="hotel-card"><div class="hc-night">2 Ago · 1 notte</div><div class="hc-name">Chalet Groveland</div><div class="hc-addr">📍 12431 Tannahill Dr, Groveland, CA · ~25 min Big Oak Flat Entrance</div><a class="maps-btn" href="https://maps.app.goo.gl/Yi4qd4Cbptr4TVLM9" target="_blank">📍 Apri in Maps</a></div>
+    <div class="hotel-card"><div class="hc-night">3 Ago · 1 notte</div><div class="hc-name">Death Valley Inn</div><div class="hc-addr">📍 651 US-95, Beatty, NV · Gateway Death Valley</div><a class="maps-btn" href="https://maps.app.goo.gl/5gTdx3Kwun47uRgd8" target="_blank">📍 Apri in Maps</a></div>
+    <div class="hotel-card"><div class="hc-night">4–5 Ago · 2 notti</div><div class="hc-name">The LINQ Las Vegas</div><div class="hc-addr">📍 3535 Las Vegas Blvd S, Las Vegas, NV · Centro Strip</div><a class="maps-btn" href="https://maps.app.goo.gl/Aj8F9C8JW7SEKaLv9" target="_blank">📍 Apri in Maps</a></div>
+    <div class="hotel-card"><div class="hc-night">5 Ago · 1 notte</div><div class="hc-name">Rodeway Inn Williams</div><div class="hc-addr">📍 201 Historic Rte 66, Williams, AZ · Route 66 gateway Grand Canyon</div><a class="maps-btn" href="https://maps.app.goo.gl/YxFunL72qaSQxDuy9" target="_blank">📍 Apri in Maps</a></div>
+    <div class="hotel-card"><div class="hc-night">6 Ago · 1 notte</div><div class="hc-name">Mexican Hat Lodge</div><div class="hc-addr">📍 100 Hwy 163, Mexican Hat, UT · Lodge su roccia rossa, fiume San Juan</div><a class="maps-btn" href="https://maps.app.goo.gl/LyM5HcAWrHrB6NuP7" target="_blank">📍 Apri in Maps</a></div>
+    <div class="hotel-card"><div class="hc-night">7 Ago · 1 notte</div><div class="hc-name">Comfort Suites Kanab</div><div class="hc-addr">📍 150 W Center St, Kanab, UT · National Park Area</div><a class="maps-btn" href="https://maps.app.goo.gl/bHVhupAnN3LZNzjN7" target="_blank">📍 Apri in Maps</a></div>
+    <div class="hotel-card"><div class="hc-night">8 Ago · 1 notte</div><div class="hc-name">Park Inn Radisson SLC</div><div class="hc-addr">📍 176 W 600 S, Salt Lake City, UT · Centro SLC</div><a class="maps-btn" href="https://maps.app.goo.gl/E3DAKm7mKyT7fNVUA" target="_blank">📍 Apri in Maps</a></div>
+    <div class="hotel-card"><div class="hc-night">9–10 Ago · 2 notti</div><div class="hc-name">Blue Buffalo Resort</div><div class="hc-addr">📍 3402 US-20, Island Park, ID · 67 mi da Yellowstone West Entrance</div><a class="maps-btn" href="https://maps.app.goo.gl/RXEgAGUVMj12cJkT6" target="_blank">📍 Apri in Maps</a></div>
+    <div class="hotel-card"><div class="hc-night">11 Ago · 2 notti</div><div class="hc-name">Baymont by Wyndham San Diego Downtown</div><div class="hc-addr">📍 719 Ash St, San Diego, CA 92101 · Downtown</div><a class="maps-btn" href="https://maps.app.goo.gl/FkpJn1qZSfVs9bDF9" target="_blank">📍 Apri in Maps</a></div>
+    <div class="hotel-card"><div class="hc-night">13–15 Ago · 2 notti</div><div class="hc-name">Hotel Fiona (rientro)</div><div class="hc-addr">📍 140 7th St, San Francisco, CA · 6 km da SFO</div><a class="maps-btn" href="https://www.google.com/maps/search/?api=1&query=Hotel+Fiona+140+7th+St+San+Francisco+CA+94103" target="_blank">📍 Apri in Maps</a></div>
+    <div class="tip-box" style="margin-top:4px">💡 <strong>Consiglio:</strong> Richiesta carta di credito a garanzia in tutti gli hotel USA. Check-out generalmente alle 11:00 — coordinare con le partenze mattutine.</div>
+  </div>
+</div>
+<!-- END HOTEL -->
+
+<!-- ═══════════════════════ PAGE: INFO ═══════════════════════ -->
+<div id="page-info" class="page">
+  <div class="page-header">
+    <h1>ℹ️ Info Utili</h1>
+    <div class="sub">Emergenze · Auto · Consigli pratici</div>
+  </div>
+
+  <div class="sec-heading">🚨 Numeri di Emergenza</div>
+  <div class="emg-big">
+    <div><div class="num">911</div><div class="lbl">Emergenze Generali<br>Polizia · Ambulanza · Fuoco</div></div>
+    <div><div class="num">211</div><div class="lbl">Servizi Sociali<br>Assistenza locale</div></div>
+    <div><div class="num">511</div><div class="lbl">Viabilità<br>Info traffico strade</div></div>
+    <div><div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:900;color:#fff;text-align:center">800-222-1222</div><div class="lbl">Poison Control<br>Intossicazioni</div></div>
+  </div>
+
+  <div class="emg-card"><div class="emg-title">🚗 Assistenza Auto (Hertz / Dollar)</div><div class="emg-num">800-654-5060 (Hertz)</div><div class="emg-sub">800-800-4000 (Dollar/Thrifty) · <a href="https://www.hertz.com">hertz.com</a></div></div>
+  <div class="emg-card"><div class="emg-title">🏛️ Consolato Italiano – Los Angeles</div><div class="emg-num">+1 310-820-0622</div><div class="emg-sub"><a href="https://conslosangeles.esteri.it">conslosangeles.esteri.it</a></div></div>
+  <div class="emg-card"><div class="emg-title">🩺 Emergenze Mediche</div><div class="emg-num">911</div><div class="emg-sub">Pronto Soccorso: cerca "emergency room" su Google Maps. Tieni sempre la documentazione dell'assicurazione sanitaria di viaggio accessibile.</div></div>
+  <div class="emg-card"><div class="emg-title">🅿️ AAA (Assistenza Stradale)</div><div class="emg-num">800-222-4357</div><div class="emg-sub">Non-soci: tariffe a pagamento · Soci: servizio incluso</div></div>
+
+  <div class="sec-heading">🗺️ Numeri per Stato</div>
+  <div class="emg-card"><div class="emg-title">☀️ California (CA)</div><div class="emg-num">323-260-6444 – CHP</div><div class="emg-sub"><a href="https://www.chp.ca.gov">chp.ca.gov</a> · <a href="https://quickmap.dot.ca.gov">quickmap.dot.ca.gov</a></div></div>
+  <div class="emg-card"><div class="emg-title">🎲 Nevada (NV)</div><div class="emg-num">775-687-5300 – NHP</div><div class="emg-sub"><a href="https://nvroads.com">nvroads.com</a></div></div>
+  <div class="emg-card"><div class="emg-title">🌵 Arizona (AZ)</div><div class="emg-num">602-223-2000 – DPS</div><div class="emg-sub"><a href="https://www.az511.gov">az511.gov</a></div></div>
+  <div class="emg-card"><div class="emg-title">🏔️ Utah (UT)</div><div class="emg-num">801-965-4000 – UHP</div><div class="emg-sub"><a href="https://udottraffic.utah.gov">udottraffic.utah.gov</a></div></div>
+  <div class="emg-card"><div class="emg-title">🐟 Idaho (ID)</div><div class="emg-num">208-884-7000 – ISP</div><div class="emg-sub"><a href="https://511.idaho.gov">511.idaho.gov</a></div></div>
+  <div class="emg-card"><div class="emg-title">🦬 Wyoming / Yellowstone</div><div class="emg-num">307-344-7381 – Yellowstone NP</div><div class="emg-sub">Emergenze nel parco · <a href="https://www.nps.gov/yell">nps.gov/yell</a></div></div>
+
+  <div class="sec-heading">⛽ Auto a Noleggio &amp; Carburante</div>
+  <div class="info-section">
+    <h3>🚗 GMC Yukon + Chrysler Pacifica</h3>
+    <ul>
+      <li><strong>Tratta 1:</strong> GMC Yukon · SF → Island Park → Bozeman BZN</li>
+      <li><strong>Tratta 2:</strong> Volo interno SAN → SFO (13 Agosto) · Nessuna auto a noleggio</li>
+      <li>Fare sempre il pieno prima di entrare nei parchi nazionali (prezzi alti)</li>
+      <li>Consigliato tenere sempre almeno <strong>mezzo serbatoio</strong> nelle zone remote</li>
+      <li>Prezzi carburante stimati: $4.50–$6.00/gallon nei parchi, ~$3.80–$4.20 fuori</li>
+      <li>Scaricare <strong>GasBuddy</strong> per trovare le stazioni più economiche</li>
+    </ul>
+  </div>
+  <div class="info-section">
+    <h3>📱 App Indispensabili</h3>
+    <ul>
+      <li><strong>Google Maps</strong> — mappe offline prima di partire per ogni zona</li>
+      <li><strong>recreation.gov</strong> — prenotazioni timed entry parchi nazionali</li>
+      <li><strong>GasBuddy</strong> — trova carburante più economico</li>
+      <li><strong>iOverlander / Park4Night</strong> — soste e punti di interesse off-road</li>
+      <li><strong>AccuWeather / Weather.gov</strong> — meteo affidabile USA</li>
+    </ul>
+  </div>
+  <div class="warning-box">⚠️ <strong>Note Importanti:</strong> In zone remote (Death Valley, Yellowstone, Monument Valley) la copertura può essere assente. Scaricare le mappe offline. Portare acqua abbondante — minimo 2–3 litri a persona per le escursioni. Salvare 911 su tutti i telefoni.</div>
+</div>
+<!-- END INFO -->
+
+<!-- ═══════════════════════ TAPPA 1: VOLO ═══════════════════════ -->
+<div id="tappa-t1" class="page">
+  <div class="detail-hero">
+    <div class="day-badge">Giorno 1 · 31 Luglio 2026</div>
+    <div class="dtitle">✈️ Napoli → San Francisco</div>
+    <div class="dsub">Volo intercontinentale · Arrivo in California · Hotel Fiona</div>
+    <div class="meta-chips">
+      <span class="meta-chip">✈️ ~13h volo (con scalo)</span>
+      <span class="meta-chip">🌍 NAP → FCO/MXP → SFO</span>
+      <span class="meta-chip">🏨 Hotel Fiona, SoMa SF (2 notti)</span>
+    </div>
+  </div>
+  <div class="back-btn" onclick="goBack()">← Indietro</div>
+<div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
+<div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/74LY4byUqhZA7TvS9" target="_blank">🗺️ SFO → Hotel Fiona (centro SF) · 21 mi · 35 min</a>
+</div>
+  <div class="hotel-bar"><div class="hb-name">🏨 Hotel Fiona · San Francisco, CA</div><div class="hb-detail">📍 140 7th St, San Francisco, CA 94103 · Check-in: 31 Luglio · 2 notti · SoMa District</div><a class="maps-btn" href="https://maps.app.goo.gl/mXMn5W2Q3Epq6PeT9" target="_blank">📍 Apri in Maps</a></div>
+
+  <div id="weather-t1" class="weather-widget"><div class="weather-header">🌤️ Meteo San Francisco</div><div class="weather-loading">Caricamento meteo...</div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>✈️ Il Volo</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><ul><li>Volo da Napoli (NAP) con scalo a Roma Fiumicino o Milano Malpensa verso San Francisco (SFO)</li><li>Durata totale: circa 13–14 ore incluso lo scalo</li><li>Fuso orario: SF è a <strong>UTC-7</strong> in estate — si torna indietro di 9 ore rispetto all'Italia</li><li>Arrivare a SF il pomeriggio/sera del 31 Luglio (ora locale)</li><li>All'uscita dall'aeroporto: prendere BART (metropolitana) o Uber/Lyft verso l'hotel in SoMa</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌉 Giorno 2 – San Francisco</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><ul><li><strong>Golden Gate Bridge</strong> — l'iconico ponte rosso, bellissimo all'alba dalla Battery Spencer</li><li><strong>Fisherman's Wharf</strong> — leoni marini, clam chowder nel pane tondo, Pier 39</li><li><strong>Lombard Street</strong> — la strada più tortuosa del mondo (vista piuttosto che discesa in auto)</li><li><strong>Alcatraz</strong> — prenotare il traghetto con anticipo (venduti in fretta)</li><li><strong>Chinatown</strong> — la più grande d'America, ottimo dim sum</li><li><strong>Presidio</strong> — parco con vista su Golden Gate e la baia</li><li>Usare <strong>Clipper Card</strong> per bus e tram MUNI</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🍽️ Dove Mangiare a SF</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Colazione:</strong> Sightglass Coffee (SoMa, vicino all'hotel) o Blue Bottle Coffee</li><li><strong>Pranzo:</strong> Ferry Building Marketplace — farmers market con prodotti freschi California</li><li><strong>Cena:</strong> The Grove (familiare, ottimo brunch) o tartine panini al Boudin Bakery (Fisherman's Wharf)</li><li><strong>Esperienza:</strong> Mission District per burrito autentici da La Taqueria o El Farolito</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌡️ Abbigliamento SF</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><div class="meteo-chips"><span class="meteo-chip">🌡️ 18–24°C giorno</span><span class="meteo-chip">🌡️ 12–16°C sera</span><span class="meteo-chip">🌫️ Nebbia mattutina</span></div><ul><li>SF è famosa per la nebbia estiva — porta sempre una giacca leggera o felpa</li><li>La sera rinfresca notevolmente</li><li>Sneakers comode per camminare molto</li></ul></div></div>
+</div>
+<!-- END T1 -->
+
+<!-- ═══════════════════════ TAPPA 2: YOSEMITE ═══════════════════════ -->
+<div id="tappa-t2" class="page">
+  <div class="detail-hero">
+    <div class="day-badge">Giorno 3 · 2 Agosto 2026</div>
+    <div class="dtitle">🌲 San Francisco → Yosemite NP</div>
+    <div class="dsub">169 miglia · 3h41 · Half Dome · El Capitan · Waterfalls</div>
+    <div class="meta-chips">
+      <span class="meta-chip">🚗 169 mi (272 km) · 3h41</span>
+      <span class="meta-chip">🛣️ I-580 E → I-205 E → CA-120 E</span>
+      <span class="meta-chip">🏨 Chalet Groveland, CA</span>
+    </div>
+  </div>
+  <div class="back-btn" onclick="goBack()">← Indietro</div>
+<div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
+<div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/S3S62x3hfcKfNUxr7" target="_blank">🗺️ SFO → Groveland (Chalet) · 144 mi · 3h06</a>
+<a class="maps-route-btn" href="https://maps.app.goo.gl/22hhpSbs3LVeiuAC7" target="_blank">🗺️ Groveland → Big Oak Flat Entrance Yosemite · 25 mi · 40 min</a>
+</div>
+  <div class="hotel-bar"><div class="hb-name">🏨 Chalet Groveland · Groveland, CA</div><div class="hb-detail">📍 12431 Tannahill Dr, Groveland, CA · Check-in: 2 Agosto · 1 notte · ~25 min dalla Big Oak Flat Entrance</div><a class="maps-btn" href="https://maps.app.goo.gl/Yi4qd4Cbptr4TVLM9" target="_blank">📍 Apri in Maps</a></div>
+
+  <div id="weather-t2" class="weather-widget"><div class="weather-header">🌤️ Meteo Yosemite NP</div><div class="weather-loading">Caricamento meteo...</div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🚗 Il Percorso</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><p>Partenza da SF verso est imboccando la <strong>I-580 E</strong> attraverso Oakland. Poi <strong>I-205 E</strong> verso Stockton, poi <strong>CA-120 E</strong> — la Yosemite Big Oak Flat Road — che sale tra le colline della Sierra Nevada.</p><ul><li>Partenza da SF entro le <strong>7:30–8:00</strong> per evitare il traffico Bay Area</li><li>Ritiro GMC Yukon all'aeroporto o noleggio in centro SF la mattina</li><li>Fare il pieno prima di Groveland — stazioni nel parco rare e costose</li><li>Ingresso: Big Oak Flat Entrance — verificare prenotazione <strong>timed entry su recreation.gov</strong></li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌲 Cosa Fare a Yosemite</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><ul><li><strong>Yosemite Valley</strong> — cuore del parco, valle glaciale con El Capitan e Half Dome</li><li><strong>Tunnel View</strong> — belvedere iconico all'ingresso della valley</li><li><strong>Bridalveil Fall</strong> — cascata facilmente raggiungibile a piedi (10 min dal parcheggio)</li><li><strong>Valley Floor Trail</strong> — percorso circolare 13 km lungo il fondovalle</li><li><strong>Mirror Lake</strong> — lago con riflesso perfetto di Half Dome (mattina presto)</li><li><strong>Glacier Point</strong> — panorama mozzafiato su Half Dome e la Valley</li><li>Prendi lo <strong>shuttle del parco</strong> per spostarti — i parcheggi si riempiono presto</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🍽️ Dove Mangiare</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Colazione:</strong> Village Grill Deck o portarsi snack da SF</li><li><strong>Pranzo:</strong> Curry Village (Camp 4 area) — burger e pizza al coperto</li><li><strong>Cena:</strong> Ahwahnee Dining Room (prenotare!) o Yosemite Valley Lodge</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌡️ Meteo &amp; Abbigliamento</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><div class="meteo-chips"><span class="meteo-chip">🌡️ 28–35°C valley</span><span class="meteo-chip">⛈️ Temporali pomeridiani</span><span class="meteo-chip">🧊 Fresco in quota</span></div><ul><li>Valley calda in agosto (28-35°C), zone alte oltre 2500m più fresche</li><li>Rischio temporali pomeridiani — fare i trail la mattina</li><li>Portare strati: la sera si raffredda anche in Valley</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>⚠️ Consigli Pratici</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Timed Entry:</strong> Obbligatorio tra le 6:00 e le 16:00 — prenotare su recreation.gov settimane prima</li><li>Orso avvistamento frequente — non lasciare cibo in auto (multa salata)</li><li>Acqua potabile dalle fontane del parco — portare borraccia riutilizzabile</li><li>Sunscreen fortissima — quota alta + caldo intenso</li></ul></div></div>
+</div>
+<!-- END T2 -->
+
+<!-- ═══════════════════════ TAPPA 3: DEATH VALLEY ═══════════════════════ -->
+<div id="tappa-t3" class="page">
+  <div class="detail-hero">
+    <div class="day-badge">Giorno 4 · 3 Agosto 2026</div>
+    <div class="dtitle">🏜️ Yosemite → Mono Lake → Death Valley</div>
+    <div class="dsub">302 miglia · 6h20 · Il luogo più caldo della Terra</div>
+    <div class="meta-chips">
+      <span class="meta-chip">🚗 302 mi (486 km) · 6h20</span>
+      <span class="meta-chip">🛣️ CA-120 E → US-395 S → CA-190</span>
+      <span class="meta-chip">🏨 Death Valley Inn, Beatty NV</span>
+    </div>
+  </div>
+  <div class="back-btn" onclick="goBack()">← Indietro</div>
+<div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
+<div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/DgrBpVvbBXBatfjbA" target="_blank">🗺️ Groveland → Mono Lake · 91 mi · 2h20</a>
+<a class="maps-route-btn" href="https://maps.app.goo.gl/wX2qZU1fEEG2hmXc7" target="_blank">🗺️ Mono Lake → Death Valley Inn (Beatty NV) · 211 mi · 4h00</a>
+</div>
+  <div class="hotel-bar"><div class="hb-name">🏨 Death Valley Inn · Beatty, NV</div><div class="hb-detail">📍 651 US-95, Beatty, NV 89003 · Check-in: 3 Agosto · 1 notte · Gateway Death Valley</div><a class="maps-btn" href="https://maps.app.goo.gl/5gTdx3Kwun47uRgd8" target="_blank">📍 Apri in Maps</a></div>
+
+  <div id="weather-t3" class="weather-widget"><div class="weather-header">🌡️ Meteo Death Valley</div><div class="weather-loading">Caricamento meteo...</div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🚗 Il Percorso</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><p>Da Groveland risalire verso est sulla <strong>CA-120 E</strong> attraverso il Tioga Pass (2.987 m). Poi scendere verso Mono Lake sulla <strong>US-395 S</strong>, poi via Lee Vining verso Bishop e attraverso la <strong>CA-190</strong> nel cuore di Death Valley fino a Beatty (NV).</p><ul><li>Tioga Pass: spettacolare, verificare che sia aperto (chiuso con neve, di solito aperto da fine maggio)</li><li>Mono Lake: deviazione consigliata — lago salato con formazioni calcaree uniche (tufa towers)</li><li>Furnace Creek: tappa nel parco — Visitor Center e Badwater Basin (punto più basso USA, -86m)</li><li>Partire presto — non guidare in Death Valley nel caldo del pomeriggio</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🏜️ Cosa Vedere</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><ul><li><strong>Badwater Basin</strong> — il punto più basso degli USA (-86 m), deserto di sale bianchissimo</li><li><strong>Zabriskie Point</strong> — tramonto mozzafiato sulle formazioni giallo-arancio (alba ancora meglio)</li><li><strong>Artist's Drive &amp; Artist's Palette</strong> — colline multicolore create da minerali ossidati</li><li><strong>Mesquite Flat Sand Dunes</strong> — dune di sabbia fotogeniche, meglio all'alba o tramonto</li><li><strong>Dante's View</strong> — panorama a 1.669m su tutta la valley e Badwater</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🍽️ Dove Mangiare</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Colazione:</strong> Tioga Pass Resort (vicino Mono Lake) o snack portati</li><li><strong>Pranzo:</strong> The Inn at Furnace Creek (AC, costoso ma salva la vita 😅) o Wrangler Steakhouse</li><li><strong>Cena:</strong> Beatty — Happy Burro Chili &amp; Beer consigliato, economico</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌡️ Meteo &amp; Abbigliamento</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><div class="meteo-chips"><span class="meteo-chip">🌡️ 45–50°C Death Valley</span><span class="meteo-chip">🌡️ 22–28°C Beatty</span><span class="meteo-chip">💧 Idratazione critica</span></div><ul><li>Death Valley è il luogo più caldo della Terra — non sottovalutare</li><li>Beatty (NV) è a quota maggiore — più fresca la sera</li><li>Non lasciare mai acqua o cibo in auto — il calore può danneggiare tutto</li></ul></div></div>
+
+  <div class="warning-box">⚠️ <strong>Sicurezza Death Valley:</strong> Non fare trekking tra le 10:00 e le 17:00. Tieni sempre 5+ litri d'acqua in auto. Prezzi carburante nel parco tra i più alti degli USA — fare il pieno a Beatty.</div>
+</div>
+<!-- END T3 -->
+
+<!-- ═══════════════════════ TAPPA 4: LAS VEGAS ═══════════════════════ -->
+<div id="tappa-t4" class="page">
+  <div class="detail-hero">
+    <div class="day-badge">Giorni 5–6 · 4 Agosto 2026</div>
+    <div class="dtitle">🎰 Death Valley → Las Vegas</div>
+    <div class="dsub">163 miglia · 3h10 · La Città del Peccato · 2 notti</div>
+    <div class="meta-chips">
+      <span class="meta-chip">🚗 163 mi (262 km) · 3h10</span>
+      <span class="meta-chip">🛣️ US-95 N → I-15 S → Las Vegas Blvd</span>
+      <span class="meta-chip">🏨 The LINQ Las Vegas (2 notti)</span>
+    </div>
+  </div>
+  <div class="back-btn" onclick="goBack()">← Indietro</div>
+<div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
+<div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/D7vEwcJQqc7E6wJDA" target="_blank">🗺️ Death Valley → Death Valley Inn (Beatty NV) · 45 mi · 1h00</a>
+<a class="maps-route-btn" href="https://maps.app.goo.gl/3fAygF5urauu5U5D7" target="_blank">🗺️ Death Valley Inn → The LINQ Las Vegas · 118 mi · 2h10</a>
+</div>
+  <div class="hotel-bar"><div class="hb-name">🏨 The LINQ Hotel + Experience · Las Vegas, NV</div><div class="hb-detail">📍 3535 Las Vegas Blvd S, Las Vegas, NV 89109 · Check-in: 4 Agosto · 2 notti · Cuore dello Strip</div><a class="maps-btn" href="https://maps.app.goo.gl/Aj8F9C8JW7SEKaLv9" target="_blank">📍 Apri in Maps</a></div>
+
+  <div id="weather-t4" class="weather-widget"><div class="weather-header">🌡️ Meteo Las Vegas</div><div class="weather-loading">Caricamento meteo...</div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🚗 Il Percorso</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><p>Da Beatty verso nord sulla <strong>US-95 N</strong>, poi <strong>I-15 S</strong> verso Las Vegas. Percorso nel deserto del Nevada — panorami spettacolari di rocce rosse e deserto aperto.</p><ul><li>Fare il pieno a Beatty prima di partire</li><li>Parcheggio LINQ: il resort ha parcheggio self-park (verificare tariffe)</li><li>Meglio arrivare nel pomeriggio per godersi la sera sullo Strip</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🎰 Cosa Fare a Las Vegas</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><ul><li><strong>Las Vegas Strip</strong> — 7 km di hotel, casinò e luci al neon da percorrere a piedi</li><li><strong>The High Roller</strong> — la ruota panoramica più alta del mondo (168m), proprio al LINQ</li><li><strong>Fountains of Bellagio</strong> — spettacolo gratuito ogni 15-30 min dal tramonto</li><li><strong>Freemont Street Experience</strong> — la vecchia Vegas con il mega soffitto LED</li><li><strong>Show a scelta</strong> — Cirque du Soleil, David Copperfield, Blue Man Group</li><li>Caesars Palace / MGM Grand / Venetian — vale la pena entrare anche senza giocare</li><li>In-N-Out Burger sullo Strip: iconico, qualità/prezzo imbattibile (~$8)</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🍽️ Dove Mangiare</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Colazione:</strong> buffet dell'hotel o Egg Works (americano classico)</li><li><strong>Pranzo:</strong> In-N-Out Burger (iconico, ~$8) o food court del Cosmopolitan</li><li><strong>Cena:</strong> Gordon Ramsay Fish &amp; Chips (LINQ, ~$25) o Thai food in Chinatown Las Vegas</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌡️ Meteo &amp; Abbigliamento</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><div class="meteo-chips"><span class="meteo-chip">🌡️ 40–45°C giorno</span><span class="meteo-chip">🌡️ 28–32°C notte</span><span class="meteo-chip">☀️ Sole costante</span></div><ul><li>Las Vegas in agosto è rovente — gli hotel e i casinò sono ben refrigerati</li><li>La sera è più piacevole — la vita notturna inizia dopo le 22:00</li><li>Idratarsi continuamente, specialmente camminando lungo lo Strip</li></ul></div></div>
+
+  <div class="tip-box">💡 <strong>Consiglio:</strong> Prenota il parcheggio in anticipo. L'app Uber/Lyft funziona benissimo per girare tra i casinò la notte.</div>
+</div>
+<!-- END T4 -->
+
+<!-- ═══════════════════════ TAPPA 5: GRAND CANYON ═══════════════════════ -->
+<div id="tappa-t5" class="page">
+  <div class="detail-hero">
+    <div class="day-badge">Giorno 6 · 5 Agosto 2026</div>
+    <div class="dtitle">🏔️ Las Vegas → Grand Canyon → Williams</div>
+    <div class="dsub">344 miglia · 5h45 · Primo impatto con il Canyon</div>
+    <div class="meta-chips">
+      <span class="meta-chip">🚗 344 mi (554 km) · 5h45</span>
+      <span class="meta-chip">🛣️ US-93 S → I-40 E → AZ-64 N</span>
+      <span class="meta-chip">🏨 Rodeway Inn Williams, AZ · Route 66</span>
+    </div>
+  </div>
+  <div class="back-btn" onclick="goBack()">← Indietro</div>
+<div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
+<div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/A13RHcXEJxyDHbKC9" target="_blank">🗺️ Las Vegas → Grand Canyon South Rim · 224 mi · 3h25</a>
+<a class="maps-route-btn" href="https://maps.app.goo.gl/56SxYEpbbE7omRZJ9" target="_blank">🗺️ Grand Canyon → Williams (Rodeway Inn) · 60 mi · 1h10</a>
+</div>
+  <div class="hotel-bar"><div class="hb-name">🏨 Rodeway Inn &amp; Suites Williams Downtown · Williams, AZ</div><div class="hb-detail">📍 201 Historic Rte 66, Williams, AZ 86046 · Check-in: 5 Agosto sera · 1 notte</div><a class="maps-btn" href="https://maps.app.goo.gl/YxFunL72qaSQxDuy9" target="_blank">📍 Apri in Maps</a></div>
+
+  <div id="weather-t5" class="weather-widget"><div class="weather-header">🌤️ Meteo Grand Canyon</div><div class="weather-loading">Caricamento meteo...</div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🚗 Il Percorso</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><p>Da Las Vegas verso sud sulla <strong>US-93 S</strong> attraverso il Hoover Dam (sosta foto!), poi <strong>I-40 E</strong> fino a Williams (AZ), poi <strong>AZ-64 N</strong> fino al South Rim del Grand Canyon.</p><ul><li><strong>Hoover Dam</strong>: sosta imperdibile — ponte panoramico, diga spettacolare (30-45 min)</li><li>Williams: la città "Porta del Grand Canyon" sulla storica Route 66</li><li>Grand Canyon South Rim: parcheggio a Mather Point — uso shuttle gratuito</li><li>Partire entro le 8:00 da Las Vegas per avere abbastanza tempo al Canyon</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🏔️ Grand Canyon — Cosa Vedere</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><ul><li><strong>Mather Point</strong> — belvedere principale, vista iconica sul Canyon (South Rim)</li><li><strong>Bright Angel Trail</strong> — sentiero più famoso: scendere fino a Indian Garden (3.2 mi a/r)</li><li><strong>Rim Trail</strong> — percorso pianeggiante lungo il bordo del canyon (13 km)</li><li><strong>Desert View Watchtower</strong> — torre storica a est del rim, vista a 360°</li><li><strong>Yavapai Geology Museum</strong> — spiegazione della formazione del canyon</li><li><strong>Helicopter tour</strong> — da prenotare in anticipo, esperienza indimenticabile</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🍽️ Dove Mangiare</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Colazione:</strong> hotel a Las Vegas (partenza presto) o gas station snack</li><li><strong>Pranzo:</strong> Bright Angel Restaurant (dentro il parco) o picnic al Mather Point</li><li><strong>Cena Williams:</strong> Red Raven Restaurant o Old Smoky's Restaurant (Rte 66 vibes)</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌡️ Meteo &amp; Abbigliamento</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><div class="meteo-chips"><span class="meteo-chip">🌡️ 28–35°C South Rim</span><span class="meteo-chip">⛈️ Temporali pomeridiani</span><span class="meteo-chip">🧊 Fresco di notte</span></div><ul><li>South Rim a 2.100m — più fresco di Las Vegas ma caldo di giorno</li><li>Temporali pomeridiani frequenti in agosto (monsoni)</li><li>Abbigliamento a strati: caldo di giorno, fresco la sera a Williams</li></ul></div></div>
+
+  <div class="tip-box">💡 <strong>Williams:</strong> Cittadina storica sulla Route 66, atmosfera anni '50. Vale una passeggiata serale nel centro storico dopo cena.</div>
+</div>
+<!-- END T5 -->
+
+<!-- ═══════════════════════ TAPPA 6: MONUMENT VALLEY ═══════════════════════ -->
+<div id="tappa-t6" class="page">
+  <div class="detail-hero">
+    <div class="day-badge">Giorno 7 · 6 Agosto 2026</div>
+    <div class="dtitle">🗿 Williams → Desert View → Monument Valley</div>
+    <div class="dsub">232 miglia · 4h17 · Desert View Drive + Navajo Nation</div>
+    <div class="meta-chips">
+      <span class="meta-chip">🚗 232 mi (374 km) · 4h17</span>
+      <span class="meta-chip">🛣️ AZ-64 E → US-89 N → US-160 E → UT-163</span>
+      <span class="meta-chip">🏨 Mexican Hat Lodge, UT</span>
+    </div>
+  </div>
+  <div class="back-btn" onclick="goBack()">← Indietro</div>
+<div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
+<div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/RRwTTHCXjAGYq4Xx9" target="_blank">🗺️ Williams → Desert View Drive (Grand Canyon East) · 144 mi · 2h20</a>
+<a class="maps-route-btn" href="https://maps.app.goo.gl/UchFAnFYCsff8pMX7" target="_blank">🗺️ Desert View → Mexican Hat Lodge · 22 mi · 27 min</a>
+</div>
+  <div class="hotel-bar"><div class="hb-name">🏨 Mexican Hat Lodge · Mexican Hat, UT</div><div class="hb-detail">📍 100 Hwy 163, Mexican Hat, UT 84531 · Check-in: 6 Agosto · 1 notte · Lodge su roccia rossa sul fiume San Juan</div><a class="maps-btn" href="https://maps.app.goo.gl/LyM5HcAWrHrB6NuP7" target="_blank">📍 Apri in Maps</a></div>
+
+  <div id="weather-t6" class="weather-widget"><div class="weather-header">🌤️ Meteo Monument Valley</div><div class="weather-loading">Caricamento meteo...</div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🚗 Il Percorso</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><p>Da Williams si torna al Grand Canyon percorrendo la <strong>Desert View Drive (AZ-64 E)</strong>, poi si scende verso la <strong>US-89 N</strong>. Si raggiunge la <strong>US-160 E</strong> verso Tuba City, poi <strong>UT-163 N</strong> verso Monument Valley e Mexican Hat.</p><ul><li>Desert View Drive: 25 miglia di strada panoramica lungo il rim orientale del canyon</li><li>Cameron Trading Post: tappa storica dei Navajo, ottimi souvenir autentici</li><li>Monument Valley: si è sulla Navajo Nation — rispettare le regole e pagare ingresso ($20)</li><li>Mexican Hat: paesino di 50 abitanti, posizione spettacolare sul fiume San Juan</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🗿 Monument Valley — Cosa Fare</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><ul><li><strong>The Mittens &amp; Merrick Butte</strong> — le formazioni iconiche riprese in mille film western</li><li><strong>John Ford's Point</strong> — belvedere usato nei western di John Wayne</li><li><strong>Valley Drive (17 mi)</strong> — strada sterrata nel cuore della valley ($20 per veicolo)</li><li><strong>Visitor Center</strong> — spiegazioni sulla cultura Navajo, vista panoramica gratuita</li><li>Tramonto: i colori rosso-arancio delle butte diventano incandescenti — arrivo entro le 18:00</li><li>Tour jeep guidato consigliato per zone non accessibili da soli</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🍽️ Dove Mangiare</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Colazione:</strong> hotel a Williams o gas station snack</li><li><strong>Pranzo:</strong> Burger King a Tuba City (davvero il migliore della zona) o Cameron Trading Post</li><li><strong>Cena:</strong> Mexican Hat Lodge Restaurant (unico posto nel raggio di km)</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌡️ Meteo &amp; Abbigliamento</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><div class="meteo-chips"><span class="meteo-chip">🌡️ 36–42°C giorno</span><span class="meteo-chip">🌡️ 22–26°C notte</span><span class="meteo-chip">⛈️ Temporali pomeridiani</span></div><ul><li>Caldo secco tipico del plateau — notti molto più fresche</li><li>Monsoni possibili nel pomeriggio — porta impermeabile leggero</li></ul></div></div>
+
+  <div class="tip-box">📸 <strong>Fotografia:</strong> Le Mittens si fotografano meglio al tramonto (luce arancione calda). John Ford's Point è lo spot western più iconico.</div>
+</div>
+<!-- END T6 -->
+
+<!-- ═══════════════════════ TAPPA 7: ANTELOPE CANYON ═══════════════════════ -->
+<div id="tappa-t7" class="page">
+  <div class="detail-hero">
+    <div class="day-badge">Giorno 8 · 7 Agosto 2026</div>
+    <div class="dtitle">🌊 Mexican Hat → Antelope Canyon X → Kanab</div>
+    <div class="dsub">217 miglia · 3h40 · Il canyon più fotografato al mondo</div>
+    <div class="meta-chips">
+      <span class="meta-chip">🚗 217 mi (349 km) · 3h40</span>
+      <span class="meta-chip">🛣️ US-163 N → US-160 W → US-89 N → UT-89</span>
+      <span class="meta-chip">🏨 Comfort Suites Kanab, UT</span>
+    </div>
+  </div>
+  <div class="back-btn" onclick="goBack()">← Indietro</div>
+<div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
+<div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/siSbHiGm2RNJCDSs6" target="_blank">🗺️ Mexican Hat → Antelope Canyon X (Page AZ) · 130 mi · 2h10</a>
+<a class="maps-route-btn" href="https://maps.app.goo.gl/XhzadRxY9PVAusDG8" target="_blank">🗺️ Antelope Canyon X → Comfort Suites Kanab · 87 mi · 1h30</a>
+</div>
+  <div class="hotel-bar"><div class="hb-name">🏨 Comfort Suites Kanab National Park Area</div><div class="hb-detail">📍 150 W Center St, Kanab, UT 84741 · Check-in: 7 Agosto · 1 notte</div><a class="maps-btn" href="https://maps.app.goo.gl/bHVhupAnN3LZNzjN7" target="_blank">📍 Apri in Maps</a></div>
+
+  <div id="weather-t7" class="weather-widget"><div class="weather-header">🌤️ Meteo Antelope Canyon / Page</div><div class="weather-loading">Caricamento meteo...</div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🚗 Il Percorso</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><p>Da Mexican Hat verso nord su <strong>US-163 N</strong>, poi ovest su <strong>US-160 W</strong> verso Kayenta. Poi <strong>US-89 N</strong> fino a Page (AZ), dove si trova Antelope Canyon. Da Page si prosegue su <strong>US-89 N</strong> verso Kanab (UT).</p><ul><li>Antelope Canyon X: prenotare il tour in anticipo — <a href="https://www.navajotours.com" style="color:var(--blue)">navajotours.com</a></li><li>Horseshoe Bend: deviazione di 10 min da Page, vista spettacolare sul Colorado</li><li>Lake Powell: il secondo bacino artificiale più grande degli USA, colori turchese</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌊 Antelope Canyon — Info Tour</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><ul><li><strong>Antelope Canyon X</strong> (Lower Antelope Canyon) — prenotazione obbligatoria online</li><li>Tour guidato da ranger Navajo: ~1h30, $100-120/persona incluso ingresso Navajo Nation</li><li>I raggi di luce entrano dall'alto tra le 10:00 e le 14:00 in estate</li><li><strong>Horseshoe Bend</strong> — a 10 min da Antelope Canyon, ingresso $10/veicolo, camminata 1.5 mi a/r</li><li>Portare fotocamera: i colori arancio-rosso delle pareti di arenaria sono indimenticabili</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🍽️ Dove Mangiare</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Colazione:</strong> Mexican Hat Lodge o snack in auto</li><li><strong>Pranzo:</strong> Wahweap Marina snack bar (Lake Powell) o Subway a Page</li><li><strong>Cena:</strong> Kanab Creek Bakery o Houston's Trails End Restaurant (Kanab)</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌡️ Meteo &amp; Abbigliamento</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><div class="meteo-chips"><span class="meteo-chip">🌡️ 35–42°C Page</span><span class="meteo-chip">🌡️ 30–38°C Kanab</span><span class="meteo-chip">⛈️ Monsoni possibili</span></div><ul><li>Antelope Canyon: fresco dentro le fessure del canyon (zona ombreggiata)</li><li>Horseshoe Bend: caldo intenso, nessuna ombra — cappello e crema solare obbligatori</li></ul></div></div>
+
+  <div class="tip-box">📸 <strong>Antelope Canyon:</strong> Per foto migliori porta un treppiede (consentito) e usa modalità manuale. Le luci e le ombre creano effetti incredibili.</div>
+</div>
+<!-- END T7 -->
+
+<!-- ═══════════════════════ TAPPA 8: BRYCE CANYON / SLC ═══════════════════════ -->
+<div id="tappa-t8" class="page">
+  <div class="detail-hero">
+    <div class="day-badge">Giorno 9 · 8 Agosto 2026</div>
+    <div class="dtitle">🔴 Kanab → Bryce Canyon → Salt Lake City</div>
+    <div class="dsub">345 miglia · 5h12 · Gli hoodoo rossi + Utah capitale</div>
+    <div class="meta-chips">
+      <span class="meta-chip">🚗 345 mi (555 km) · 5h12</span>
+      <span class="meta-chip">🛣️ UT-89 N → UT-12 E → US-89 N → I-15 N</span>
+      <span class="meta-chip">🏨 Park Inn Radisson, Salt Lake City</span>
+    </div>
+  </div>
+  <div class="back-btn" onclick="goBack()">← Indietro</div>
+<div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
+<div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/Cne1XseFGJSnYrwk7" target="_blank">🗺️ Kanab → Bryce Canyon NP</a>
+<a class="maps-route-btn" href="https://maps.app.goo.gl/3zrTcz5qFdhJSoaH8" target="_blank">🗺️ Bryce Canyon → Park Inn Salt Lake City · 268 mi</a>
+</div>
+  <div class="hotel-bar"><div class="hb-name">🏨 Park Inn by Radisson Salt Lake City Downtown</div><div class="hb-detail">📍 176 W 600 S, Salt Lake City, UT 84101 · Check-in: 8 Agosto · 1 notte · Centro SLC</div><a class="maps-btn" href="https://maps.app.goo.gl/E3DAKm7mKyT7fNVUA" target="_blank">📍 Apri in Maps</a></div>
+
+  <div id="weather-t8" class="weather-widget"><div class="weather-header">🌤️ Meteo Bryce Canyon</div><div class="weather-loading">Caricamento meteo...</div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🚗 Il Percorso</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><p>Da Kanab verso nord su <strong>UT-89 N</strong>, poi <strong>UT-12 E</strong> fino a Bryce Canyon NP (Ruby's Inn). Poi ritorno su <strong>US-89 N</strong> verso Panguitch, poi <strong>I-15 N</strong> fino a Salt Lake City.</p><ul><li>Scenic Byway 12: una delle strade più belle degli USA — deviazione consigliata verso Escalante</li><li>Bryce Canyon: parcheggio al Visitor Center, poi shuttle gratuito</li><li>Da Bryce a SLC: circa 3h30 senza soste</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🔴 Bryce Canyon — Cosa Fare</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><ul><li><strong>Sunrise Point / Sunset Point</strong> — belvederi principali, vista sugli hoodoo al tramonto</li><li><strong>Navajo Loop Trail</strong> — 2.2 km a/r, scende tra gli hoodoo di Thor's Hammer</li><li><strong>Queen's Garden Trail</strong> — trail più frequentato, 2.9 km a/r, paesaggio lunare</li><li><strong>Inspiration Point</strong> — vista panoramica con silent city degli hoodoo</li><li>Bryce Canyon di notte: uno dei migliori siti per astronomia in USA (zero luce artificiale)</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🍽️ Dove Mangiare</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Colazione:</strong> Bryce Canyon Pines Restaurant (Hwy 12) o hotel a Kanab</li><li><strong>Pranzo:</strong> Visi's Pizzeria (Bryce Canyon area) o picnic al parco</li><li><strong>Cena SLC:</strong> Red Iguana (messicano, imperdibile!) o Market Street Grill</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌡️ Meteo &amp; Abbigliamento</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><div class="meteo-chips"><span class="meteo-chip">🌡️ 22–30°C giorno</span><span class="meteo-chip">🌡️ 10–16°C notte</span><span class="meteo-chip">⛈️ Temporali poss.</span></div><ul><li>Bryce Canyon a 2.400–2.700 m — notti fresche anche d'estate</li><li>Strati obbligatori: la mattina può essere fredda</li><li>Temporali pomeridiani — partire presto per i trail</li></ul></div></div>
+</div>
+<!-- END T8 -->
+
+<!-- ═══════════════════════ TAPPA 9: YELLOWSTONE ═══════════════════════ -->
+<div id="tappa-t9" class="page">
+  <div class="detail-hero">
+    <div class="day-badge">Giorni 10–11 · 9–10 Agosto 2026</div>
+    <div class="dtitle">🌋 Salt Lake City → Island Park → Yellowstone</div>
+    <div class="dsub">288 miglia · 4h13 · Il parco geotermico più grande del mondo</div>
+    <div class="meta-chips">
+      <span class="meta-chip">🚗 288 mi (463 km) · 4h13</span>
+      <span class="meta-chip">🛣️ I-15 N → US-20 E</span>
+      <span class="meta-chip">🏨 Blue Buffalo Resort, Island Park ID (2 notti)</span>
+    </div>
+  </div>
+  <div class="back-btn" onclick="goBack()">← Indietro</div>
+<div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
+<div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/yP3cHaEqrj4bf7iP6" target="_blank">🗺️ Salt Lake City → Blue Buffalo Resort (Island Park) · 288 mi</a>
+<a class="maps-route-btn" href="https://maps.app.goo.gl/5MoDEwfVeYu8hdYP6" target="_blank">🗺️ Island Park → Yellowstone NP (andata) · 32 mi</a>
+<a class="maps-route-btn" href="https://maps.app.goo.gl/BR3TqwVH3GJExD2a6" target="_blank">🗺️ Island Park → Yellowstone NP (rientro) · 32 mi</a>
+</div>
+  <div class="hotel-bar"><div class="hb-name">🏨 Blue Buffalo Resort · Island Park, ID</div><div class="hb-detail">📍 3402 US-20, Island Park, ID 83429 · Check-in: 9 Agosto · 2 notti · 67 mi dal West Entrance Yellowstone</div><a class="maps-btn" href="https://maps.app.goo.gl/RXEgAGUVMj12cJkT6" target="_blank">📍 Apri in Maps</a></div>
+
+  <div id="weather-t9" class="weather-widget"><div class="weather-header">🌤️ Meteo Yellowstone NP</div><div class="weather-loading">Caricamento meteo...</div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🚗 Il Percorso (9 Agosto)</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><p>Da Salt Lake City su <strong>I-15 N</strong> attraverso Pocatello e Idaho Falls, poi <strong>US-20 E</strong> verso Island Park — piccola comunità a 30 min dal confine di Yellowstone.</p><ul><li>Tragitto diretto, circa 4h13 senza soste</li><li>Fare il pieno a Idaho Falls — stazioni nel parco costose</li><li>Island Park: circondato da foreste e natura selvaggia</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌋 Yellowstone NP (10 Agosto)</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><ul><li><strong>Old Faithful Geyser</strong> — il più famoso, erutta ogni ~90 min a 40+ metri d'altezza</li><li><strong>Grand Prismatic Spring</strong> — la sorgente termica più grande degli USA (Grand Prismatic Overlook Trail, 1.6 mi a/r)</li><li><strong>Mammoth Hot Springs</strong> — terrazze di travertino bianco, unico al mondo</li><li><strong>Lamar Valley</strong> — "la Serengeti d'America": bisonti, lupi, orsi (alba e tramonto)</li><li><strong>Yellowstone Grand Canyon</strong> — canyon giallo con cascate spettacolari</li><li><strong>Norris Geyser Basin</strong> — il bacino geotermico più caldo e attivo del parco</li><li>Ingresso: $35/veicolo — prenotare il timed entry su recreation.gov!</li><li>Partire da Island Park <strong>prima delle 7:00</strong> — parcheggi si riempiono subito</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🍽️ Dove Mangiare</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Cena 9 Ago:</strong> Trout Hunter Restaurant (eccellente, prenotare) o Henry's Fork Landing</li><li><strong>Yellowstone 10 Ago:</strong> Old Faithful Inn Dining Room (storico, prenotare!) o snack al visitor center</li><li>Porta sempre acqua e snack nel parco — code ai ristoranti lunghissime</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌡️ Meteo &amp; Abbigliamento</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><div class="meteo-chips"><span class="meteo-chip">🌡️ 20–28°C giorno</span><span class="meteo-chip">🌡️ 5–12°C notte</span><span class="meteo-chip">⛈️ Temporali possibili</span></div><ul><li>Yellowstone è a 2.200m — notti molto fresche anche ad agosto</li><li>Porta strati e un giubbotto impermeabile</li><li>Abbigliamento a cipolla — la mattina può fare freddo</li></ul></div></div>
+
+  <div class="warning-box">🦬 <strong>Sicurezza Yellowstone:</strong> Non avvicinarsi mai alla fauna selvatica. Distanza minima 25 metri dai bisonti, 100 metri dagli orsi. Stare sempre sui sentieri segnalati vicino alle sorgenti termiche — il terreno può cedere improvvisamente.</div>
+</div>
+<!-- END T9 -->
+
+<!-- ═══════════════════════ TAPPA 10: ISLAND PARK → SAN DIEGO ═══════════════════════ -->
+<div id="tappa-t10" class="page">
+  <div class="detail-hero">
+    <div class="day-badge">Giorno 12 · 11 Agosto 2026</div>
+    <div class="dtitle">✈️ Island Park → Bozeman → San Diego</div>
+    <div class="dsub">131 mi · 2h28 · Volo BZN→SAN · Baymont Wyndham</div>
+    <div class="meta-chips">
+      <span class="meta-chip">🚗 135 mi (217 km) · 2h28</span>
+      <span class="meta-chip">✈️ Volo BZN → SAN</span>
+      <span class="meta-chip">🏨 Baymont Wyndham, San Diego (2 notti)</span>
+    </div>
+  </div>
+  <div class="back-btn" onclick="goBack()">← Indietro</div>
+<div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
+<div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/UJGWJeUazZ8cZrhh8" target="_blank">🗺️ Blue Buffalo Resort → Aeroporto Bozeman BZN · 131 mi</a>
+<a class="maps-route-btn" href="https://maps.app.goo.gl/EVaKVf9X4rMMHhyX6" target="_blank">🗺️ Aeroporto San Diego SAN</a>
+<a class="maps-route-btn" href="https://maps.app.goo.gl/Qzm8UnRUyi1X1cYH8" target="_blank">🗺️ SAN → Baymont Wyndham San Diego Downtown · 4 mi</a>
+</div>
+  <div class="hotel-bar"><div class="hb-name">🏨 Baymont by Wyndham San Diego Downtown</div><div class="hb-detail">📍 719 Ash St, San Diego, CA 92101 · Check-in: 11 Agosto sera · 2 notti · Downtown SD</div><a class="maps-btn" href="https://maps.app.goo.gl/FkpJn1qZSfVs9bDF9" target="_blank">📍 Apri in Maps</a></div>
+
+  <div id="weather-t10" class="weather-widget"><div class="weather-header">🌤️ Meteo San Diego</div><div class="weather-loading">Caricamento meteo...</div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🚗 Island Park → Bozeman BZN</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><ul><li>Da Island Park verso nord su <strong>US-20</strong> e <strong>US-191 N</strong> fino a Bozeman, Montana</li><li>Restituire il GMC Yukon all'aeroporto di Bozeman (BZN)</li><li>Partire in anticipo rispetto al volo — verificare distanza e tempi</li><li>Bozeman: bella città — se c'è tempo una passeggiata nel centro storico</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>✈️ Volo BZN → SAN</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><ul><li>Volo interno Bozeman Yellowstone (BZN) → San Diego (SAN)</li><li>All'arrivo a SAN: Uber/Lyft o shuttle hotel verso il Downtown Baymont</li><li>Ritiro Chrysler Pacifica all'aeroporto di San Diego</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌊 San Diego — Cosa Fare</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><ul><li><strong>San Diego Zoo</strong> — uno dei più grandi zoo del mondo (prenotare online)</li><li><strong>Balboa Park</strong> — 17 musei, giardini spettacolari, ingresso gratuito al parco</li><li><strong>Old Town State Historic Park</strong> — il luogo di nascita della California, architettura messicana</li><li><strong>Gaslamp Quarter</strong> — centro storico vitale, ristoranti e vita notturna</li><li><strong>Coronado Island</strong> — traghetto per l'isola con Hotel del Coronado e spiagge bianche</li><li><strong>Spiagge:</strong> Pacific Beach, Ocean Beach, Mission Beach — surfing e vita da spiaggia</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🍽️ Dove Mangiare a San Diego</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Tacos:</strong> Las Cuatro Milpas (Old Town) — i migliori tacos di SD</li><li><strong>Seafood:</strong> The Fish Market o Ironside Fish &amp; Oyster</li><li><strong>Brunch:</strong> Morning Glory (Little Italy) — attesa normale, ne vale la pena</li><li><strong>Cena:</strong> Juniper &amp; Ivy (farm-to-table) o Barrio Logan per street food messicano</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌡️ Meteo &amp; Abbigliamento</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><div class="meteo-chips"><span class="meteo-chip">🌡️ 24–28°C giorno</span><span class="meteo-chip">🌡️ 18–22°C sera</span><span class="meteo-chip">☀️ Quasi sempre soleggiato</span></div><ul><li>San Diego ha il clima più mite degli USA — "America's Finest City"</li><li>Brezza marina la sera — porta una felpa per le serate sulla spiaggia</li></ul></div></div>
+</div>
+<!-- END T10 -->
+
+<!-- ═══════════════════════ TAPPA 11: SAN DIEGO (2 notti) ═══════════════════════ -->
+<div id="tappa-t11" class="page">
+  <div class="detail-hero">
+    <div class="day-badge">Giorni 12–13 · 11–12 Agosto 2026</div>
+    <div class="dtitle">🌊 San Diego (2 notti)</div>
+    <div class="dsub">Spiagge · Balboa Park · Old Town · USS Midway · Gaslamp Quarter</div>
+    <div class="meta-chips">
+      <span class="meta-chip">🏨 Baymont Wyndham San Diego Downtown (2 notti)</span>
+      <span class="meta-chip">🔗 11 Ago: arrivo da Bozeman via volo BZN→SAN</span>
+      <span class="meta-chip">🌊 12 Ago: giornata libera in città</span>
+    </div>
+  </div>
+  <div class="back-btn" onclick="goBack()">← Indietro</div>
+<div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
+<div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/WdQL1fSVCEWS21eB6" target="_blank">🗺️ Aeroporto San Diego SAN → Baymont Wyndham</a>
+</div>
+
+  <div class="hotel-bar" style="margin-bottom:8px"><div class="hb-name">🏨 Baymont by Wyndham San Diego Downtown</div><div class="hb-detail">📍 719 Ash St, San Diego, CA 92101 · 2 notti (11–13 Ago)</div><a class="maps-btn" href="https://www.google.com/maps/search/?api=1&query=Baymont+by+Wyndham+San+Diego+Downtown+719+Ash+St+San+Diego+CA+92101" target="_blank">📍 Apri in Maps</a></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌊 11 Ago: Arrivo a San Diego</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><ul><li>Volo da <strong>Bozeman (BZN)</strong> → <strong>San Diego (SAN)</strong> (~2h40)</li><li>Checkout Blue Buffalo Resort Island Park → trasferimento aeroporto Bozeman</li><li>Arrivo a San Diego: check-in Baymont Wyndham Downtown</li><li>Prima sera: cena a Gaslamp Quarter o Old Town</li></ul></div></div>
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌉 12 Ago: Giornata Libera a San Diego</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><ul><li><strong>Coronado Beach:</strong> spiaggia iconica con vista downtown</li><li><strong>Balboa Park:</strong> il parco più grande di SD — musei, zoo, giardini</li><li><strong>USS Midway Museum:</strong> portaerei storica ormeggiata nel porto</li><li><strong>Old Town San Diego:</strong> storia californiana, ristoranti messicani autentici</li><li><strong>Gaslamp Quarter:</strong> cena e vita notturna nel quartiere storico</li><li><strong>La Jolla Cove:</strong> scogliere, leoni marini, snorkeling</li></ul></div></div>
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🍽️ Dove Mangiare</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Colazione:</strong> Cafe 222 (pancakes all'anguria), Better Buzz Coffee</li><li><strong>Pranzo:</strong> Oscar's Mexican Seafood (fish tacos iconici), Puesto</li><li><strong>Cena:</strong> Juniper &amp; Ivy, Addison (stellato Michelin), Searsucker</li><li><strong>Birra:</strong> Stone Brewing World Bistro, Ballast Point Tasting Room</li></ul></div></div>
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌡️ Meteo &amp; Abbigliamento</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><div class="meteo-chips"><span class="meteo-chip">🌡️ 22–28°C giorno</span><span class="meteo-chip">🌡️ 18–22°C sera</span><span class="meteo-chip">☀️ Quasi sempre soleggiato</span></div><ul><li>San Diego ha il clima più mite degli USA — "America's Finest City"</li><li>Brezza marina la sera — porta una felpa per le serate sulla spiaggia</li><li>Costume da bagno e crema solare obbligatori</li></ul></div></div>
+<!-- END T11 -->
+
+<!-- ═══════════════════════ TAPPA 12: RITORNO ═══════════════════════ -->
+<div id="tappa-t12" class="page">
+  <div class="detail-hero">
+    <div class="day-badge">Giorni 14–16 · 13–15 Agosto 2026</div>
+    <div class="dtitle">🏙️ San Francisco (finale) ✈️ → Napoli</div>
+    <div class="dsub">13 Ago: arrivo SAN→SFO · Hotel Fiona · 14 Ago: ultima giornata SF · 15 Ago: volo per Napoli</div>
+    <div class="meta-chips">
+      <span class="meta-chip">✈️ 13 Ago: SAN → SFO (~1h)</span>
+      <span class="meta-chip">🚕 Uber/Lyft SFO → Hotel Fiona (~$35–45)</span>
+      <span class="meta-chip">🏨 Hotel Fiona (2 notti: 13–15 Ago)</span>
+      <span class="meta-chip">✈️ 15 Ago: SFO → Napoli (NAP) con scalo</span>
+    </div>
+  </div>
+  <div class="back-btn" onclick="goBack()">← Indietro</div>
+<div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
+<div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/3nDHowDdWpSoGojU6" target="_blank">🗺️ SFO → Napoli Capodichino (Volo) · Volo</a>
+</div>
+
+  <div class="hotel-bar"><div class="hb-name">🏨 Hotel Fiona San Francisco</div><div class="hb-detail">📍 140 7th St, San Francisco, CA 94103 · 2 notti (13–15 Ago)</div><a class="maps-btn" href="https://www.google.com/maps/search/?api=1&query=Hotel+Fiona+140+7th+St+San+Francisco+CA" target="_blank">📍 Apri in Maps</a></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>✈️ 13 Ago: Volo San Diego → San Francisco</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><ul><li>Checkout Baymont Wyndham San Diego → Uber/taxi all'aeroporto SAN (20 min, ~$25)</li><li>Volo <strong>SAN → SFO</strong> (~1h) — compagnie frequenti: Southwest, United, Alaska Airlines</li><li>All'arrivo a SFO: Uber/Lyft fino all'<strong>Hotel Fiona</strong> (21 mi, ~35 min, ~$35–45)</li><li>Serata a San Francisco: ultima passeggiata su Fisherman's Wharf o Castro</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🏙️ 14 Ago: Ultima Giornata a San Francisco</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><ul><li><strong>Golden Gate Bridge</strong> — passeggiata o foto dal Battery Spencer</li><li><strong>Fisherman's Wharf</strong> — granchi, sourdough, leoni marini al Pier 39</li><li><strong>Chinatown</strong> — la più antica degli USA, ottima dim sum</li><li><strong>Shopping:</strong> Union Square, i negozi del centro per ultimi souvenir</li><li>Ultima cena a SF: Mission District (tacos californiani), North Beach (italiano), Hayes Valley</li></ul></div></div>
+
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>✈️ 15 Ago: Partenza da SFO</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body open"><ul><li><strong>Partire almeno 3h prima del volo</strong> — traffico Bay Area + check-in internazionale</li><li>Uber/Lyft dall'Hotel Fiona a SFO: ~35 min, ~$35–45</li><li>Terminal internazionale SFO: check-in 3h prima del volo</li><li>Volo SFO → Napoli NAP (con scalo europeo)</li><li>Controllare il peso dei bagagli — gli acquisti USA potrebbero aver appesantito le valigie!</li><li>Fare un ultimo In-N-Out Burger all'aeroporto prima di imbarcarsi 🍔</li></ul></div></div>
+
+  <div class="tip-box">🏠 <strong>Fine del viaggio!</strong> Dopo 15 giorni, ~2.493 miglia, 7 stati, 7 parchi nazionali e centinaia di km di paesaggi indimenticabili — si torna a casa. Bon voyage! 🇺🇸→🇮🇹</div>
+</div>
+<!-- END T12 -->
+
+
+<!-- ═══════════════════════ PAGE: VOLI ═══════════════════════ -->
+<div id="page-voli" class="page">
+  <div class="page-header">
+    <h1>✈️ I Nostri Voli</h1>
+    <div class="sub">Orari ufficiali &amp; stato in tempo reale</div>
+  </div>
+
+  <div class="sec-heading">🗓️ Tutti i Voli</div>
+
+  <div id="voli-container" style="padding:0 12px 12px;"></div>
+
+  <div class="sec-heading">📋 Riepilogo</div>
+  <div style="padding:0 12px 16px; font-size:13px; color:var(--text); line-height:1.7;">
+    <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius-sm); padding:12px; margin-bottom:10px;">
+      <div style="font-weight:700; color:var(--orange); margin-bottom:6px;">📌 Note operative</div>
+      <ul style="padding-left:18px; color:var(--text);">
+        <li>Arrivare a <strong>NAP almeno 2h prima</strong> del volo (06:35 → check-in ore 04:30)</li>
+        <li>Scalo FCO: ~1h45 di transito per imbarco AZ640</li>
+        <li>SFO: customs &amp; immigration USA — ESTA obbligatorio</li>
+        <li>BZN: aeroporto piccolo, sicurezza veloce — 1h prima del volo sufficiente</li>
+        <li>SFO partenza 14 Ago ore 15:15 → lasciare Hotel Fiona entro le 12:00</li>
+      </ul>
+    </div>
+    <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius-sm); padding:12px;">
+      <div style="font-weight:700; color:var(--lblue); margin-bottom:8px;">📡 Come seguire i voli live</div>
+      <p style="margin-bottom:8px;">I link "Segui su FlightRadar24" portano alla pagina storica/live di ogni volo. Il giorno della partenza il tracker si aggiorna in tempo reale con posizione, quota e orario stimato.</p>
+      <p style="color:var(--muted); font-size:12px;">Tip: apri il link qualche ora prima della partenza — FlightRadar24 mostra automaticamente il volo in corso.</p>
+    </div>
+  </div>
+</div>
+<!-- END VOLI -->
+
+<!-- ═══════════════════════ PAGE: CLIMA ═══════════════════════ -->
+<div id="page-clima" class="page">
+  <div class="page-header">
+    <h1>🌡️ Clima &amp; Abbigliamento</h1>
+    <div class="sub">Meteo e consigli per ogni tappa</div>
+  </div>
+
+  <div class="sec-heading">🗺️ Clima per Tappa</div>
+
+<div class="clima-card">
+  <div class="clima-card-header">
+    <div class="clima-card-emoji">🌁</div>
+    <div>
+      <div class="clima-card-title">San Francisco</div>
+      <div class="clima-card-date">31 Lug – 2 Ago</div>
+    </div>
+    <div class="clima-temp-badge">
+      <div class="clima-temp-hi">22°C</div>
+      <div class="clima-temp-lo">min 15°C</div>
+    </div>
+  </div>
+  <div class="clima-card-body">
+    <div class="clima-desc">Fresca e nebbiosa al mattino (Karl the Fog), soleggiata a metà giornata. Vento costante tutto il giorno. Temperature serali intorno ai 15°C anche in agosto.</div>
+    <ul class="clima-abbigliamento">
+<li>Giacca a vento (obbligatoria, sempre in borsa)</li><li>Felpa o pile per mattina e sera</li><li>T-shirt + jeans o pantaloni lunghi</li><li>Scarpe chiuse o sneaker robuste</li>
+    </ul>
+<div class="clima-avviso">Non lasciare la giacca in albergo — SF sorprende con 15°C e vento forte anche a luglio</div>
+  </div>
+</div>
+<div class="clima-card">
+  <div class="clima-card-header">
+    <div class="clima-card-emoji">🌲</div>
+    <div>
+      <div class="clima-card-title">Yosemite / Groveland</div>
+      <div class="clima-card-date">2–3 Ago</div>
+    </div>
+    <div class="clima-temp-badge">
+      <div class="clima-temp-hi">30°C</div>
+      <div class="clima-temp-lo">min 10°C</div>
+    </div>
+  </div>
+  <div class="clima-card-body">
+    <div class="clima-desc">Escursione termica notevole: mattine fresche (10-15°C), pomeriggi molto caldi (28-30°C). Quota ~1.400m s.l.m., raggi UV intensi.</div>
+    <ul class="clima-abbigliamento">
+<li>Layering: t-shirt + felpa + giacca a vento</li><li>Pantaloni lunghi o convertibili</li><li>Scarpe da trekking o sneaker con grip</li><li>Berretto o cappello, crema solare 50+</li><li>Impermeabile leggero (temporali pomeridiani)</li>
+    </ul>
+<div class="clima-avviso">Partire presto per i trail — caldo e affollamento dalle 11:00</div>
+  </div>
+</div>
+<div class="clima-card">
+  <div class="clima-card-header">
+    <div class="clima-card-emoji">🌵</div>
+    <div>
+      <div class="clima-card-title">Death Valley / Beatty</div>
+      <div class="clima-card-date">3–4 Ago</div>
+    </div>
+    <div class="clima-temp-badge">
+      <div class="clima-temp-hi">45°C</div>
+      <div class="clima-temp-lo">min 25°C</div>
+    </div>
+  </div>
+  <div class="clima-card-body">
+    <div class="clima-desc">Il luogo più caldo della Terra. Temperature diurne tra 35-45°C, possibili picchi a 50°C. Notti calde 25-30°C. Umidità bassissima.</div>
+    <ul class="clima-abbigliamento">
+<li>Abbigliamento leggerissimo e traspirante (cotone/lino)</li><li>Cappello a tesa larga — OBBLIGATORIO</li><li>Occhiali da sole + crema solare 50+</li><li>Sandali o scarpe leggere per la sera</li>
+    </ul>
+<div class="clima-avviso">NON uscire tra 11:00 e 16:00 — rischio colpo di calore mortale</div><div class="clima-avviso">Borraccia da almeno 2L: bere ogni 15-20 minuti</div>
+  </div>
+</div>
+<div class="clima-card">
+  <div class="clima-card-header">
+    <div class="clima-card-emoji">🎰</div>
+    <div>
+      <div class="clima-card-title">Las Vegas</div>
+      <div class="clima-card-date">4–5 Ago</div>
+    </div>
+    <div class="clima-temp-badge">
+      <div class="clima-temp-hi">42°C</div>
+      <div class="clima-temp-lo">min 28°C</div>
+    </div>
+  </div>
+  <div class="clima-card-body">
+    <div class="clima-desc">Caldo estremo secco. Giorno 38-42°C, notte 28-30°C. Hotel e casinò a 18-20°C con l'aria condizionata — porta qualcosa per l'interno.</div>
+    <ul class="clima-abbigliamento">
+<li>Di giorno: abiti leggerissimi, cappello, occhiali</li><li>Di sera/notte: outfit più curato (serata in Strip)</li><li>Felpa leggera per i casinò (AC molto potente)</li>
+    </ul>
+<div class="clima-avviso">Camminate lunghe sullo Strip — scarpe comode obbligatorie</div>
+  </div>
+</div>
+<div class="clima-card">
+  <div class="clima-card-header">
+    <div class="clima-card-emoji">🏜️</div>
+    <div>
+      <div class="clima-card-title">Grand Canyon / Williams</div>
+      <div class="clima-card-date">5–6 Ago</div>
+    </div>
+    <div class="clima-temp-badge">
+      <div class="clima-temp-hi">28°C</div>
+      <div class="clima-temp-lo">min 15°C</div>
+    </div>
+  </div>
+  <div class="clima-card-body">
+    <div class="clima-desc">South Rim a 2.100m s.l.m.: 15-28°C, molto più fresco di Vegas. Temporali pomeridiani frequenti in agosto (stagione dei monsoni). Williams fresca la sera.</div>
+    <ul class="clima-abbigliamento">
+<li>Layering: t-shirt + felpa + giacca impermeabile</li><li>Pantaloni lunghi o convertibili</li><li>Scarpe da trekking con grip</li><li>Impermeabile (temporali pomeridiani quasi certi)</li>
+    </ul>
+<div class="clima-avviso">Temporali rapidi nel pomeriggio — rientrare dal rim prima delle 14:00</div>
+  </div>
+</div>
+<div class="clima-card">
+  <div class="clima-card-header">
+    <div class="clima-card-emoji">🏛️</div>
+    <div>
+      <div class="clima-card-title">Monument Valley / Mexican Hat</div>
+      <div class="clima-card-date">6–7 Ago</div>
+    </div>
+    <div class="clima-temp-badge">
+      <div class="clima-temp-hi">36°C</div>
+      <div class="clima-temp-lo">min 18°C</div>
+    </div>
+  </div>
+  <div class="clima-card-body">
+    <div class="clima-desc">Clima desertico semi-arido. Giorno caldo 30-36°C, notti piacevoli 18-22°C. Arido e ventoso. Tramonto sui mesas: spettacolare.</div>
+    <ul class="clima-abbigliamento">
+<li>T-shirt leggera + shorts per il giorno</li><li>Felpa per la sera (raffresca velocemente)</li><li>Cappello a tesa larga + occhiali polarizzati</li>
+    </ul>
+<div class="clima-avviso">Polvere rossa ovunque — porta occhiali da sole chiusi ai lati</div>
+  </div>
+</div>
+<div class="clima-card">
+  <div class="clima-card-header">
+    <div class="clima-card-emoji">🌄</div>
+    <div>
+      <div class="clima-card-title">Kanab / Bryce–Zion</div>
+      <div class="clima-card-date">7–8 Ago</div>
+    </div>
+    <div class="clima-temp-badge">
+      <div class="clima-temp-hi">34°C</div>
+      <div class="clima-temp-lo">min 16°C</div>
+    </div>
+  </div>
+  <div class="clima-card-body">
+    <div class="clima-desc">25-35°C a Kanab, più fresco in quota a Bryce (2.400m). Possibili temporali. Escursioni mozzafiato nel canyon.</div>
+    <ul class="clima-abbigliamento">
+<li>Layering leggero: t-shirt + felpa</li><li>Scarpe da trekking (sentieri di sabbia e roccia)</li><li>Impermeabile leggero</li><li>Cappello + crema solare alta protezione</li>
+    </ul>
+<div class="clima-avviso">A Bryce Canyon la quota abbassa le temperature di 8-10°C rispetto a Kanab</div>
+  </div>
+</div>
+<div class="clima-card">
+  <div class="clima-card-header">
+    <div class="clima-card-emoji">🏙️</div>
+    <div>
+      <div class="clima-card-title">Salt Lake City</div>
+      <div class="clima-card-date">8–9 Ago</div>
+    </div>
+    <div class="clima-temp-badge">
+      <div class="clima-temp-hi">36°C</div>
+      <div class="clima-temp-lo">min 20°C</div>
+    </div>
+  </div>
+  <div class="clima-card-body">
+    <div class="clima-desc">Caldo secco continentale. 30-36°C di giorno, 20-24°C di notte. Città moderna con Great Salt Lake.</div>
+    <ul class="clima-abbigliamento">
+<li>Abiti estivi leggeri per la città</li><li>Occhiali da sole + crema solare</li><li>Scarpe comode per camminare</li>
+    </ul>
+
+  </div>
+</div>
+<div class="clima-card">
+  <div class="clima-card-header">
+    <div class="clima-card-emoji">🦌</div>
+    <div>
+      <div class="clima-card-title">Yellowstone / Island Park</div>
+      <div class="clima-card-date">9–11 Ago</div>
+    </div>
+    <div class="clima-temp-badge">
+      <div class="clima-temp-hi">25°C</div>
+      <div class="clima-temp-lo">min 6°C</div>
+    </div>
+  </div>
+  <div class="clima-card-body">
+    <div class="clima-desc">Quota 2.000m: escursione termica forte. Giorno 15-25°C, notti fredde 5-12°C. Possibili piogge. Old Faithful e geyser al mattino.</div>
+    <ul class="clima-abbigliamento">
+<li>Impermeabile / softshell (piogge frequenti)</li><li>Felpa pesante o pile</li><li>Pantaloni lunghi (anche la sera)</li><li>Scarpe impermeabili per i boardwalk dei geyser</li><li>Berretto per le mattine fredde</li>
+    </ul>
+<div class="clima-avviso">Temperature notturne vicine a 5°C — assicurati di avere strati caldi</div><div class="clima-avviso">Non avvicinarsi mai ai geyser fuori dai boardwalk</div>
+  </div>
+</div>
+<div class="clima-card">
+  <div class="clima-card-header">
+    <div class="clima-card-emoji">🌊</div>
+    <div>
+      <div class="clima-card-title">San Diego</div>
+      <div class="clima-card-date">11–12 Ago</div>
+    </div>
+    <div class="clima-temp-badge">
+      <div class="clima-temp-hi">28°C</div>
+      <div class="clima-temp-lo">min 19°C</div>
+    </div>
+  </div>
+  <div class="clima-card-body">
+    <div class="clima-desc">Paradiso: 22-28°C, soleggiato, brezza marina fresca. Ideale per spiaggia. Marine layer al mattino, poi splende.</div>
+    <ul class="clima-abbigliamento">
+<li>Costume da bagno</li><li>T-shirt leggere + shorts</li><li>Infradito + sneaker</li><li>Giacca leggera per la sera</li>
+    </ul>
+
+  </div>
+</div>
+<div class="clima-card">
+  <div class="clima-card-header">
+    <div class="clima-card-emoji">🌉</div>
+    <div>
+      <div class="clima-card-title">San Diego</div>
+      <div class="clima-card-date">11–13 Ago (2 notti)</div>
+    </div>
+    <div class="clima-temp-badge">
+      <div class="clima-temp-hi">24°C</div>
+      <div class="clima-temp-lo">min 15°C</div>
+    </div>
+  </div>
+  <div class="clima-card-body">
+    <div class="clima-desc">San Diego: soleggiato e caldo, brezza marina. Clima mite, marine layer mattutino sulle coste, pomeriggi luminosi e caldi.</div>
+    <ul class="clima-abbigliamento">
+<li>T-shirt e pantaloncini (giorno)</li><li>Felpa o cardigan (sera costiera)</li><li>Costume da bagno obbligatorio</li><li>Scarpe comode per camminare</li>
+    </ul>
+<div class="clima-avviso">Crema solare SPF 50 — il sole californiano brucia anche con la brezza</div>
+  </div>
+</div>
+<div class="clima-card">
+  <div class="clima-card-header">
+    <div class="clima-card-emoji">✈️</div>
+    <div>
+      <div class="clima-card-title">San Francisco (finale)</div>
+      <div class="clima-card-date">13–15 Ago</div>
+    </div>
+    <div class="clima-temp-badge">
+      <div class="clima-temp-hi">22°C</div>
+      <div class="clima-temp-lo">min 15°C</div>
+    </div>
+  </div>
+  <div class="clima-card-body">
+    <div class="clima-desc">Ultime ore a San Francisco: 15-22°C, nebbia mattutina, vento. Giornata di rientro verso SFO.</div>
+    <ul class="clima-abbigliamento">
+<li>Giacca a vento già in valigia a portata</li><li>Abiti comodi per il volo di ritorno</li><li>Scarpe comode per il tragitto in aeroporto</li>
+    </ul>
+<div class="clima-avviso">SFO: aeroporto grande — considera almeno 2-3h prima del volo internazionale</div>
+  </div>
+</div>
+
+  <div class="sec-heading">👜 Valigeria Consigliata</div>
+  <div class="valigeria-section">
+
+<div class="valigeria-cat">
+  <div class="valigeria-cat-header">❄️ Freddo / Strati (SF, PCH, Yellowstone)</div>
+  <div class="valigeria-cat-body">
+<div class="valigeria-item"><span class="valigeria-item-icon">🧥</span><span>Giacca a vento impermeabile (1)</span></div><div class="valigeria-item"><span class="valigeria-item-icon">🧣</span><span>Felpa o pile medio (2)</span></div><div class="valigeria-item"><span class="valigeria-item-icon">👖</span><span>Jeans o pantaloni lunghi (2–3)</span></div><div class="valigeria-item"><span class="valigeria-item-icon">👟</span><span>Sneaker chiuse robusti (1 paio)</span></div><div class="valigeria-item"><span class="valigeria-item-icon">🥾</span><span>Scarpe da trekking impermeabili (1 paio)</span></div><div class="valigeria-item"><span class="valigeria-item-icon">🧢</span><span>Berretto o cappello (1)</span></div>
+  </div>
+</div>
+<div class="valigeria-cat">
+  <div class="valigeria-cat-header">🔥 Caldo Estremo (Death Valley, Las Vegas)</div>
+  <div class="valigeria-cat-body">
+<div class="valigeria-item"><span class="valigeria-item-icon">👕</span><span>T-shirt leggerissime cotone/lino (5–6)</span></div><div class="valigeria-item"><span class="valigeria-item-icon">🩳</span><span>Shorts leggeri (3–4)</span></div><div class="valigeria-item"><span class="valigeria-item-icon">👒</span><span>Cappello a tesa larga (OBBLIGATORIO)</span></div><div class="valigeria-item"><span class="valigeria-item-icon">🕶️</span><span>Occhiali da sole polarizzati</span></div><div class="valigeria-item"><span class="valigeria-item-icon">🧴</span><span>Crema solare SPF 50+ (grande)</span></div><div class="valigeria-item"><span class="valigeria-item-icon">💧</span><span>Borraccia termica 1.5–2L</span></div>
+  </div>
+</div>
+<div class="valigeria-cat">
+  <div class="valigeria-cat-header">🏔️ Montagna / Parchi (Yosemite, Grand Canyon, Bryce)</div>
+  <div class="valigeria-cat-body">
+<div class="valigeria-item"><span class="valigeria-item-icon">🧥</span><span>Impermeabile leggero pieghevole</span></div><div class="valigeria-item"><span class="valigeria-item-icon">👖</span><span>Pantaloni convertibili zip-off (2)</span></div><div class="valigeria-item"><span class="valigeria-item-icon">🥾</span><span>Scarpe da trekking con grip</span></div><div class="valigeria-item"><span class="valigeria-item-icon">🧴</span><span>Crema solare viso alta protezione</span></div><div class="valigeria-item"><span class="valigeria-item-icon">🔋</span><span>Power bank per fotocamera e telefono</span></div>
+  </div>
+</div>
+<div class="valigeria-cat">
+  <div class="valigeria-cat-header">🌊 Spiaggia (San Diego)</div>
+  <div class="valigeria-cat-body">
+<div class="valigeria-item"><span class="valigeria-item-icon">🩱</span><span>Costume da bagno (2)</span></div><div class="valigeria-item"><span class="valigeria-item-icon">🩴</span><span>Infradito</span></div><div class="valigeria-item"><span class="valigeria-item-icon">🛍️</span><span>Sacca impermeabile per spiaggia</span></div><div class="valigeria-item"><span class="valigeria-item-icon">🕶️</span><span>Occhiali da sole</span></div>
+  </div>
+</div>
+<div class="valigeria-cat">
+  <div class="valigeria-cat-header">🎒 Accessori Universali</div>
+  <div class="valigeria-cat-body">
+<div class="valigeria-item"><span class="valigeria-item-icon">🔌</span><span>Adattatore prese USA tipo A (obbligatorio)</span></div><div class="valigeria-item"><span class="valigeria-item-icon">🔋</span><span>Power bank carica multipla</span></div><div class="valigeria-item"><span class="valigeria-item-icon">💊</span><span>Kit medicinali base (antidolorifici, cerotti)</span></div><div class="valigeria-item"><span class="valigeria-item-icon">📋</span><span>Documenti: passaporto, visto ESTA, assicurazione</span></div><div class="valigeria-item"><span class="valigeria-item-icon">📱</span><span>SIM USA o eSIM (dati locali)</span></div><div class="valigeria-item"><span class="valigeria-item-icon">🎒</span><span>Zaino day-pack leggero per le escursioni</span></div>
+  </div>
+</div>
+  </div>
+</div>
+<!-- END CLIMA -->
+<!-- ═══════════════════════ BOTTOM NAV ═══════════════════════ -->
+<nav class="bottom-nav">
+  <div class="nav-item active" id="nav-home" onclick="showPage('home')">
+    <span class="nav-icon">🏠</span>
+    <span>Home</span>
+  </div>
+  <div class="nav-item" id="nav-tappe" onclick="showPage('tappe')">
+    <span class="nav-icon">🗺️</span>
+    <span>Tappe</span>
+  </div>
+  <div class="nav-item" id="nav-itinerario" onclick="showPage('itinerario')">
+    <span class="nav-icon">📅</span>
+    <span>Itinerario</span>
+  </div>
+  <div class="nav-item" id="nav-hotel" onclick="showPage('hotel')">
+    <span class="nav-icon">🏨</span>
+    <span>Hotel</span>
+  </div>
+  <div class="nav-item" id="nav-clima" onclick="showPage('clima')">
+    <span class="nav-icon">🌡️</span>
+    <span>Clima</span>
+  </div>
+  <div class="nav-item" id="nav-info" onclick="showPage('info')">
+    <span class="nav-icon">ℹ️</span>
+    <span>Info</span>
+  </div>
+  <div class="nav-item" id="nav-voli" onclick="showPage('voli')">
+    <span class="nav-icon">✈️</span>
+    <span>Voli</span>
+  </div>
+</nav>
+
+<script>
+// ── NAVIGATION STATE ──
+var currentPage = 'home';
+var previousPage = 'home';
+var tappaPreviousPage = 'home';
+
+// ── WEATHER COORDS ──
+var TAPPE_COORDS = {
+  'sf':            { lat: 37.7749,  lon: -122.4194, label: 'San Francisco' },
+  'yosemite':      { lat: 37.8651,  lon: -119.5383, label: 'Yosemite NP' },
+  'deathvalley':   { lat: 36.5323,  lon: -116.9325, label: 'Death Valley' },
+  'lasvegas':      { lat: 36.1699,  lon: -115.1398, label: 'Las Vegas' },
+  'grandcanyon':   { lat: 36.0544,  lon: -112.1401, label: 'Grand Canyon' },
+  'monumentvalley':{ lat: 36.9991,  lon: -110.0985, label: 'Monument Valley' },
+  'antelopecanyon':{ lat: 36.8619,  lon: -111.3743, label: 'Antelope Canyon' },
+  'brycecanyon':   { lat: 37.6283,  lon: -112.1677, label: 'Bryce Canyon' },
+  'slc':           { lat: 40.7608,  lon: -111.8910, label: 'Salt Lake City' },
+  'yellowstone':   { lat: 44.4280,  lon: -110.5885, label: 'Yellowstone NP' },
+  'islandpark':    { lat: 44.4219,  lon: -111.3754, label: 'Island Park' },
+  'sandiego':      { lat: 32.7157,  lon: -117.1611, label: 'San Diego' },
+};
+
+// ── TAPPA → COORDS MAPPING ──
+var TAPPA_WEATHER = {
+  't1': 'sf',
+  't2': 'yosemite',
+  't3': 'deathvalley',
+  't4': 'lasvegas',
+  't5': 'grandcanyon',
+  't6': 'monumentvalley',
+  't7': 'antelopecanyon',
+  't8': 'brycecanyon',
+  't9': 'yellowstone',
+  't10': 'sandiego',
+  't11': 'sandiego',
+};
+
+// ── WEATHERCODE TO EMOJI ──
+function wcodeEmoji(code) {
+  if (code === 0) return '☀️';
+  if (code <= 3) return code === 1 ? '🌤️' : code === 2 ? '⛅' : '🌥️';
+  if (code <= 48) return '🌫️';
+  if (code <= 55) return '🌦️';
+  if (code <= 65) return '🌧️';
+  if (code <= 75) return '❄️';
+  if (code <= 82) return '🌦️';
+  if (code <= 99) return '⛈️';
+  return '🌡️';
+}
+
+// ── WEATHER CACHE ──
+var weatherCache = {};
+var weatherLoaded = {};
+
+// ── FETCH WEATHER ──
+function fetchWeather(locKey, containerId, chipId) {
+  var coords = TAPPE_COORDS[locKey];
+  if (!coords) return;
+  if (weatherCache[locKey]) {
+    renderWeather(weatherCache[locKey], coords.label, containerId, chipId);
+    return;
+  }
+  var url = 'https://api.open-meteo.com/v1/forecast?latitude=' + coords.lat
+    + '&longitude=' + coords.lon
+    + '&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_probability_max'
+    + '&timezone=auto&forecast_days=7';
+
+  fetch(url, { signal: AbortSignal.timeout ? AbortSignal.timeout(8000) : undefined })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      weatherCache[locKey] = data;
+      renderWeather(data, coords.label, containerId, chipId);
+    })
+    .catch(function() {
+      var el = document.getElementById(containerId);
+      if (el) el.innerHTML = '<div class="weather-header">🌤️ Meteo ' + coords.label + '</div><div class="weather-error">⚠️ Meteo non disponibile — controlla la connessione</div>';
+    });
+}
+
+// ── RENDER WEATHER WIDGET ──
+function renderWeather(data, label, containerId, chipId) {
+  var el = document.getElementById(containerId);
+  if (!el) return;
+  var days = data.daily;
+  if (!days || !days.time) {
+    el.innerHTML = '<div class="weather-header">🌤️ ' + label + '</div><div class="weather-error">Dati non disponibili</div>';
+    return;
+  }
+  var daysOfWeek = ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
+  var daysHtml = '';
+  for (var i = 0; i < days.time.length; i++) {
+    var d = new Date(days.time[i] + 'T12:00:00');
+    var dow = daysOfWeek[d.getDay()];
+    var emoji = wcodeEmoji(days.weathercode[i]);
+    var tmax = Math.round(days.temperature_2m_max[i]);
+    var tmin = Math.round(days.temperature_2m_min[i]);
+    var prec = days.precipitation_probability_max[i] || 0;
+    daysHtml += '<div class="weather-day">'
+      + '<div class="wd-name">' + dow + '</div>'
+      + '<div class="wd-emoji">' + emoji + '</div>'
+      + '<div class="wd-temps">' + tmax + '° <span>/ ' + tmin + '°</span></div>'
+      + (prec > 10 ? '<div class="wd-precip">💧 ' + prec + '%</div>' : '<div class="wd-precip">&nbsp;</div>')
+      + '</div>';
+    // update home chip for today (index 0)
+    if (i === 0 && chipId) {
+      var chip = document.getElementById(chipId);
+      if (chip) {
+        chip.textContent = emoji + ' ' + tmax + '°';
+        chip.classList.remove('loading');
+      }
+    }
+  }
+  el.innerHTML = '<div class="weather-header">🌤️ Meteo ' + label + ' — 7 giorni</div>'
+    + '<div class="weather-days">' + daysHtml + '</div>';
+}
+
+// ── LOAD HOME WEATHER CHIPS ──
+function loadHomeWeatherChips() {
+  var chips = [
+    { chip: 'wchip-yosemite',      loc: 'yosemite' },
+    { chip: 'wchip-deathvalley',   loc: 'deathvalley' },
+    { chip: 'wchip-lasvegas',      loc: 'lasvegas' },
+    { chip: 'wchip-grandcanyon',   loc: 'grandcanyon' },
+    { chip: 'wchip-monumentvalley',loc: 'monumentvalley' },
+    { chip: 'wchip-antelopecanyon',loc: 'antelopecanyon' },
+    { chip: 'wchip-brycecanyon',   loc: 'brycecanyon' },
+    { chip: 'wchip-yellowstone',   loc: 'yellowstone' },
+    { chip: 'wchip-sandiego',      loc: 'sandiego' },
+  ];
+  chips.forEach(function(c, idx) {
+    // stagger requests to avoid hammering API
+    setTimeout(function() {
+      var coords = TAPPE_COORDS[c.loc];
+      if (!coords) return;
+      if (weatherCache[c.loc]) {
+        var d = weatherCache[c.loc];
+        if (d.daily && d.daily.weathercode) {
+          var chip = document.getElementById(c.chip);
+          if (chip) {
+            chip.textContent = wcodeEmoji(d.daily.weathercode[0]) + ' ' + Math.round(d.daily.temperature_2m_max[0]) + '°';
+            chip.classList.remove('loading');
+          }
+        }
+        return;
+      }
+      var url = 'https://api.open-meteo.com/v1/forecast?latitude=' + coords.lat
+        + '&longitude=' + coords.lon
+        + '&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_probability_max'
+        + '&timezone=auto&forecast_days=7';
+      fetch(url)
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          weatherCache[c.loc] = data;
+          if (data.daily && data.daily.weathercode) {
+            var chip = document.getElementById(c.chip);
+            if (chip) {
+              chip.textContent = wcodeEmoji(data.daily.weathercode[0]) + ' ' + Math.round(data.daily.temperature_2m_max[0]) + '°';
+              chip.classList.remove('loading');
+            }
+          }
+        })
+        .catch(function() {
+          var chip = document.getElementById(c.chip);
+          if (chip) { chip.textContent = '—'; chip.classList.remove('loading'); }
+        });
+    }, idx * 300);
+  });
+}
+
+// ── STARS ANIMATION ──
+function createStars() {
+  var canvas = document.getElementById('stars-canvas');
+  if (!canvas) return;
+  var html = '';
+  for (var i = 0; i < 60; i++) {
+    var top = Math.random() * 100;
+    var left = Math.random() * 100;
+    var delay = (Math.random() * 3).toFixed(2);
+    var dur = (1.5 + Math.random() * 2.5).toFixed(2);
+    html += '<div class="star" style="top:' + top + '%;left:' + left + '%;--d:' + dur + 's;animation-delay:' + delay + 's"></div>';
+  }
+  canvas.innerHTML = html;
+}
+
+// ── COLLAPSIBLE SECTIONS ──
+function toggleSection(header) {
+  var body = header.nextElementSibling;
+  var icon = header.querySelector('.collapsible-icon');
+  if (body.classList.contains('open')) {
+    body.classList.remove('open');
+    if (icon) icon.style.transform = 'rotate(-90deg)';
+  } else {
+    body.classList.add('open');
+    if (icon) icon.style.transform = 'rotate(0deg)';
+  }
+}
+
+// ── PAGE NAVIGATION ──
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+  var target = document.getElementById('page-' + name);
+  if (target) { target.classList.add('active'); window.scrollTo(0, 0); }
+  document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
+  var navEl = document.getElementById('nav-' + name);
+  if (navEl) navEl.classList.add('active');
+  previousPage = currentPage;
+  currentPage = name;
+}
+
+function showTappa(id) {
+  tappaPreviousPage = currentPage;
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+  var target = document.getElementById('tappa-' + id);
+  if (target) { target.classList.add('active'); window.scrollTo(0, 0); }
+  document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
+  var navEl = document.getElementById('nav-tappe');
+  if (navEl) navEl.classList.add('active');
+  previousPage = currentPage;
+  currentPage = 'tappa-' + id;
+
+  // Load weather for this tappa
+  var locKey = TAPPA_WEATHER[id];
+  if (locKey) {
+    var wid = 'weather-' + id;
+    if (!weatherLoaded[id]) {
+      weatherLoaded[id] = true;
+      fetchWeather(locKey, wid, null);
+    }
+  }
+}
+
+function goBack() {
+  if (tappaPreviousPage && tappaPreviousPage !== currentPage) {
+    showPage(tappaPreviousPage);
+  } else {
+    showPage('home');
+  }
+}
+
+// ── KEYBOARD NAV ──
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') goBack(); });
+
+// ── PWA MANIFEST ──
+(function() {
+  var manifest = {
+    name: 'Road Trip USA 2026',
+    short_name: 'USA 2026',
+    description: 'Guida al Road Trip USA 2026 — Costa Ovest & Parchi',
+    start_url: '.',
+    display: 'standalone',
+    background_color: '#0b1735',
+    theme_color: '#0b1735',
+    icons: [{ src: 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🇺🇸</text></svg>', sizes: '192x192', type: 'image/svg+xml' }]
+  };
+  var blob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
+  var url = URL.createObjectURL(blob);
+  var link = document.createElement('link');
+  link.rel = 'manifest'; link.href = url;
+  document.head.appendChild(link);
+})();
+
+// ── VOLI DATA ──
+var VOLI = [
+  { id:'az1268', data:'2026-07-31', oraDep:'06:35', aerDep:'NAP', cittaDep:'Napoli Capodichino', oraArr:'07:25', aerArr:'FCO', cittaArr:'Roma Fiumicino', oraArrNote:'', compagnia:'ITA Airways', numero:'AZ1268', tipo:'short', fr24:'https://www.flightradar24.com/data/flights/az1268', lat:41.8, lng:14.5, zoom:6, note:'Primo volo — coincidenza con AZ640 a FCO (transito ~1h45)' },
+  { id:'az640', data:'2026-07-31', oraDep:'09:10', aerDep:'FCO', cittaDep:'Roma Fiumicino', oraArr:'13:15', aerArr:'SFO', cittaArr:'San Francisco Intl', oraArrNote:'13:15 ora locale (−9h)', compagnia:'ITA Airways', numero:'AZ640', tipo:'intercontinental', fr24:'https://www.flightradar24.com/data/flights/az640', lat:50, lng:-30, zoom:4, note:'Volo intercontinentale ~12h — transita sull\'Atlantico' },
+  { id:'as2050', data:'2026-08-11', oraDep:'13:50', aerDep:'BZN', cittaDep:'Bozeman Yellowstone Intl', oraArr:'15:34', aerArr:'SAN', cittaArr:'San Diego Intl', oraArrNote:'', compagnia:'Alaska Airlines', numero:'AS2050', tipo:'domestic', fr24:'https://www.flightradar24.com/data/flights/as2050', lat:43, lng:-114, zoom:5, note:'Da Yellowstone a San Diego — volo domestico USA' },
+  { id:'f93383', data:'2026-08-13', oraDep:'19:45', aerDep:'SAN', cittaDep:'San Diego Intl', oraArr:'21:32', aerArr:'SFO', cittaArr:'San Francisco Intl', oraArrNote:'', compagnia:'Frontier Airlines', numero:'F93383', tipo:'domestic', fr24:'https://www.flightradar24.com/data/flights/f93383', lat:36.5, lng:-120, zoom:6, note:'Volo breve 1h47 — rientro a San Francisco' },
+  { id:'az641', data:'2026-08-14', oraDep:'15:15', aerDep:'SFO', cittaDep:'San Francisco Intl', oraArr:'12:15', aerArr:'FCO', cittaArr:'Roma Fiumicino', oraArrNote:'12:15 del 15 Ago (+1 giorno)', compagnia:'ITA Airways', numero:'AZ641', tipo:'intercontinental', fr24:'https://www.flightradar24.com/data/flights/az641', lat:50, lng:-30, zoom:4, note:'Volo di ritorno ~12h — attraversa l\'Atlantico' },
+  { id:'az1269', data:'2026-08-15', oraDep:'13:15', aerDep:'FCO', cittaDep:'Roma Fiumicino', oraArr:'14:20', aerArr:'NAP', cittaArr:'Napoli Capodichino', oraArrNote:'', compagnia:'ITA Airways', numero:'AZ1269', tipo:'short', fr24:'https://www.flightradar24.com/data/flights/az1269', lat:41.8, lng:14.5, zoom:6, note:'Ultimo volo — si torna a casa! 🇮🇹' }
+];
+
+function getVoloStatus(v) {
+  var today = new Date().toISOString().slice(0,10);
+  if (v.data < today) return 'past';
+  if (v.data === today) return 'today';
+  return 'future';
+}
+
+function buildVoliPage() {
+  var c = document.getElementById('voli-container');
+  if (!c) return;
+  var mesi = ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
+  var giorni = ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
+  var logos = { 'ITA Airways':'🇮🇹', 'Alaska Airlines':'🦅', 'Frontier Airlines':'🦬' };
+  var out = '';
+  VOLI.forEach(function(v) {
+    var st = getVoloStatus(v);
+    var d = new Date(v.data);
+    var dataStr = giorni[d.getDay()] + ' ' + d.getDate() + ' ' + mesi[d.getMonth()] + ' 2026';
+    var cardExtra = '', badge = '', iframeHtml = '';
+    if (st === 'past') {
+      cardExtra = 'background:rgba(100,100,100,0.07);border-color:rgba(150,150,150,0.25);';
+      badge = '<span style="background:#555;color:#ddd;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;">✅ Completato</span>';
+    } else if (st === 'today') {
+      cardExtra = 'background:rgba(46,213,115,0.1);border-color:#2ed573;';
+      badge = '<span style="background:#2ed573;color:#001;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:700;">🔴 LIVE — Traccia ora</span>';
+      iframeHtml = '<div style="margin-top:12px;border-radius:8px;overflow:hidden;border:1px solid rgba(46,213,115,0.4);"><iframe src="https://www.flightradar24.com/simple?lat='+v.lat+'&lon='+v.lng+'&z='+v.zoom+'" width="100%" height="260" frameborder="0" style="display:block;" loading="lazy"></iframe></div>';
+    } else {
+      badge = '<span style="background:rgba(80,120,255,0.2);color:#8ab4f8;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;">📅 Programmato</span>';
+    }
+    var arrNote = v.oraArrNote ? '<span style="font-size:11px;color:var(--muted);display:block;">'+v.oraArrNote+'</span>' : '';
+    out += '<div style="background:var(--card);border:1px solid var(--border);'+cardExtra+'border-radius:var(--radius);padding:14px;margin-bottom:14px;">';
+    out += '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">';
+    out += '<div><div style="font-size:12px;color:var(--muted);">'+dataStr+'</div>';
+    out += '<div style="font-size:15px;font-weight:700;color:var(--orange);">'+(logos[v.compagnia]||'✈️')+' '+v.compagnia+' · '+v.numero+'</div></div>';
+    out += badge+'</div>';
+    out += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">';
+    out += '<div style="text-align:center;min-width:68px;"><div style="font-size:22px;font-weight:700;color:var(--lblue);">'+v.oraDep+'</div><div style="font-size:13px;font-weight:700;">'+v.aerDep+'</div><div style="font-size:11px;color:var(--muted);">'+v.cittaDep+'</div></div>';
+    out += '<div style="flex:1;text-align:center;color:var(--muted);font-size:16px;">─✈─</div>';
+    out += '<div style="text-align:center;min-width:68px;"><div style="font-size:22px;font-weight:700;color:var(--lblue);">'+v.oraArr+'</div>'+arrNote+'<div style="font-size:13px;font-weight:700;">'+v.aerArr+'</div><div style="font-size:11px;color:var(--muted);">'+v.cittaArr+'</div></div>';
+    out += '</div>';
+    if (v.note) out += '<div style="font-size:12px;color:var(--muted);margin-bottom:10px;padding:6px 8px;background:rgba(255,255,255,0.04);border-radius:6px;">💡 '+v.note+'</div>';
+    out += '<a href="'+v.fr24+'" target="_blank" rel="noopener" style="display:block;text-align:center;padding:9px;background:rgba(30,120,255,0.15);border:1px solid rgba(30,120,255,0.4);border-radius:8px;color:#8ab4f8;font-size:13px;font-weight:600;text-decoration:none;">📡 Segui su FlightRadar24</a>';
+    out += iframeHtml;
+    out += '</div>';
+  });
+  c.innerHTML = out;
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', function() {
+  createStars();
+  buildVoliPage();
+  // Load home weather chips after a short delay
+  setTimeout(loadHomeWeatherChips, 500);
+});
+</script>
+</body>
+</html>
