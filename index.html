@@ -29,7 +29,7 @@ body{
   font-size:15px;line-height:1.6;
   color:var(--text);background:var(--bg);
   min-height:100vh;
-  padding-bottom:calc(var(--nav-h) + var(--safe-bottom) + 12px);
+  padding-bottom:80px;
   overflow-x:hidden;
 }
 a{color:var(--orange);text-decoration:none}
@@ -42,20 +42,22 @@ a{color:var(--orange);text-decoration:none}
 /* ── BOTTOM NAV ── */
 .bottom-nav{
   position:fixed;bottom:0;left:0;right:0;
-  height:calc(var(--nav-h) + var(--safe-bottom));
+  height:66px;
   background:rgba(8,14,35,0.97);
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   border-top:1px solid var(--border);
-  display:flex;align-items:flex-start;padding-top:6px;
-  z-index:1000;
+  display:flex !important;align-items:flex-start;padding-top:6px;
+  z-index:9999;
+  height:66px;
 }
 .nav-item{
-  flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;
-  padding:4px 1px;cursor:pointer;
+  flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;
+  padding:4px 0 2px;cursor:pointer;
   color:var(--muted);transition:color .18s;
-  font-family:'Montserrat',sans-serif;font-size:8px;font-weight:600;letter-spacing:0;
-  min-width:0;
+  font-family:'Montserrat',sans-serif;font-size:9px;font-weight:600;
+  overflow:hidden;
 }
+.nav-item .nav-lbl{display:block;width:100%;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:9px;}
 .nav-item .nav-icon{font-size:20px;line-height:1;transition:transform .18s}
 .nav-item.active{color:var(--orange)}
 .nav-item.active .nav-icon{transform:scale(1.12)}
@@ -1455,31 +1457,31 @@ a{color:var(--orange);text-decoration:none}
 <nav class="bottom-nav">
   <div class="nav-item active" id="nav-home" onclick="showPage('home')">
     <span class="nav-icon">🏠</span>
-    <span>Home</span>
+    <span> class="nav-lbl">Home</span>
   </div>
   <div class="nav-item" id="nav-tappe" onclick="showPage('tappe')">
     <span class="nav-icon">🗺️</span>
-    <span>Tappe</span>
+    <span> class="nav-lbl">Tappe</span>
   </div>
   <div class="nav-item" id="nav-itinerario" onclick="showPage('itinerario')">
     <span class="nav-icon">📅</span>
-    <span>Itinerario</span>
+    <span> class="nav-lbl">Itinerario</span>
   </div>
   <div class="nav-item" id="nav-hotel" onclick="showPage('hotel')">
     <span class="nav-icon">🏨</span>
-    <span>Hotel</span>
+    <span> class="nav-lbl">Hotel</span>
   </div>
   <div class="nav-item" id="nav-clima" onclick="showPage('clima')">
     <span class="nav-icon">🌡️</span>
-    <span>Clima</span>
+    <span> class="nav-lbl">Clima</span>
   </div>
   <div class="nav-item" id="nav-info" onclick="showPage('info')">
     <span class="nav-icon">ℹ️</span>
-    <span>Info</span>
+    <span> class="nav-lbl">Info</span>
   </div>
   <div class="nav-item" id="nav-voli" onclick="showPage('voli')">
     <span class="nav-icon">✈️</span>
-    <span>Voli</span>
+    <span> class="nav-lbl">Voli</span>
   </div>
 </nav>
 
