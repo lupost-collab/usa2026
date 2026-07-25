@@ -53,17 +53,24 @@ a{color:var(--orange);text-decoration:none}
   height:72px;
 }
 .nav-item{
-  flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:3px;
-  padding:5px 0 2px;cursor:pointer;
-  color:var(--muted);transition:color .18s;
+  flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  padding:5px 6px 5px;cursor:pointer;
+  color:var(--muted);transition:all .18s;
   font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;
   overflow:hidden;
+  background:transparent;
+  border-radius:12px;
+  margin:4px 3px;
 }
 .nav-item .nav-lbl{display:block;width:100%;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px;}
-.nav-item .nav-icon{font-size:26px;line-height:1;transition:transform .18s}
-.nav-item.active{color:var(--orange)}
-.nav-item.active .nav-icon{transform:scale(1.12)}
-.nav-item:active .nav-icon{transform:scale(.92)}
+.nav-item .nav-icon{font-size:24px;line-height:1;transition:transform .18s}
+.nav-item.active{
+  color:var(--orange);
+  background:rgba(232,122,47,.13);
+  border:1px solid rgba(232,122,47,.3);
+}
+.nav-item.active .nav-icon{transform:scale(1.1)}
+.nav-item:active{transform:scale(.94);background:rgba(255,255,255,.07)}
 /* ── ALTRO SUB-TABS ── */
 .altro-tabs{display:flex;gap:6px;padding:10px 12px 0}
 .altro-tab{flex:1;text-align:center;padding:8px 4px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--card);color:var(--muted);font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all .18s}
@@ -282,7 +289,7 @@ a{color:var(--orange);text-decoration:none}
   transition:all .18s;
 }
 .tl-content:active{background:var(--card2)}
-.tl-day{font-size:12px;color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:.4px;text-transform:uppercase}
+.tl-day{font-size:12px;color:#fff;font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:.3px}
 .tl-title{font-size:15px;font-weight:600;color:var(--white);font-family:'Montserrat',sans-serif;margin-top:2px}
 .tl-km{font-size:12px;color:var(--lblue);margin-top:2px}
 
