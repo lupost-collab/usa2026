@@ -100,8 +100,8 @@ a{color:var(--orange);text-decoration:none}
   padding:14px 12px;text-align:center;
   box-shadow:0 4px 16px rgba(0,0,0,.3);
 }
-.stat-card .snum{font-family:'Montserrat',sans-serif;font-size:24px;font-weight:900;color:var(--orange);line-height:1}
-.stat-card .slbl{font-size:11px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.6px}
+.stat-card .snum{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:900;color:var(--orange);line-height:1}
+.stat-card .slbl{font-size:10px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.6px}
 
 /* ── SECTION TITLE ── */
 .sec-heading{
@@ -122,9 +122,9 @@ a{color:var(--orange);text-decoration:none}
 .tappa-item:active{background:var(--card2);transform:scale(.98)}
 .tappa-emoji{font-size:26px;flex-shrink:0;width:36px;text-align:center}
 .tappa-info{flex:1;min-width:0}
-.tappa-day{font-size:11px;color:var(--muted);font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:.3px}
-.tappa-title{font-size:14px;font-weight:600;color:var(--white);font-family:'Montserrat',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tappa-km{font-size:12px;color:var(--lblue);margin-top:1px}
+.tappa-day{font-size:10px;color:var(--muted);font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:.3px}
+.tappa-title{font-size:13px;font-weight:600;color:var(--white);font-family:'Montserrat',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tappa-km{font-size:11px;color:var(--lblue);margin-top:1px}
 .tappa-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
 .tappa-arrow{color:var(--muted);font-size:18px}
 .weather-chip{
@@ -578,31 +578,7 @@ a{color:var(--orange);text-decoration:none}
 </div>
 <!-- END HOME -->
 
-<!-- ═══════════════════════ PAGE: TAPPE (overview) ═══════════════════════ -->
-<div id="page-tappe" class="page">
-  <div class="page-header">
-    <h1>🗺️ Tappe</h1>
-    <div class="sub">12 tappe · 7 stati · 15 giorni</div>
-  </div>
-  <div style="padding:8px 0">
-    <div class="sec-heading">Clicca una tappa per i dettagli</div>
-    <div class="tappa-list">
-      <div class="tappa-item" onclick="showTappa('t1')"><div class="tappa-emoji">✈️</div><div class="tappa-info"><div class="tappa-day">Giorno 1 · 31 Lug</div><div class="tappa-title">Napoli → San Francisco</div><div class="tappa-km">Volo intercontinentale</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
-      <div class="tappa-item" onclick="showTappa('t2')"><div class="tappa-emoji">🌲</div><div class="tappa-info"><div class="tappa-day">Giorno 3 · 2 Ago</div><div class="tappa-title">SF → Yosemite NP</div><div class="tappa-km">194 mi · 3h51</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
-      <div class="tappa-item" onclick="showTappa('t3')"><div class="tappa-emoji">🏜️</div><div class="tappa-info"><div class="tappa-day">Giorno 4 · 3 Ago</div><div class="tappa-title">Yosemite → Death Valley</div><div class="tappa-km">302 mi · 6h20</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
-      <div class="tappa-item" onclick="showTappa('t4')"><div class="tappa-emoji">🎰</div><div class="tappa-info"><div class="tappa-day">Giorno 5 · 4 Ago</div><div class="tappa-title">Death Valley → Las Vegas</div><div class="tappa-km">163 mi · 3h10</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
-      <div class="tappa-item" onclick="showTappa('t5')"><div class="tappa-emoji">🏔️</div><div class="tappa-info"><div class="tappa-day">Giorno 6 · 5 Ago</div><div class="tappa-title">Las Vegas → Grand Canyon</div><div class="tappa-km">344 mi · 5h45</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
-      <div class="tappa-item" onclick="showTappa('t6')"><div class="tappa-emoji">🗿</div><div class="tappa-info"><div class="tappa-day">Giorno 7 · 6 Ago</div><div class="tappa-title">Williams → Monument Valley</div><div class="tappa-km">254 mi · 4h32</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
-      <div class="tappa-item" onclick="showTappa('t7')"><div class="tappa-emoji">🌊</div><div class="tappa-info"><div class="tappa-day">Giorno 8 · 7 Ago</div><div class="tappa-title">Monument Valley → Antelope Canyon</div><div class="tappa-km">217 mi · 3h40</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
-      <div class="tappa-item" onclick="showTappa('t8')"><div class="tappa-emoji">🔴</div><div class="tappa-info"><div class="tappa-day">Giorno 9 · 8 Ago</div><div class="tappa-title">Kanab → Bryce Canyon → SLC</div><div class="tappa-km">345 mi · 5h12</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
-      <div class="tappa-item" onclick="showTappa('t9')"><div class="tappa-emoji">🌋</div><div class="tappa-info"><div class="tappa-day">Giorni 10–11 · 9–10 Ago</div><div class="tappa-title">SLC → Island Park → Yellowstone</div><div class="tappa-km">288 mi · 4h13</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
-      <div class="tappa-item" onclick="showTappa('t10')"><div class="tappa-emoji">✈️</div><div class="tappa-info"><div class="tappa-day">Giorno 12 · 11 Ago</div><div class="tappa-title">Island Park → Bozeman → San Diego</div><div class="tappa-km">Volo BZN→SAN</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
-      <div class="tappa-item" onclick="showTappa('t11')"><div class="tappa-emoji">🌊</div><div class="tappa-info"><div class="tappa-day">Giorni 13–14 · 12–13 Ago</div><div class="tappa-title">San Diego (2 notti)</div><div class="tappa-km">Spiagge · Balboa Park · Old Town · USS Midway</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
-      <div class="tappa-item" onclick="showTappa('t12')"><div class="tappa-emoji">🏙️</div><div class="tappa-info"><div class="tappa-day">Giorni 14–15 · 13–14 Ago</div><div class="tappa-title">San Francisco (finale) ✈️ Napoli</div><div class="tappa-km">Volo SAN→SFO · Hotel Fiona · 14 Ago in città · 15 Ago ritorno</div></div><div class="tappa-right"><span class="tappa-arrow">›</span></div></div>
-    </div>
-  </div>
-</div>
-<!-- END TAPPE -->
+
 
 <!-- ═══════════════════════ PAGE: ITINERARIO ═══════════════════════ -->
 <div id="page-itinerario" class="page">
@@ -1457,10 +1433,6 @@ a{color:var(--orange);text-decoration:none}
   <div class="nav-item active" id="nav-home" onclick="showPage('home')">
     <span class="nav-icon">🏠</span>
     <span class="nav-lbl">Home</span>
-  </div>
-  <div class="nav-item" id="nav-tappe" onclick="showPage('tappe')">
-    <span class="nav-icon">🗺️</span>
-    <span class="nav-lbl">Tappe</span>
   </div>
   <div class="nav-item" id="nav-itinerario" onclick="showPage('itinerario')">
     <span class="nav-icon">📅</span>
