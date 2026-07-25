@@ -9,6 +9,8 @@
 <title>🇺🇸 Road Trip USA 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
 /* ── RESET & ROOT ── */
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -94,19 +96,17 @@ a{color:var(--orange);text-decoration:none}
 }
 
 /* ── STATS GRID ── */
-.stats-grid{display:flex;justify-content:center;gap:10px;padding:8px 16px}
-.stat-box{
+.stats-grid{display:flex;justify-content:center;gap:6px;padding:8px 12px}
+.stat-card{
   background:linear-gradient(135deg,var(--card),var(--bg3));
   border:1px solid var(--border);border-radius:var(--radius-sm);
-  padding:10px 16px;text-align:center;
+  padding:6px 10px;text-align:center;
   box-shadow:0 4px 16px rgba(0,0,0,.3);
-  flex:1;max-width:160px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  min-width:72px;flex:1;max-width:120px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
 }
-.stat-box .srow{display:flex;align-items:baseline;justify-content:center;gap:6px}
-.stat-box .snum{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:900;color:var(--orange);line-height:1}
-.stat-box .ssep{font-size:14px;color:var(--muted);font-weight:300}
-.stat-box .slbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.stat-card .snum{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:900;color:var(--orange);line-height:1.1}
+.stat-card .slbl{font-size:9px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.4px}
 
 /* ── SECTION TITLE ── */
 .sec-heading{
@@ -423,22 +423,9 @@ a{color:var(--orange);text-decoration:none}
   </div>
 
   <div class="stats-grid">
-    <div class="stat-box">
-      <div class="srow">
-        <span class="snum">15</span>
-        <span class="ssep">·</span>
-        <span class="snum">3.819</span>
-      </div>
-      <div class="slbl">Giorni &nbsp;·&nbsp; Km totali</div>
-    </div>
-    <div class="stat-box">
-      <div class="srow">
-        <span class="snum">12</span>
-        <span class="ssep">·</span>
-        <span class="snum">7</span>
-      </div>
-      <div class="slbl">Tappe &nbsp;·&nbsp; Stati USA</div>
-    </div>
+    <div class="stat-card"><div class="snum">3.819</div><div class="slbl">Km totali</div></div>
+    <div class="stat-card"><div class="snum">12 tappe</div><div class="slbl">7 stati USA</div></div>
+    <div class="stat-card"><div class="snum">15</div><div class="slbl">Giorni</div></div>
   </div>
 
   <div class="sec-heading">📍 Le Tappe del Viaggio</div>
@@ -1443,6 +1430,17 @@ a{color:var(--orange);text-decoration:none}
   </div>
 </div>
 <!-- END CLIMA -->
+
+<!-- ═══════════════════════ PAGE: MAPPA ═══════════════════════ -->
+<div id="page-mappa" class="page">
+  <div class="page-header">
+    <h1>🗺️ Mappa Itinerario</h1>
+    <div class="sub">Il percorso del Road Trip</div>
+  </div>
+  <div id="trip-map" style="width:100%;height:calc(100vh - 130px);border-radius:12px;overflow:hidden;"></div>
+</div>
+<!-- END MAPPA -->
+
 <!-- ═══════════════════════ BOTTOM NAV ═══════════════════════ -->
 <nav class="bottom-nav">
   <div class="nav-item active" id="nav-home" onclick="showPage('home')">
@@ -1468,6 +1466,10 @@ a{color:var(--orange);text-decoration:none}
   <div class="nav-item" id="nav-voli" onclick="showPage('voli')">
     <span class="nav-icon">✈️</span>
     <span class="nav-lbl">Voli</span>
+  </div>
+  <div class="nav-item" id="nav-mappa" onclick="showPage('mappa');initMap()">
+    <span class="nav-icon">🗺️</span>
+    <span class="nav-lbl">Mappa</span>
   </div>
 </nav>
 
@@ -1799,6 +1801,66 @@ document.addEventListener('DOMContentLoaded', function() {
   // Load home weather chips after a short delay
   setTimeout(loadHomeWeatherChips, 500);
 });
+</script>
+
+<script>
+// ── MAPPA LEAFLET ──
+var mapInitialized = false;
+var tripMap = null;
+
+var tappe = [
+  { name: "San Francisco", lat: 37.7749, lng: -122.4194, emoji: "🌉", day: "Giorno 1–2 · 31 Lug–1 Ago" },
+  { name: "Yosemite", lat: 37.8651, lng: -119.5383, emoji: "🌲", day: "Giorno 3 · 2 Ago" },
+  { name: "Death Valley", lat: 36.5323, lng: -116.9325, emoji: "🏜️", day: "Giorno 4 · 3 Ago" },
+  { name: "Las Vegas", lat: 36.1699, lng: -115.1398, emoji: "🎰", day: "Giorno 5 · 4 Ago" },
+  { name: "Grand Canyon", lat: 36.0544, lng: -112.1401, emoji: "🏔️", day: "Giorno 6 · 5 Ago" },
+  { name: "Monument Valley", lat: 36.9829, lng: -110.1127, emoji: "🗿", day: "Giorno 7 · 6 Ago" },
+  { name: "Antelope Canyon", lat: 36.8619, lng: -111.3743, emoji: "🌊", day: "Giorno 8 · 7 Ago" },
+  { name: "Bryce Canyon", lat: 37.5930, lng: -112.1871, emoji: "🔴", day: "Giorno 9 · 8 Ago" },
+  { name: "Salt Lake City", lat: 40.7608, lng: -111.8910, emoji: "🏙️", day: "Giorno 9 · 8 Ago" },
+  { name: "Yellowstone", lat: 44.4280, lng: -110.5885, emoji: "🌋", day: "Giorni 10–11 · 9–10 Ago" },
+  { name: "Bozeman → San Diego", lat: 45.6770, lng: -111.0429, emoji: "✈️", day: "Giorno 12 · 11 Ago" },
+  { name: "San Diego", lat: 32.7157, lng: -117.1611, emoji: "🌊", day: "Giorni 13–15 · 12–14 Ago" }
+];
+
+function initMap() {
+  if (mapInitialized) return;
+  mapInitialized = true;
+
+  tripMap = L.map('trip-map', { zoomControl: true }).setView([38.5, -111.0], 5);
+
+  // Tile scuro (CartoDB Dark Matter)
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+    subdomains: 'abcd',
+    maxZoom: 19
+  }).addTo(tripMap);
+
+  // Linea itinerario
+  var latlngs = tappe.map(function(t) { return [t.lat, t.lng]; });
+  L.polyline(latlngs, {
+    color: '#e87a2f',
+    weight: 3,
+    opacity: 0.85,
+    dashArray: '8, 6'
+  }).addTo(tripMap);
+
+  // Markers
+  tappe.forEach(function(t, i) {
+    var icon = L.divIcon({
+      className: '',
+      html: '<div style="background:#e87a2f;color:#fff;font-size:11px;font-weight:700;font-family:Montserrat,sans-serif;padding:3px 7px;border-radius:20px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.5);border:1.5px solid rgba(255,255,255,.2)">' + (i+1) + ' ' + t.emoji + '</div>',
+      iconAnchor: [0, 10]
+    });
+    var marker = L.marker([t.lat, t.lng], { icon: icon }).addTo(tripMap);
+    marker.bindPopup(
+      '<div style="font-family:Montserrat,sans-serif;min-width:120px">' +
+      '<div style="font-size:13px;font-weight:700;color:#e87a2f">' + t.emoji + ' ' + t.name + '</div>' +
+      '<div style="font-size:10px;color:#888;margin-top:2px">' + t.day + '</div>' +
+      '</div>'
+    );
+  });
+}
 </script>
 </body>
 </html>
