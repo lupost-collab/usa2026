@@ -69,11 +69,12 @@ a{color:var(--orange);text-decoration:none}
   background:linear-gradient(155deg,#07102b 0%,#0f2060 40%,#1a0a30 100%);
   padding:calc(var(--safe-top) + 10px) 20px 16px;
   text-align:center;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
   border-bottom:2px solid var(--orange);
 }
 .stars-canvas{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:twinkle var(--d,2s) infinite alternate;opacity:0}
-@keyframes twinkle{0%{opacity:0;transform:scale(.8)}100%{opacity:.9;transform:scale(1.2)}}
+.star{position:absolute;border-radius:50%;animation:twinkle var(--d,2s) infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:.2;transform:scale(.8)}100%{opacity:1;transform:scale(1.4)}}
 .flag-stripe{
   position:absolute;bottom:0;left:0;right:0;height:6px;
   background:linear-gradient(90deg,#b22234 0%,#b22234 50%,#3c3b6e 50%);
@@ -412,7 +413,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="stars-canvas" id="stars-canvas"></div>
     <span class="hero-flag">🇺🇸</span>
     <div class="hero-title">Road Trip USA 2026</div>
-    <div class="hero-subtitle">Costa Ovest · Grandi Parchi · Yellowstone</div>
+    <div class="hero-subtitle">Costa Ovest &amp; Grandi Parchi</div>
     <div class="hero-dates">31 Luglio – 14 Agosto 2026</div>
     <div class="flag-stripe"></div>
   </div>
@@ -1630,12 +1631,14 @@ function createStars() {
   var canvas = document.getElementById('stars-canvas');
   if (!canvas) return;
   var html = '';
-  for (var i = 0; i < 60; i++) {
+  for (var i = 0; i < 120; i++) {
     var top = Math.random() * 100;
     var left = Math.random() * 100;
     var delay = (Math.random() * 3).toFixed(2);
-    var dur = (1.5 + Math.random() * 2.5).toFixed(2);
-    html += '<div class="star" style="top:' + top + '%;left:' + left + '%;--d:' + dur + 's;animation-delay:' + delay + 's"></div>';
+    var dur = (1.2 + Math.random() * 2).toFixed(2);
+    var size = Math.random() < 0.2 ? 3 : Math.random() < 0.5 ? 2 : 1;
+    var bright = Math.random() < 0.15 ? 'rgba(255,220,120,1)' : '#fff';
+    html += '<div class="star" style="top:' + top + '%;left:' + left + '%;width:' + size + 'px;height:' + size + 'px;background:' + bright + ';--d:' + dur + 's;animation-delay:' + delay + 's"></div>';
   }
   canvas.innerHTML = html;
 }
