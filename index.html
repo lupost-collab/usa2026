@@ -50,20 +50,26 @@ a{color:var(--orange);text-decoration:none}
   border-top:1px solid var(--border);
   display:flex !important;align-items:flex-start;padding-top:6px;
   z-index:9999;
-  height:66px;
+  height:72px;
 }
 .nav-item{
-  flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;
-  padding:4px 0 2px;cursor:pointer;
+  flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:3px;
+  padding:5px 0 2px;cursor:pointer;
   color:var(--muted);transition:color .18s;
-  font-family:'Montserrat',sans-serif;font-size:9px;font-weight:600;
+  font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;
   overflow:hidden;
 }
-.nav-item .nav-lbl{display:block;width:100%;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:9px;}
-.nav-item .nav-icon{font-size:20px;line-height:1;transition:transform .18s}
+.nav-item .nav-lbl{display:block;width:100%;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px;}
+.nav-item .nav-icon{font-size:26px;line-height:1;transition:transform .18s}
 .nav-item.active{color:var(--orange)}
 .nav-item.active .nav-icon{transform:scale(1.12)}
 .nav-item:active .nav-icon{transform:scale(.92)}
+/* ── ALTRO SUB-TABS ── */
+.altro-tabs{display:flex;gap:6px;padding:10px 12px 0}
+.altro-tab{flex:1;text-align:center;padding:8px 4px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--card);color:var(--muted);font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all .18s}
+.altro-tab.active{background:var(--orange);color:#fff;border-color:var(--orange)}
+.altro-panel{display:none}
+.altro-panel.active{display:block}
 
 /* ── HERO HOME ── */
 .home-hero{
@@ -1441,6 +1447,23 @@ a{color:var(--orange);text-decoration:none}
 </div>
 <!-- END MAPPA -->
 
+<!-- ═══════════════════════ PAGE: ALTRO ═══════════════════════ -->
+<div id="page-altro" class="page">
+  <div class="page-header">
+    <h1>📂 Altro</h1>
+    <div class="sub">Clima · Info · Voli</div>
+  </div>
+  <div class="altro-tabs">
+    <div class="altro-tab active" id="atab-clima" onclick="switchAltroTab('clima')">🌡️ Clima</div>
+    <div class="altro-tab" id="atab-info" onclick="switchAltroTab('info')">ℹ️ Info</div>
+    <div class="altro-tab" id="atab-voli" onclick="switchAltroTab('voli')">✈️ Voli</div>
+  </div>
+  <div id="altro-clima" class="altro-panel active"></div>
+  <div id="altro-info" class="altro-panel"></div>
+  <div id="altro-voli" class="altro-panel"></div>
+</div>
+<!-- END ALTRO -->
+
 <!-- ═══════════════════════ BOTTOM NAV ═══════════════════════ -->
 <nav class="bottom-nav">
   <div class="nav-item active" id="nav-home" onclick="showPage('home')">
@@ -1455,21 +1478,13 @@ a{color:var(--orange);text-decoration:none}
     <span class="nav-icon">🏨</span>
     <span class="nav-lbl">Hotel</span>
   </div>
-  <div class="nav-item" id="nav-clima" onclick="showPage('clima')">
-    <span class="nav-icon">🌡️</span>
-    <span class="nav-lbl">Clima</span>
-  </div>
-  <div class="nav-item" id="nav-info" onclick="showPage('info')">
-    <span class="nav-icon">ℹ️</span>
-    <span class="nav-lbl">Info</span>
-  </div>
-  <div class="nav-item" id="nav-voli" onclick="showPage('voli')">
-    <span class="nav-icon">✈️</span>
-    <span class="nav-lbl">Voli</span>
-  </div>
   <div class="nav-item" id="nav-mappa" onclick="showPage('mappa');initMap()">
     <span class="nav-icon">🗺️</span>
     <span class="nav-lbl">Mappa</span>
+  </div>
+  <div class="nav-item" id="nav-altro" onclick="showPage('altro')">
+    <span class="nav-icon">⋯</span>
+    <span class="nav-lbl">Altro</span>
   </div>
 </nav>
 
@@ -1672,7 +1687,28 @@ function toggleSection(header) {
   }
 }
 
-// ── PAGE NAVIGATION ──
+// ── ALTRO TAB SYSTEM ──
+var altroInited = false;
+function initAltro() {
+  if (altroInited) return;
+  altroInited = true;
+  // Sposta contenuto pagine originali nei pannelli
+  var pageClima = document.getElementById('page-clima');
+  var pageInfo  = document.getElementById('page-info');
+  var pageVoli  = document.getElementById('page-voli');
+  var panelClima = document.getElementById('altro-clima');
+  var panelInfo  = document.getElementById('altro-info');
+  var panelVoli  = document.getElementById('altro-voli');
+  if (pageClima && panelClima) { while(pageClima.firstChild) panelClima.appendChild(pageClima.firstChild); pageClima.style.display='none'; }
+  if (pageInfo  && panelInfo)  { while(pageInfo.firstChild)  panelInfo.appendChild(pageInfo.firstChild);   pageInfo.style.display='none';  }
+  if (pageVoli  && panelVoli)  { while(pageVoli.firstChild)  panelVoli.appendChild(pageVoli.firstChild);   pageVoli.style.display='none';  }
+}
+function switchAltroTab(tab) {
+  document.querySelectorAll('.altro-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.altro-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.getElementById('atab-' + tab).classList.add('active');
+  document.getElementById('altro-' + tab).classList.add('active');
+}
 function showPage(name) {
   document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
   var target = document.getElementById('page-' + name);
@@ -1680,6 +1716,7 @@ function showPage(name) {
   document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
   var navEl = document.getElementById('nav-' + name);
   if (navEl) navEl.classList.add('active');
+  if (name === 'altro') initAltro();
   previousPage = currentPage;
   currentPage = name;
 }
