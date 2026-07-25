@@ -94,17 +94,19 @@ a{color:var(--orange);text-decoration:none}
 }
 
 /* ── STATS GRID ── */
-.stats-grid{display:flex;justify-content:center;gap:6px;padding:8px 12px}
-.stat-card{
+.stats-grid{display:flex;justify-content:center;gap:10px;padding:8px 16px}
+.stat-box{
   background:linear-gradient(135deg,var(--card),var(--bg3));
   border:1px solid var(--border);border-radius:var(--radius-sm);
-  padding:6px 10px;text-align:center;
+  padding:10px 16px;text-align:center;
   box-shadow:0 4px 16px rgba(0,0,0,.3);
-  min-width:72px;flex:1;max-width:120px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  flex:1;max-width:160px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
 }
-.stat-card .snum{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:900;color:var(--orange);line-height:1.1}
-.stat-card .slbl{font-size:9px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.4px}
+.stat-box .srow{display:flex;align-items:baseline;justify-content:center;gap:6px}
+.stat-box .snum{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:900;color:var(--orange);line-height:1}
+.stat-box .ssep{font-size:14px;color:var(--muted);font-weight:300}
+.stat-box .slbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
 
 /* ── SECTION TITLE ── */
 .sec-heading{
@@ -421,9 +423,22 @@ a{color:var(--orange);text-decoration:none}
   </div>
 
   <div class="stats-grid">
-    <div class="stat-card"><div class="snum">3.819</div><div class="slbl">Km totali</div></div>
-    <div class="stat-card"><div class="snum">12 tappe</div><div class="slbl">7 stati USA</div></div>
-    <div class="stat-card"><div class="snum">15</div><div class="slbl">Giorni</div></div>
+    <div class="stat-box">
+      <div class="srow">
+        <span class="snum">15</span>
+        <span class="ssep">·</span>
+        <span class="snum">3.819</span>
+      </div>
+      <div class="slbl">Giorni &nbsp;·&nbsp; Km totali</div>
+    </div>
+    <div class="stat-box">
+      <div class="srow">
+        <span class="snum">12</span>
+        <span class="ssep">·</span>
+        <span class="snum">7</span>
+      </div>
+      <div class="slbl">Tappe &nbsp;·&nbsp; Stati USA</div>
+    </div>
   </div>
 
   <div class="sec-heading">📍 Le Tappe del Viaggio</div>
