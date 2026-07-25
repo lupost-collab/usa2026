@@ -1800,6 +1800,7 @@ function showPage(name) {
   var navEl = document.getElementById('nav-' + name);
   if (navEl) navEl.classList.add('active');
   if (name === 'altro') initAltro();
+  if (name === 'mappa' && tripMap) { setTimeout(function(){ tripMap.invalidateSize(); }, 50); }
   previousPage = currentPage;
   currentPage = name;
 }
@@ -1984,7 +1985,9 @@ function initMap() {
   }).addTo(tripMap).bindTooltip('✈️ Volo San Diego → San Francisco', {sticky:true});
 
   // Markers
+  var allLatLngs = [];
   tappe.forEach(function(t, i) {
+    allLatLngs.push([t.lat, t.lng]);
     var icon = L.divIcon({
       className: '',
       html: '<div style="background:#e87a2f;color:#fff;font-size:11px;font-weight:700;font-family:Montserrat,sans-serif;padding:3px 7px;border-radius:20px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.5);border:1.5px solid rgba(255,255,255,.2)">' + (i+1) + ' ' + t.emoji + '</div>',
@@ -2000,6 +2003,11 @@ function initMap() {
       '</div>'
     );
   });
+
+  // Centra la mappa su tutti i marker del percorso
+  if (allLatLngs.length > 0) {
+    tripMap.fitBounds(allLatLngs, { padding: [30, 30] });
+  }
 }
 </script>
 </body>
