@@ -1837,14 +1837,31 @@ function initMap() {
     maxZoom: 19
   }).addTo(tripMap);
 
-  // Linea itinerario
-  var latlngs = tappe.map(function(t) { return [t.lat, t.lng]; });
-  L.polyline(latlngs, {
+  // Linea itinerario — 3 segmenti distinti
+  // Tratto stradale: tappe 0→10
+  var roadCoords = tappe.slice(0, 11).map(function(t) { return [t.lat, t.lng]; });
+  L.polyline(roadCoords, {
     color: '#e87a2f',
     weight: 3,
-    opacity: 0.85,
+    opacity: 0.9,
     dashArray: '8, 6'
-  }).addTo(tripMap);
+  }).addTo(tripMap).bindTooltip('🚗 Tratto stradale', {sticky:true});
+
+  // Volo 1: Bozeman → San Diego (tappa 10→11)
+  L.polyline([[tappe[10].lat, tappe[10].lng],[tappe[11].lat, tappe[11].lng]], {
+    color: '#4db8ff',
+    weight: 2.5,
+    opacity: 0.85,
+    dashArray: '5, 8'
+  }).addTo(tripMap).bindTooltip('✈️ Volo Bozeman → San Diego', {sticky:true});
+
+  // Volo 2: San Diego → San Francisco (tappa 11→12)
+  L.polyline([[tappe[11].lat, tappe[11].lng],[tappe[12].lat, tappe[12].lng]], {
+    color: '#4db8ff',
+    weight: 2.5,
+    opacity: 0.85,
+    dashArray: '5, 8'
+  }).addTo(tripMap).bindTooltip('✈️ Volo San Diego → San Francisco', {sticky:true});
 
   // Markers
   tappe.forEach(function(t, i) {
