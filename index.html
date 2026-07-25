@@ -1951,11 +1951,10 @@ function initMap() {
 
   tripMap = L.map('trip-map', { zoomControl: true }).setView([38.5, -111.0], 5);
 
-  // Tile scuro (CartoDB Dark Matter)
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-    subdomains: 'abcd',
-    maxZoom: 19
+  // Tile chiaro e realistico (ESRI NatGeo World Map)
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
+    attribution: '&copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ',
+    maxZoom: 16
   }).addTo(tripMap);
 
   // Linea itinerario — 3 segmenti distinti
