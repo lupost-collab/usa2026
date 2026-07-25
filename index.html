@@ -158,7 +158,7 @@ a{color:var(--orange);text-decoration:none}
 }
 .detail-hero > *{position:relative;z-index:1}
 .day-badge{
-  display:inline-block;background:var(--orange);color:#fff;
+  display:inline-block;background:var(--orange);color:#fff !important;
   font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;
   padding:3px 12px;border-radius:20px;margin-bottom:10px;letter-spacing:.4px;
 }
@@ -443,6 +443,16 @@ a{color:var(--orange);text-decoration:none}
         <div class="tappa-day">Giorno 1 · 31 Luglio</div>
         <div class="tappa-title">Napoli → San Francisco</div>
         <div class="tappa-km">~13h volo · arrivo in California</div>
+      </div>
+      <div class="tappa-right"><span class="tappa-arrow">›</span></div>
+    </div>
+
+    <div class="tappa-item" onclick="showTappa('t1')">
+      <div class="tappa-emoji">🌉</div>
+      <div class="tappa-info">
+        <div class="tappa-day">Giorno 2 · 1 Agosto</div>
+        <div class="tappa-title">San Francisco</div>
+        <div class="tappa-km">Golden Gate · Fisherman's Wharf · Alcatraz</div>
       </div>
       <div class="tappa-right"><span class="tappa-arrow">›</span></div>
     </div>
