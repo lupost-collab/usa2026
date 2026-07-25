@@ -53,14 +53,14 @@ a{color:var(--orange);text-decoration:none}
   padding-bottom:18px;
 }
 .nav-item{
-  flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
-  padding:4px 0px 4px;cursor:pointer;
+  flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  padding:2px 0px 2px;cursor:pointer;
   color:var(--muted);transition:all .18s;
   font-family:'Montserrat',sans-serif;font-size:9px;font-weight:600;
   overflow:hidden;
   background:transparent;
-  border-radius:10px;
-  margin:3px 0px;
+  border-radius:8px;
+  margin:2px 0px;
 }
 .nav-item .nav-lbl{display:block;width:100%;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:9px;}
 .nav-item .nav-icon{font-size:32px;line-height:1;transition:transform .18s}
@@ -1967,21 +1967,25 @@ function initMap() {
     dashArray: '10, 6'
   }).addTo(tripMap).bindTooltip('🚗 Tratto stradale', {sticky:true});
 
-  // Volo 1: Bozeman → San Diego (tappa 10→11)
-  L.polyline([[tappe[10].lat, tappe[10].lng],[tappe[11].lat, tappe[11].lng]], {
+  // Volo 1: Bozeman → San Diego (tappa 10→11) — linea continua
+  var v1 = L.polyline([[tappe[10].lat, tappe[10].lng],[tappe[11].lat, tappe[11].lng]], {
     color: '#00aaff',
     weight: 4,
-    opacity: 1,
-    dashArray: '6, 9'
+    opacity: 1
   }).addTo(tripMap).bindTooltip('✈️ Volo Bozeman → San Diego', {sticky:true});
+  // Icona aereo a metà tratta volo 1
+  var mid1 = [(tappe[10].lat+tappe[11].lat)/2, (tappe[10].lng+tappe[11].lng)/2];
+  L.marker(mid1, {icon: L.divIcon({className:'',html:'<div style="font-size:22px;filter:drop-shadow(0 1px 4px #000)">✈️</div>',iconAnchor:[11,11]})}).addTo(tripMap);
 
-  // Volo 2: San Diego → San Francisco (tappa 11→12)
-  L.polyline([[tappe[11].lat, tappe[11].lng],[tappe[12].lat, tappe[12].lng]], {
+  // Volo 2: San Diego → San Francisco (tappa 11→12) — linea continua
+  var v2 = L.polyline([[tappe[11].lat, tappe[11].lng],[tappe[12].lat, tappe[12].lng]], {
     color: '#00aaff',
     weight: 4,
-    opacity: 1,
-    dashArray: '6, 9'
+    opacity: 1
   }).addTo(tripMap).bindTooltip('✈️ Volo San Diego → San Francisco', {sticky:true});
+  // Icona aereo a metà tratta volo 2
+  var mid2 = [(tappe[11].lat+tappe[12].lat)/2, (tappe[11].lng+tappe[12].lng)/2];
+  L.marker(mid2, {icon: L.divIcon({className:'',html:'<div style="font-size:22px;filter:drop-shadow(0 1px 4px #000)">✈️</div>',iconAnchor:[11,11]})}).addTo(tripMap);
 
   // Markers
   var allLatLngs = [];
