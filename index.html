@@ -143,7 +143,8 @@ a{color:var(--orange);text-decoration:none}
 .tappa-item:active{background:var(--card2);transform:scale(.98)}
 .tappa-emoji{font-size:28px;flex-shrink:0;width:38px;text-align:center}
 .tappa-info{flex:1;min-width:0}
-.tappa-day{font-size:12px;color:var(--orange);font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:.3px}
+.day-num{color:var(--orange)}.day-date{color:#fff}
+.tappa-day{font-size:12px;color:#fff;font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:.3px}
 .tappa-title{font-size:15px;font-weight:600;color:var(--white);font-family:'Montserrat',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tappa-km{font-size:12px;color:var(--lblue);margin-top:2px}
 .tappa-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
@@ -292,7 +293,7 @@ a{color:var(--orange);text-decoration:none}
   transition:all .18s;
 }
 .tl-content:active{background:var(--card2)}
-.tl-day{font-size:12px;color:var(--orange);font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:.3px}
+.tl-day{font-size:12px;color:#fff;font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:.3px}
 .tl-title{font-size:15px;font-weight:600;color:var(--white);font-family:'Montserrat',sans-serif;margin-top:2px}
 .tl-km{font-size:12px;color:var(--lblue);margin-top:2px}
 
@@ -451,7 +452,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="tappa-item" onclick="showTappa('t1')">
       <div class="tappa-emoji">✈️</div>
       <div class="tappa-info">
-        <div class="tappa-day">Giorno 1 · 31 Luglio</div>
+        <div class="tappa-day"><span class="day-num">Giorno 1</span> · <span class="day-date">31 Luglio</span></div>
         <div class="tappa-title">Napoli → San Francisco</div>
         <div class="tappa-km">~13h volo · arrivo in California</div>
       </div>
@@ -461,7 +462,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="tappa-item" onclick="showTappa('t1')">
       <div class="tappa-emoji">🌉</div>
       <div class="tappa-info">
-        <div class="tappa-day">Giorno 2 · 1 Agosto</div>
+        <div class="tappa-day"><span class="day-num">Giorno 2</span> · <span class="day-date">1 Agosto</span></div>
         <div class="tappa-title">San Francisco</div>
         <div class="tappa-km">Golden Gate · Fisherman's Wharf · Alcatraz</div>
       </div>
@@ -471,7 +472,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="tappa-item" onclick="showTappa('t2')">
       <div class="tappa-emoji">🌲</div>
       <div class="tappa-info">
-        <div class="tappa-day">Giorno 3 · 2 Agosto</div>
+        <div class="tappa-day"><span class="day-num">Giorno 3</span> · <span class="day-date">2 Agosto</span></div>
         <div class="tappa-title">San Francisco → Yosemite</div>
         <div class="tappa-km">194 mi / 312 km · 3h51</div>
       </div>
@@ -484,7 +485,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="tappa-item" onclick="showTappa('t3')">
       <div class="tappa-emoji">🏜️</div>
       <div class="tappa-info">
-        <div class="tappa-day">Giorno 4 · 3 Agosto</div>
+        <div class="tappa-day"><span class="day-num">Giorno 4</span> · <span class="day-date">3 Agosto</span></div>
         <div class="tappa-title">Yosemite → Death Valley</div>
         <div class="tappa-km">302 mi / 486 km · 6h20</div>
       </div>
@@ -497,7 +498,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="tappa-item" onclick="showTappa('t4')">
       <div class="tappa-emoji">🎰</div>
       <div class="tappa-info">
-        <div class="tappa-day">Giorno 5 · 4 Ago</div>
+        <div class="tappa-day"><span class="day-num">Giorno 5</span> · <span class="day-date">4 Ago</span></div>
         <div class="tappa-title">Death Valley → Las Vegas</div>
         <div class="tappa-km">163 mi / 262 km · 3h10</div>
       </div>
@@ -510,7 +511,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="tappa-item" onclick="showTappa('t5')">
       <div class="tappa-emoji">🏔️</div>
       <div class="tappa-info">
-        <div class="tappa-day">Giorno 6 · 5 Agosto</div>
+        <div class="tappa-day"><span class="day-num">Giorno 6</span> · <span class="day-date">5 Agosto</span></div>
         <div class="tappa-title">Las Vegas → Grand Canyon → Williams</div>
         <div class="tappa-km">344 mi / 554 km · 5h45</div>
       </div>
@@ -523,7 +524,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="tappa-item" onclick="showTappa('t6')">
       <div class="tappa-emoji">🗿</div>
       <div class="tappa-info">
-        <div class="tappa-day">Giorno 7 · 6 Agosto</div>
+        <div class="tappa-day"><span class="day-num">Giorno 7</span> · <span class="day-date">6 Agosto</span></div>
         <div class="tappa-title">Williams → Monument Valley</div>
         <div class="tappa-km">254 mi / 409 km · 4h32</div>
       </div>
@@ -536,7 +537,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="tappa-item" onclick="showTappa('t7')">
       <div class="tappa-emoji">🌊</div>
       <div class="tappa-info">
-        <div class="tappa-day">Giorno 8 · 7 Agosto</div>
+        <div class="tappa-day"><span class="day-num">Giorno 8</span> · <span class="day-date">7 Agosto</span></div>
         <div class="tappa-title">Monument Valley → Antelope Canyon → Kanab</div>
         <div class="tappa-km">217 mi / 349 km · 3h40</div>
       </div>
@@ -549,7 +550,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="tappa-item" onclick="showTappa('t8')">
       <div class="tappa-emoji">🔴</div>
       <div class="tappa-info">
-        <div class="tappa-day">Giorno 9 · 8 Agosto</div>
+        <div class="tappa-day"><span class="day-num">Giorno 9</span> · <span class="day-date">8 Agosto</span></div>
         <div class="tappa-title">Kanab → Bryce Canyon → Salt Lake City</div>
         <div class="tappa-km">345 mi / 555 km · 5h12</div>
       </div>
@@ -562,7 +563,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="tappa-item" onclick="showTappa('t9')">
       <div class="tappa-emoji">🌋</div>
       <div class="tappa-info">
-        <div class="tappa-day">Giorni 10–11 · 9–10 Agosto</div>
+        <div class="tappa-day"><span class="day-num">Giorni 10–11</span> · <span class="day-date">9–10 Agosto</span></div>
         <div class="tappa-title">Salt Lake City → Island Park → Yellowstone</div>
         <div class="tappa-km">288 mi / 463 km · 4h13</div>
       </div>
@@ -575,7 +576,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="tappa-item" onclick="showTappa('t10')">
       <div class="tappa-emoji">✈️</div>
       <div class="tappa-info">
-        <div class="tappa-day">Giorno 12 · 11 Agosto</div>
+        <div class="tappa-day"><span class="day-num">Giorno 12</span> · <span class="day-date">11 Agosto</span></div>
         <div class="tappa-title">Island Park → Bozeman ✈️ San Diego</div>
         <div class="tappa-km">131 mi / 211 km · volo BZN→SAN</div>
       </div>
@@ -588,7 +589,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="tappa-item" onclick="showTappa('t11')">
       <div class="tappa-emoji">🌊</div>
       <div class="tappa-info">
-        <div class="tappa-day">Giorni 13–14 · 12–13 Ago</div>
+        <div class="tappa-day"><span class="day-num">Giorni 13–14</span> · <span class="day-date">12–13 Ago</span></div>
         <div class="tappa-title">San Diego</div>
         <div class="tappa-km">Spiagge · Zoo · Centro storico</div>
       </div>
@@ -598,7 +599,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="tappa-item" onclick="showTappa('t12')">
       <div class="tappa-emoji">🏠</div>
       <div class="tappa-info">
-        <div class="tappa-day">Giorni 14–15 · 13–14 Ago</div>
+        <div class="tappa-day"><span class="day-num">Giorni 14–15</span> · <span class="day-date">13–14 Ago</span></div>
         <div class="tappa-title">San Diego ✈️ San Francisco → Napoli</div>
         <div class="tappa-km">Volo SAN→SFO · Ultima sera SF · Volo di ritorno</div>
       </div>
@@ -619,63 +620,63 @@ a{color:var(--orange);text-decoration:none}
   <div class="timeline">
     <div class="tl-item" onclick="showTappa('t1')">
       <div class="tl-left"><div class="tl-dot">✈️</div><div class="tl-line"></div></div>
-      <div class="tl-content"><div class="tl-day">Giorno 1 · 31 Luglio</div><div class="tl-title">Napoli → San Francisco</div><div class="tl-km">Volo + arrivo + Hotel Fiona</div></div>
+      <div class="tl-content"><div class="tl-day"><span class="day-num">Giorno 1</span> · <span class="day-date">31 Luglio</span></div><div class="tl-title">Napoli → San Francisco</div><div class="tl-km">Volo + arrivo + Hotel Fiona</div></div>
     </div>
     <div class="tl-item" onclick="showTappa('t1')">
       <div class="tl-left"><div class="tl-dot">🌉</div><div class="tl-line"></div></div>
-      <div class="tl-content"><div class="tl-day">Giorno 2 · 1 Agosto</div><div class="tl-title">San Francisco</div><div class="tl-km">Golden Gate · Fisherman's Wharf · Lombard St · Hotel Fiona</div></div>
+      <div class="tl-content"><div class="tl-day"><span class="day-num">Giorno 2</span> · <span class="day-date">1 Agosto</span></div><div class="tl-title">San Francisco</div><div class="tl-km">Golden Gate · Fisherman's Wharf · Lombard St · Hotel Fiona</div></div>
     </div>
     <div class="tl-item" onclick="showTappa('t2')">
       <div class="tl-left"><div class="tl-dot">🌲</div><div class="tl-line"></div></div>
-      <div class="tl-content"><div class="tl-day">Giorno 3 · 2 Agosto</div><div class="tl-title">SF → Yosemite NP</div><div class="tl-km">194 mi · 3h51 · Chalet Groveland</div></div>
+      <div class="tl-content"><div class="tl-day"><span class="day-num">Giorno 3</span> · <span class="day-date">2 Agosto</span></div><div class="tl-title">SF → Yosemite NP</div><div class="tl-km">194 mi · 3h51 · Chalet Groveland</div></div>
     </div>
     <div class="tl-item" onclick="showTappa('t3')">
       <div class="tl-left"><div class="tl-dot">🏜️</div><div class="tl-line"></div></div>
-      <div class="tl-content"><div class="tl-day">Giorno 4 · 3 Agosto</div><div class="tl-title">Yosemite → Mono Lake → Death Valley</div><div class="tl-km">302 mi · 6h20 · Death Valley Inn, Beatty NV</div></div>
+      <div class="tl-content"><div class="tl-day"><span class="day-num">Giorno 4</span> · <span class="day-date">3 Agosto</span></div><div class="tl-title">Yosemite → Mono Lake → Death Valley</div><div class="tl-km">302 mi · 6h20 · Death Valley Inn, Beatty NV</div></div>
     </div>
     <div class="tl-item" onclick="showTappa('t4')">
       <div class="tl-left"><div class="tl-dot">🎰</div><div class="tl-line"></div></div>
-      <div class="tl-content"><div class="tl-day">Giorno 5 · 4 Agosto</div><div class="tl-title">Death Valley → Las Vegas</div><div class="tl-km">163 mi · 3h10 · The LINQ Las Vegas (1 notte)</div></div>
+      <div class="tl-content"><div class="tl-day"><span class="day-num">Giorno 5</span> · <span class="day-date">4 Agosto</span></div><div class="tl-title">Death Valley → Las Vegas</div><div class="tl-km">163 mi · 3h10 · The LINQ Las Vegas (1 notte)</div></div>
     </div>
     <div class="tl-item" onclick="showTappa('t5')">
       <div class="tl-left"><div class="tl-dot">🏔️</div><div class="tl-line"></div></div>
-      <div class="tl-content"><div class="tl-day">Giorno 6 · 5 Agosto</div><div class="tl-title">Las Vegas → Grand Canyon → Williams</div><div class="tl-km">344 mi · 5h45 · Rodeway Inn Williams, Rte 66</div></div>
+      <div class="tl-content"><div class="tl-day"><span class="day-num">Giorno 6</span> · <span class="day-date">5 Agosto</span></div><div class="tl-title">Las Vegas → Grand Canyon → Williams</div><div class="tl-km">344 mi · 5h45 · Rodeway Inn Williams, Rte 66</div></div>
     </div>
     <div class="tl-item" onclick="showTappa('t6')">
       <div class="tl-left"><div class="tl-dot">🗿</div><div class="tl-line"></div></div>
-      <div class="tl-content"><div class="tl-day">Giorno 7 · 6 Agosto</div><div class="tl-title">Williams → Desert View → Monument Valley</div><div class="tl-km">254 mi · 4h32 · Mexican Hat Lodge, UT</div></div>
+      <div class="tl-content"><div class="tl-day"><span class="day-num">Giorno 7</span> · <span class="day-date">6 Agosto</span></div><div class="tl-title">Williams → Desert View → Monument Valley</div><div class="tl-km">254 mi · 4h32 · Mexican Hat Lodge, UT</div></div>
     </div>
     <div class="tl-item" onclick="showTappa('t7')">
       <div class="tl-left"><div class="tl-dot">🌊</div><div class="tl-line"></div></div>
-      <div class="tl-content"><div class="tl-day">Giorno 8 · 7 Agosto</div><div class="tl-title">Mexican Hat → Antelope Canyon X → Kanab</div><div class="tl-km">217 mi · 3h40 · Comfort Suites Kanab, UT</div></div>
+      <div class="tl-content"><div class="tl-day"><span class="day-num">Giorno 8</span> · <span class="day-date">7 Agosto</span></div><div class="tl-title">Mexican Hat → Antelope Canyon X → Kanab</div><div class="tl-km">217 mi · 3h40 · Comfort Suites Kanab, UT</div></div>
     </div>
     <div class="tl-item" onclick="showTappa('t8')">
       <div class="tl-left"><div class="tl-dot">🔴</div><div class="tl-line"></div></div>
-      <div class="tl-content"><div class="tl-day">Giorno 9 · 8 Agosto</div><div class="tl-title">Kanab → Bryce Canyon → Salt Lake City</div><div class="tl-km">345 mi · 5h12 · Park Inn Radisson SLC</div></div>
+      <div class="tl-content"><div class="tl-day"><span class="day-num">Giorno 9</span> · <span class="day-date">8 Agosto</span></div><div class="tl-title">Kanab → Bryce Canyon → Salt Lake City</div><div class="tl-km">345 mi · 5h12 · Park Inn Radisson SLC</div></div>
     </div>
     <div class="tl-item" onclick="showTappa('t9')">
       <div class="tl-left"><div class="tl-dot">🌋</div><div class="tl-line"></div></div>
-      <div class="tl-content"><div class="tl-day">Giorno 10 · 9 Agosto</div><div class="tl-title">Salt Lake City → Island Park (base Yellowstone)</div><div class="tl-km">288 mi · 4h13 · Blue Buffalo Resort, ID</div></div>
+      <div class="tl-content"><div class="tl-day"><span class="day-num">Giorno 10</span> · <span class="day-date">9 Agosto</span></div><div class="tl-title">Salt Lake City → Island Park (base Yellowstone)</div><div class="tl-km">288 mi · 4h13 · Blue Buffalo Resort, ID</div></div>
     </div>
     <div class="tl-item" onclick="showTappa('t9')">
       <div class="tl-left"><div class="tl-dot">♨️</div><div class="tl-line"></div></div>
-      <div class="tl-content"><div class="tl-day">Giorno 11 · 10 Agosto</div><div class="tl-title">Yellowstone National Park</div><div class="tl-km">Old Faithful · Grand Prismatic · Lamar Valley · Blue Buffalo Resort</div></div>
+      <div class="tl-content"><div class="tl-day"><span class="day-num">Giorno 11</span> · <span class="day-date">10 Agosto</span></div><div class="tl-title">Yellowstone National Park</div><div class="tl-km">Old Faithful · Grand Prismatic · Lamar Valley · Blue Buffalo Resort</div></div>
     </div>
     <div class="tl-item" onclick="showTappa('t10')">
       <div class="tl-left"><div class="tl-dot">✈️</div><div class="tl-line"></div></div>
-      <div class="tl-content"><div class="tl-day">Giorno 12 · 11 Agosto</div><div class="tl-title">Island Park → Bozeman (BZN) ✈️ San Diego (SAN)</div><div class="tl-km">131 mi + volo · Baymont Wyndham San Diego</div></div>
+      <div class="tl-content"><div class="tl-day"><span class="day-num">Giorno 12</span> · <span class="day-date">11 Agosto</span></div><div class="tl-title">Island Park → Bozeman (BZN) ✈️ San Diego (SAN)</div><div class="tl-km">131 mi + volo · Baymont Wyndham San Diego</div></div>
     </div>
     <div class="tl-item" onclick="showTappa('t11')">
       <div class="tl-left"><div class="tl-dot">🌊</div><div class="tl-line"></div></div>
-      <div class="tl-content"><div class="tl-day">Giorni 13–14 · 12–13 Agosto</div><div class="tl-title">San Diego</div><div class="tl-km">Zoo · Balboa Park · Old Town · Spiagge · Baymont Wyndham</div></div>
+      <div class="tl-content"><div class="tl-day"><span class="day-num">Giorni 13–14</span> · <span class="day-date">12–13 Agosto</span></div><div class="tl-title">San Diego</div><div class="tl-km">Zoo · Balboa Park · Old Town · Spiagge · Baymont Wyndham</div></div>
     </div>
     <div class="tl-item" onclick="showTappa('t11')">
       <div class="tl-left"><div class="tl-dot">🚗</div><div class="tl-line"></div></div>
-      <div class="tl-content"><div class="tl-day">Giorno 14 · 13 Agosto</div><div class="tl-title">San Diego ✈️ San Francisco SFO</div><div class="tl-km">Volo SAN→SFO (~1h30) · Hotel Fiona, San Francisco</div></div>
+      <div class="tl-content"><div class="tl-day"><span class="day-num">Giorno 14</span> · <span class="day-date">13 Agosto</span></div><div class="tl-title">San Diego ✈️ San Francisco SFO</div><div class="tl-km">Volo SAN→SFO (~1h30) · Hotel Fiona, San Francisco</div></div>
     </div>
     <div class="tl-item" onclick="showTappa('t12')">
       <div class="tl-left"><div class="tl-dot">🏠</div><div class="tl-line"></div></div>
-      <div class="tl-content"><div class="tl-day">Giorno 15 · 14 Agosto</div><div class="tl-title">San Francisco → SFO ✈️ Napoli</div><div class="tl-km">Ultima giornata a SF · Uber/Lyft SFO · Volo di ritorno</div></div>
+      <div class="tl-content"><div class="tl-day"><span class="day-num">Giorno 15</span> · <span class="day-date">14 Agosto</span></div><div class="tl-title">San Francisco → SFO ✈️ Napoli</div><div class="tl-km">Ultima giornata a SF · Uber/Lyft SFO · Volo di ritorno</div></div>
     </div>
   </div>
 </div>
