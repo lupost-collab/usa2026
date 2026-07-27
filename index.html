@@ -2381,30 +2381,23 @@ function goBack() {
 // ── KEYBOARD NAV ──
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') goBack(); });
 
-// ── RESTORE PAGE ON BACK FROM MAPS ──
-// Su mobile, aprire Maps a volte causa un reload della pagina al ritorno.
-// Salviamo la pagina corrente in sessionStorage e la ripristiniamo al reload.
-window.addEventListener('pageshow', function(e) {
-  var saved = sessionStorage.getItem('currentPage');
-  var savedTappa = sessionStorage.getItem('currentTappa');
-  if (savedTappa) {
-    showTappa(savedTappa);
-  } else if (saved && saved !== 'home') {
-    showPage(saved);
-  }
-});
-var _origShowPage = showPage;
-showPage = function(name) {
-  sessionStorage.setItem('currentPage', name);
-  sessionStorage.removeItem('currentTappa');
-  _origShowPage(name);
-};
-var _origShowTappa = showTappa;
-showTappa = function(id) {
-  sessionStorage.setItem('currentPage', 'tappa');
-  sessionStorage.setItem('currentTappa', id);
-  _origShowTappa(id);
-};
+// ── INTERCETTA LINK MAPS IN PWA ──
+// In modalità standalone (PWA installata) target="_blank" non funziona:
+// il link apre Maps nella stessa finestra e al ritorno la pagina è bianca.
+// Soluzione: intercettiamo tutti i click su link Maps e usiamo window.open().
+document.addEventListener('click', function(e) {
+  var a = e.target.closest('a[href]');
+  if (!a) return;
+  var href = a.getAttribute('href') || '';
+  var isMaps = href.indexOf('maps.google.com') !== -1
+            || href.indexOf('maps.app.goo.gl') !== -1
+            || href.indexOf('google.com/maps') !== -1
+            || href.indexOf('www.google.com/maps') !== -1;
+  if (!isMaps) return;
+  e.preventDefault();
+  e.stopPropagation();
+  window.open(href, '_blank', 'noopener,noreferrer');
+}, true);
 
 // ── PWA MANIFEST ──
 (function() {
