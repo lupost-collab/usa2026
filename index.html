@@ -2381,18 +2381,35 @@ function goBack() {
 // ── KEYBOARD NAV ──
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') goBack(); });
 
-// ── INTERCETTA LINK MAPS IN PWA ──
-// In modalità standalone (PWA installata) target="_blank" non funziona:
-// il link apre Maps nella stessa finestra e al ritorno la pagina è bianca.
-// Soluzione: intercettiamo tutti i click su link Maps e usiamo window.open().
+// ── iOS PWA: RIPRISTINO PAGINA DOPO RELOAD ──
+// Su iOS PWA i link Maps causano un reload. Al reload nessuna .page è active → schermo bianco.
+// Salviamo la pagina corrente in sessionStorage ad ogni navigazione e la ripristiniamo subito.
+function _saveState(page, tappa) {
+  try { sessionStorage.setItem('_p', page || ''); sessionStorage.setItem('_t', tappa || ''); } catch(e){}
+}
+var _origShowPage = showPage;
+showPage = function(name) { _saveState(name, ''); _origShowPage(name); };
+var _origShowTappa = showTappa;
+showTappa = function(id) { _saveState('tappa', id); _origShowTappa(id); };
+
+// Ripristino immediato al caricamento pagina
+(function() {
+  try {
+    var p = sessionStorage.getItem('_p');
+    var t = sessionStorage.getItem('_t');
+    if (t) { showTappa(t); }
+    else if (p && p !== 'home' && p !== '') { _origShowPage(p); }
+  } catch(e) {}
+})();
+
+// ── INTERCETTA LINK MAPS (forza nuova finestra per non ricaricare la PWA) ──
 document.addEventListener('click', function(e) {
   var a = e.target.closest('a[href]');
   if (!a) return;
   var href = a.getAttribute('href') || '';
   var isMaps = href.indexOf('maps.google.com') !== -1
             || href.indexOf('maps.app.goo.gl') !== -1
-            || href.indexOf('google.com/maps') !== -1
-            || href.indexOf('www.google.com/maps') !== -1;
+            || href.indexOf('google.com/maps') !== -1;
   if (!isMaps) return;
   e.preventDefault();
   e.stopPropagation();
