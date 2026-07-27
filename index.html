@@ -279,6 +279,29 @@ a{color:var(--orange);text-decoration:none}
 .page-header h1{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:900;color:#fff}
 .page-header .sub{font-size:13px;color:var(--muted);margin-top:4px}
 
+/* ── HOME BUTTON ── */
+#home-fab{
+  display:none;
+  position:fixed;
+  top:calc(var(--safe-top) + 10px);
+  right:14px;
+  z-index:9999;
+  background:rgba(11,23,53,0.88);
+  border:1.5px solid var(--orange);
+  color:var(--orange);
+  border-radius:50%;
+  width:40px;height:40px;
+  font-size:18px;
+  line-height:40px;
+  text-align:center;
+  cursor:pointer;
+  box-shadow:0 2px 12px rgba(0,0,0,0.5);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  transition:background .2s,transform .15s;
+}
+#home-fab:active{transform:scale(0.92);background:rgba(232,122,47,0.25)}
+
 /* ── ITINERARY TIMELINE ── */
 .timeline{padding:16px 12px}
 .tl-item{
@@ -455,6 +478,9 @@ a{color:var(--orange);text-decoration:none}
 <!-- Leaflet JS caricato in modo lazy (solo quando serve la mappa) -->
 </head>
 <body>
+
+<!-- ═══════════════════════ HOME FAB ═══════════════════════ -->
+<div id="home-fab" onclick="showPage('home')" title="Torna alla Home">🏠</div>
 
 <!-- ═══════════════════════ PAGE: HOME ═══════════════════════ -->
 <div id="page-home" class="page active">
@@ -2215,6 +2241,8 @@ function showPage(name) {
   if (name === 'mappa' && tripMap) { setTimeout(function(){ tripMap.invalidateSize(); }, 50); }
   previousPage = currentPage;
   currentPage = name;
+  var fab = document.getElementById('home-fab');
+  if (fab) fab.style.display = (name === 'home') ? 'none' : 'block';
 }
 
 function showTappa(id) {
@@ -2227,6 +2255,8 @@ function showTappa(id) {
   if (navEl) navEl.classList.add('active');
   previousPage = currentPage;
   currentPage = 'tappa-' + id;
+  var fab = document.getElementById('home-fab');
+  if (fab) fab.style.display = 'block';
 
   // Load weather for this tappa
   var locKey = TAPPA_WEATHER[id];
