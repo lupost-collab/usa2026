@@ -2381,6 +2381,31 @@ function goBack() {
 // ── KEYBOARD NAV ──
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') goBack(); });
 
+// ── RESTORE PAGE ON BACK FROM MAPS ──
+// Su mobile, aprire Maps a volte causa un reload della pagina al ritorno.
+// Salviamo la pagina corrente in sessionStorage e la ripristiniamo al reload.
+window.addEventListener('pageshow', function(e) {
+  var saved = sessionStorage.getItem('currentPage');
+  var savedTappa = sessionStorage.getItem('currentTappa');
+  if (savedTappa) {
+    showTappa(savedTappa);
+  } else if (saved && saved !== 'home') {
+    showPage(saved);
+  }
+});
+var _origShowPage = showPage;
+showPage = function(name) {
+  sessionStorage.setItem('currentPage', name);
+  sessionStorage.removeItem('currentTappa');
+  _origShowPage(name);
+};
+var _origShowTappa = showTappa;
+showTappa = function(id) {
+  sessionStorage.setItem('currentPage', 'tappa');
+  sessionStorage.setItem('currentTappa', id);
+  _origShowTappa(id);
+};
+
 // ── PWA MANIFEST ──
 (function() {
   var manifest = {
