@@ -8,9 +8,9 @@
 <meta name="theme-color" content="#0b1735">
 <title>🇺🇸 Road Trip USA 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 <style>
 /* ── RESET & ROOT ── */
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -452,6 +452,7 @@ a{color:var(--orange);text-decoration:none}
 .bags-label{font-size:13px;color:var(--text);line-height:1.5}
 .bags-note{font-size:11px;color:var(--lblue);margin-top:2px}
 </style>
+<!-- Leaflet JS caricato in modo lazy (solo quando serve la mappa) -->
 </head>
 <body>
 
@@ -2007,7 +2008,7 @@ function loadHomeWeatherChips() {
           var chip = document.getElementById(c.chip);
           if (chip) { chip.textContent = '—'; chip.classList.remove('loading'); }
         });
-    }, idx * 300);
+    }, idx * 500);
   });
 }
 
@@ -2064,7 +2065,8 @@ function toggleSection(header) {
     }
   }
   updateCountdown();
-  setInterval(updateCountdown, 1000);
+  // Aggiorna ogni secondo solo quando mancano meno di 24h, altrimenti ogni 30s
+  setInterval(updateCountdown, (departure - new Date() < 24*60*60*1000) ? 1000 : 30000);
 })();
 var altroInited = false;
 function initAltro() {
@@ -2329,12 +2331,12 @@ function buildVoliPage() {
 document.addEventListener('DOMContentLoaded', function() {
   createStars();
   buildVoliPage();
-  // Load home weather chips after a short delay
-  setTimeout(loadHomeWeatherChips, 500);
+  // Carica chip meteo homepage dopo che la pagina è già visibile
+  setTimeout(loadHomeWeatherChips, 1500);
 });
 </script>
 
-<script>
+<script defer>
 // ── MAPPA LEAFLET ──
 var mapInitialized = false;
 var tripMap = null;
@@ -2358,8 +2360,9 @@ var tappe = [
 function initMap() {
   if (mapInitialized) return;
   mapInitialized = true;
-
-  tripMap = L.map('trip-map', { zoomControl: true }).setView([38.5, -111.0], 5);
+  // Carica Leaflet JS on-demand se non già presente
+  function doInitMap() {
+    tripMap = L.map('trip-map', { zoomControl: true }).setView([38.5, -111.0], 5);
 
   // Tile chiaro e realistico (ESRI NatGeo World Map)
   L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
@@ -2420,6 +2423,21 @@ function initMap() {
   // Centra la mappa su tutti i marker del percorso
   if (allLatLngs.length > 0) {
     tripMap.fitBounds(allLatLngs, { padding: [30, 30] });
+  }
+  } // fine doInitMap
+
+  if (typeof L !== 'undefined') {
+    doInitMap();
+  } else {
+    // Carica CSS + JS Leaflet in parallelo, poi inizializza
+    var lCss = document.createElement('link');
+    lCss.rel = 'stylesheet';
+    lCss.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+    document.head.appendChild(lCss);
+    var s = document.createElement('script');
+    s.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+    s.onload = doInitMap;
+    document.head.appendChild(s);
   }
 }
 </script>
