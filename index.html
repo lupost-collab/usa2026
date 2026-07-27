@@ -49,12 +49,9 @@ a{color:var(--orange);text-decoration:none}
   padding-bottom:100px;
 }
 
-#page-altro .page-header {
-  flex-shrink:0;
-  position:sticky;
-  top:0;
-  z-index:10;
-}
+/* Nasconde i titoli delle sotto-pagine quando iniettate in altro-panel */
+.altro-panel .page-header { display: none !important; }
+.altro-panel .sec-heading:first-child { margin-top: 8px; }
 #page-altro .altro-tabs {
   flex-shrink:0;
   position:sticky;
