@@ -31,7 +31,6 @@ body{
   font-size:15px;line-height:1.6;
   color:var(--text);background:var(--bg);
   min-height:100vh;
-  overflow:hidden;
 }
 a{color:var(--orange);text-decoration:none}
 
@@ -39,11 +38,9 @@ a{color:var(--orange);text-decoration:none}
 .page{display:none;animation:fadeIn .22s ease}
 .page.active{
   display:block;
-  padding-bottom:96px;
+  padding-bottom:100px;
 }
-.page-body{
-  display:block;
-}
+.page-body{ display:block; }
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── BOTTOM NAV ── */
