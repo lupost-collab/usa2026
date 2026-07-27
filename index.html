@@ -151,6 +151,50 @@ a:hover{text-decoration:underline}
 .section-block .sec-body a{color:#64b5f6;text-decoration:none;border-bottom:1px solid rgba(100,181,246,0.35);}
 .section-block .sec-body a:active{color:#90caf9}
 
+/* ── BAGS CHECKLIST ── */
+.bags-wrap{padding:0 12px 16px}
+.bags-cat{margin-bottom:16px;background:var(--card);border-radius:10px;overflow:hidden}
+.bags-cat-title{
+  font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;
+  color:var(--orange);padding:10px 14px;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:8px;
+}
+.bags-cat-title .badge{
+  margin-left:auto;font-size:11px;font-weight:700;
+  background:rgba(255,165,0,.15);color:var(--orange);
+  padding:2px 8px;border-radius:20px;white-space:nowrap;
+}
+.bags-item{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:9px 14px;border-bottom:1px solid var(--border);
+  cursor:pointer;user-select:none;
+}
+.bags-item:last-child{border-bottom:none}
+.bags-item.checked{opacity:.45}
+.bags-item.checked .bags-label{text-decoration:line-through}
+.bags-cb{
+  width:20px;height:20px;min-width:20px;
+  border:2px solid var(--orange);border-radius:5px;
+  display:flex;align-items:center;justify-content:center;
+  margin-top:1px;transition:background .15s;
+}
+.bags-item.checked .bags-cb{background:var(--orange)}
+.bags-cb-tick{display:none;color:#fff;font-size:13px;font-weight:900;line-height:1}
+.bags-item.checked .bags-cb-tick{display:block}
+.bags-label{font-size:13.5px;color:var(--text);line-height:1.5}
+.bags-note{font-size:11.5px;color:var(--lblue);margin-top:2px}
+.bags-reset{
+  display:block;margin:12px auto 0;padding:8px 22px;
+  background:rgba(255,165,0,.12);border:1px solid var(--orange);
+  color:var(--orange);font-family:'Montserrat',sans-serif;font-size:12px;
+  font-weight:700;border-radius:20px;cursor:pointer;
+}
+.bags-progress{
+  font-size:11.5px;color:var(--lblue);
+  text-align:right;padding:4px 14px 8px;
+}
+
 .tip-box{
   margin:0 12px 12px;background:rgba(255,165,0,.08);
   border:1px solid rgba(255,165,0,.3);border-radius:10px;
@@ -1638,6 +1682,113 @@ a:hover{text-decoration:underline}
     </ul>
   </div>
 </div>
+
+<!-- ═══════════════════════ BAGS CHECKLIST ═══════════════════════ -->
+<div class="section-title">🧳 Bags — Cosa mettere in valigia</div>
+<div class="bags-wrap" id="bags-wrap">
+
+  <!-- ABBIGLIAMENTO -->
+  <div class="bags-cat" id="cat-abbigliamento">
+    <div class="bags-cat-title">👕 Abbigliamento <span class="badge" id="badge-abbigliamento">0 / 11</span></div>
+    <div class="bags-progress" id="prog-abbigliamento"></div>
+    <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">T-shirt leggere (5-6)</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Camicia maniche lunghe (2-3)</div><div class="bags-note">Protegge dal sole in escursione</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Felpa o pile medio (1-2)</div><div class="bags-note">Yosemite, Bryce e Yellowstone: scende a 10°C la sera</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Giacca a vento leggera (1)</div><div class="bags-note">Yellowstone e alta quota</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Pantaloni lunghi leggeri (2)</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Pantaloncini (3-4)</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Costume da bagno (2)</div><div class="bags-note">Las Vegas hotel pools e soste</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Biancheria (7-8 giorni)</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Calzini tecnici da trekking (3-4 paia)</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">⚠️ Scarpe da trekking</div><div class="bags-note">Fondamentali per Yosemite, Grand Canyon, Bryce, Yellowstone</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Ciabatte/sandali leggeri</div><div class="bags-note">Hotel e città</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">☀️ Cappello a tesa larga</div><div class="bags-note">Death Valley e canyon sono impietosi</div></div></div>
+  </div>
+
+  <!-- SOLE / CALDO -->
+  <div class="bags-cat" id="cat-sole">
+    <div class="bags-cat-title">☀️ Sole · Caldo · Protezione <span class="badge" id="badge-sole">0 / 5</span></div>
+    <div class="bags-progress" id="prog-sole"></div>
+    <div class="bags-item" onclick="toggleBags(this,'sole')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Crema solare SPF 50+ (abbondante)</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'sole')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Burrocacao con protezione solare</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'sole')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Occhiali da sole (lenti polarizzate)</div><div class="bags-note">Ideali nei canyon</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'sole')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Gaiter / buff copri-collo</div><div class="bags-note">Death Valley e canyon sabbiosi</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'sole')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">⚠️ Borraccia termica 1L a testa</div><div class="bags-note">Critico in Death Valley</div></div></div>
+  </div>
+
+  <!-- ESCURSIONISMO -->
+  <div class="bags-cat" id="cat-hike">
+    <div class="bags-cat-title">🥾 Escursionismo <span class="badge" id="badge-hike">0 / 4</span></div>
+    <div class="bags-progress" id="prog-hike"></div>
+    <div class="bags-item" onclick="toggleBags(this,'hike')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Zaino da day-hike 20-25L (1-2 nel gruppo)</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'hike')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Bastoncini telescopici (opzionali)</div><div class="bags-note">Utili a Bryce per i tornanti</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'hike')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Cerotti e kit anti-vesciche (Compeed)</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'hike')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Fascia / ginocchiera (se necessario)</div></div></div>
+  </div>
+
+  <!-- FARMACI -->
+  <div class="bags-cat" id="cat-farmaci">
+    <div class="bags-cat-title">💊 Farmaci · Salute <span class="badge" id="badge-farmaci">0 / 9</span></div>
+    <div class="bags-progress" id="prog-farmaci"></div>
+    <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Antidolorifici (ibuprofene, paracetamolo)</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Antidiarroici</div><div class="bags-note">Cambi frequenti di alimentazione</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Antistaminici</div><div class="bags-note">Pollini e polveri nei deserti</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">⚠️ Spray antizanzare</div><div class="bags-note">Yellowstone: pieno di insetti la sera</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Pomata cortisonica leggera</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Cerotti vari</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">⚠️ Elettroliti / sali reidratanti</div><div class="bags-note">Urgente per Death Valley</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Gel disinfettante mani</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Diamox (mal di altitudine)</div><div class="bags-note">Bryce e SLC sono a ~2.500m — chiedere al medico</div></div></div>
+  </div>
+
+  <!-- ELETTRONICA -->
+  <div class="bags-cat" id="cat-tech">
+    <div class="bags-cat-title">📱 Elettronica <span class="badge" id="badge-tech">0 / 7</span></div>
+    <div class="bags-progress" id="prog-tech"></div>
+    <div class="bags-item" onclick="toggleBags(this,'tech')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Adattatore americano Type A/B (2-3 nel gruppo)</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'tech')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Powerbank 20.000 mAh</div><div class="bags-note">GPS e app consumano tantissimo in auto</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'tech')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Cavetti USB per tutti i dispositivi</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'tech')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Multi-presa USB da auto</div><div class="bags-note">Fondamentale per 6 persone in auto</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'tech')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Macchina fotografica + schede SD extra</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'tech')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Auricolari</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'tech')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Supporto smartphone da auto (2)</div></div></div>
+  </div>
+
+  <!-- ROAD TRIP -->
+  <div class="bags-cat" id="cat-road">
+    <div class="bags-cat-title">🚗 Road Trip <span class="badge" id="badge-road">0 / 6</span></div>
+    <div class="bags-progress" id="prog-road"></div>
+    <div class="bags-item" onclick="toggleBags(this,'road')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Occhiali da sole da guida anti-riflesso</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'road')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Coperta leggera</div><div class="bags-note">L'aria condizionata negli USA è aggressiva</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'road')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Cuscino da viaggio per passeggeri</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'road')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Borsa termica / borsetta frigo</div><div class="bags-note">Per acqua e snack in Death Valley</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'road')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Sacchetto per spazzatura in auto</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'road')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Snack energetici per i trasferimenti lunghi</div></div></div>
+  </div>
+
+  <!-- DOCUMENTI -->
+  <div class="bags-cat" id="cat-docs">
+    <div class="bags-cat-title">📄 Documenti <span class="badge" id="badge-docs">0 / 6</span></div>
+    <div class="bags-progress" id="prog-docs"></div>
+    <div class="bags-item" onclick="toggleBags(this,'docs')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Passaporto (valido 6+ mesi oltre rientro)</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'docs')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">⚠️ ESTA (stampato + copia digitale)</div><div class="bags-note">Da richiedere online prima della partenza se non fatto</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'docs')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Patente + Patente Internazionale</div><div class="bags-note">Spesso richiesta al noleggio</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'docs')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Conferme prenotazioni hotel (offline)</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'docs')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Numero polizza assicurazione viaggio</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'docs')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Numero emergenze carta di credito</div></div></div>
+  </div>
+
+  <!-- SOLDI -->
+  <div class="bags-cat" id="cat-soldi">
+    <div class="bags-cat-title">💳 Soldi <span class="badge" id="badge-soldi">0 / 2</span></div>
+    <div class="bags-progress" id="prog-soldi"></div>
+    <div class="bags-item" onclick="toggleBags(this,'soldi')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Carta senza commissioni estero (Revolut, Wise...)</div><div class="bags-note">Le pompe self-service richiedono spesso ZIP code USA</div></div></div>
+    <div class="bags-item" onclick="toggleBags(this,'soldi')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Dollari in contanti</div><div class="bags-note">Per tips e posti senza POS</div></div></div>
+  </div>
+
+  <button class="bags-reset" onclick="resetBags()">↺ Reset checklist</button>
+</div>
+
 <!-- END INFO -->
 
 <!-- ═══════════════════════ BOTTOM NAV ═══════════════════════ -->
@@ -1728,6 +1879,54 @@ a:hover{text-decoration:underline}
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') goBack();
   });
+
+  // ── BAGS CHECKLIST ──
+  var BAGS_KEY = 'bags_checked_v1';
+
+  function bagsGetChecked() {
+    try { return JSON.parse(localStorage.getItem(BAGS_KEY) || '{}'); } catch(e) { return {}; }
+  }
+  function bagsSave(state) {
+    localStorage.setItem(BAGS_KEY, JSON.stringify(state));
+  }
+
+  function toggleBags(el, cat) {
+    var state = bagsGetChecked();
+    var items = el.closest('.bags-cat').querySelectorAll('.bags-item');
+    var idx = Array.prototype.indexOf.call(items, el);
+    var key = cat + '_' + idx;
+    if (state[key]) { delete state[key]; el.classList.remove('checked'); }
+    else { state[key] = 1; el.classList.add('checked'); }
+    bagsSave(state);
+    updateBadge(cat);
+  }
+
+  function updateBadge(cat) {
+    var catEl = document.getElementById('cat-' + cat);
+    if (!catEl) return;
+    var items = catEl.querySelectorAll('.bags-item');
+    var state = bagsGetChecked();
+    var checked = 0;
+    items.forEach(function(item, idx) {
+      var key = cat + '_' + idx;
+      if (state[key]) { item.classList.add('checked'); checked++; }
+      else { item.classList.remove('checked'); }
+    });
+    var badge = document.getElementById('badge-' + cat);
+    if (badge) badge.textContent = checked + ' / ' + items.length;
+  }
+
+  function resetBags() {
+    localStorage.removeItem(BAGS_KEY);
+    ['abbigliamento','sole','hike','farmaci','tech','road','docs','soldi'].forEach(updateBadge);
+  }
+
+  function initBags() {
+    ['abbigliamento','sole','hike','farmaci','tech','road','docs','soldi'].forEach(updateBadge);
+  }
+
+  document.addEventListener('DOMContentLoaded', initBags);
+
 </script>
 
 </body>
