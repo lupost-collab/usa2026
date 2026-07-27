@@ -211,6 +211,9 @@ a{color:var(--orange);text-decoration:none}
   border-right:1px solid var(--border);
 }
 .weather-day:last-child{border-right:none}
+.weather-source{font-size:11px;color:var(--muted);padding:6px 12px 2px;text-align:right;letter-spacing:.2px}
+.weather-source a{color:var(--muted);text-decoration:underline;text-decoration-color:var(--border)}
+.weather-source a:hover{color:var(--accent)}
 .wd-name{font-size:10px;color:var(--muted);font-family:'Montserrat',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.4px}
 .wd-emoji{font-size:22px;margin:4px 0}
 .wd-temps{font-size:12px;font-weight:600;color:var(--white)}
@@ -1943,8 +1946,14 @@ function renderWeather(data, label, containerId, chipId) {
       }
     }
   }
+  var lat = data.latitude ? data.latitude.toFixed(4) : '';
+  var lon = data.longitude ? data.longitude.toFixed(4) : '';
+  var omLink = lat && lon
+    ? 'https://open-meteo.com/en/docs#latitude=' + lat + '&longitude=' + lon
+    : 'https://open-meteo.com';
   el.innerHTML = '<div class="weather-header">🌤️ Meteo ' + label + ' — 7 giorni</div>'
-    + '<div class="weather-days">' + daysHtml + '</div>';
+    + '<div class="weather-days">' + daysHtml + '</div>'
+    + '<div class="weather-source">📍 ' + label + ' &nbsp;·&nbsp; Fonte: <a href="' + omLink + '" target="_blank" rel="noopener">Open-Meteo</a></div>';
 }
 
 // ── LOAD HOME WEATHER CHIPS ──
