@@ -2448,6 +2448,22 @@ function buildVoliPage() {
   c.innerHTML = out;
 }
 
+// ── FORZA APERTURA LINK MAPS NEL BROWSER DI SISTEMA ──
+document.addEventListener('click', function(e) {
+  var a = e.target.closest('a[href]');
+  if (!a) return;
+  var href = a.getAttribute('href');
+  if (!href) return;
+  if (href.indexOf('maps.google.com') !== -1 || href.indexOf('google.com/maps') !== -1 || href.indexOf('maps.app.goo.gl') !== -1) {
+    e.preventDefault();
+    e.stopPropagation();
+    var w = window.open(href, '_blank', 'noopener,noreferrer');
+    if (!w || w.closed || typeof w.closed === 'undefined') {
+      location.href = href;
+    }
+  }
+});
+
 // ── INIT ──
 document.addEventListener('DOMContentLoaded', function() {
   createStars();
