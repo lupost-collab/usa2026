@@ -527,7 +527,10 @@ a{color:var(--orange);text-decoration:none}
         <div class="tappa-title">San Francisco</div>
         <div class="tappa-km">Golden Gate · Fisherman's Wharf · Alcatraz</div>
       </div>
-      <div class="tappa-right"><span class="tappa-arrow">›</span></div>
+      <div class="tappa-right">
+        <span class="tappa-arrow">›</span>
+        <span class="weather-chip loading" id="wchip-sf">🌤️ --°</span>
+      </div>
     </div>
 
     <div class="tappa-item" onclick="showTappa('t2')">
@@ -2083,6 +2086,7 @@ function renderWeather(data, label, containerId, chipId) {
 // ── LOAD HOME WEATHER CHIPS ──
 function loadHomeWeatherChips() {
   var chips = [
+    { chip: 'wchip-sf',            loc: 'sf' },
     { chip: 'wchip-yosemite',      loc: 'yosemite' },
     { chip: 'wchip-deathvalley',   loc: 'deathvalley' },
     { chip: 'wchip-lasvegas',      loc: 'lasvegas' },
@@ -2413,15 +2417,7 @@ document.addEventListener('click', function(e) {
   e.preventDefault();
   e.stopPropagation();
   if (url.indexOf('comgooglemaps://') === 0) {
-    var fallback = url.replace('comgooglemaps://', 'https://maps.google.com/');
-    var t = Date.now();
-    var timer = setTimeout(function() {
-      if (Date.now() - t < 2000) { window.location.href = fallback; }
-    }, 1500);
-    window.addEventListener('blur', function onBlur() {
-      clearTimeout(timer);
-      window.removeEventListener('blur', onBlur);
-    });
+    // Apre Google Maps nativa (richiede app installata su iOS)
     window.location.href = url;
     return;
   }
