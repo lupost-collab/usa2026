@@ -1689,15 +1689,17 @@ a{color:var(--orange);text-decoration:none}
     <div class="altro-tab" id="atab-bags" onclick="switchAltroTab('bags')"><span class="ti">🧳</span>Bags</div>
     <div class="altro-tab" id="atab-info" onclick="switchAltroTab('info')"><span class="ti">ℹ️</span>Info</div>
   </div>
+  <!-- sotto-tab Mall / Gas: sticky fuori dallo scroll -->
+  <div id="mallgas-subtabs" style="display:none;flex-shrink:0;padding:6px 12px 4px;background:var(--bg);">
+    <div style="display:flex;border-radius:8px;overflow:hidden;border:1px solid var(--border);">
+      <button id="mgtab-mall" onclick="switchMallGas('mall')" style="flex:1;padding:9px 0;background:var(--orange);color:#fff;border:none;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;cursor:pointer;">🛍️ Mall</button>
+      <button id="mgtab-gas"  onclick="switchMallGas('gas')"  style="flex:1;padding:9px 0;background:var(--card);color:var(--muted);border:none;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;cursor:pointer;">⛽ Gas</button>
+    </div>
+  </div>
   <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;">
   <div id="altro-clima" class="altro-panel active"></div>
   <div id="altro-voli" class="altro-panel"></div>
   <div id="altro-mallgas" class="altro-panel">
-  <!-- sotto-tab Mall / Gas -->
-  <div style="position:sticky;top:44px;z-index:10;background:var(--bg);display:flex;gap:0;padding:6px 12px 6px;">
-    <button id="mgtab-mall" onclick="switchMallGas('mall')" style="flex:1;padding:9px 0;background:var(--orange);color:#fff;border:1px solid var(--border);border-right:none;border-radius:8px 0 0 8px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;cursor:pointer;">🛍️ Mall</button>
-    <button id="mgtab-gas"  onclick="switchMallGas('gas')"  style="flex:1;padding:9px 0;background:var(--card);color:var(--muted);border:1px solid var(--border);border-left:none;border-radius:0 8px 8px 0;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;cursor:pointer;">⛽ Gas</button>
-  </div>
 
   <div id="mg-mall">
   <div class="sec-heading">🛍️ Shopping Mall lungo il Percorso</div>
@@ -2354,8 +2356,10 @@ function initAltro() {
   document.querySelectorAll('.altro-panel').forEach(function(p) { p.classList.remove('active'); });
   document.getElementById('atab-' + tab).classList.add('active');
   document.getElementById('altro-' + tab).classList.add('active');
-  if(tab==='bags') initBags();
-  if(tab==='mallgas') switchMallGas('mall');
+  var mallgasSub = document.getElementById('mallgas-subtabs');
+  if (mallgasSub) mallgasSub.style.display = (tab === 'mallgas') ? 'block' : 'none';
+  if (tab === 'bags') initBags();
+  if (tab === 'mallgas') switchMallGas('mall');
 }
 function switchMallGas(sub) {
   var mallEl  = document.getElementById('mg-mall');
