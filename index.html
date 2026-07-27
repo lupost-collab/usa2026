@@ -727,16 +727,6 @@ a{color:var(--orange);text-decoration:none}
     <div class="sub">Emergenze · Auto · Consigli pratici</div>
   </div>
 
-  <div style="margin:12px 0 16px;">
-    <a href="https://www.dropbox.com/scl/fo/tignk1mjwxeyecuwhukut/AHlWJOv20KrbRsVq8zEh1Ys?rlkey=ku0q1oejjyed5wzfvekde4v9w&st=nie5gmfz&dl=0" target="_blank" style="display:flex;align-items:center;gap:12px;background:rgba(0,100,255,0.12);border:1px solid rgba(0,100,255,0.35);border-radius:12px;padding:14px 16px;text-decoration:none;color:var(--text);">
-      <span style="font-size:28px;">📁</span>
-      <div>
-        <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:#8ab4f8;">Documenti Condivisi</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:2px;">Apri cartella Dropbox →</div>
-      </div>
-    </a>
-  </div>
-
   <div class="sec-heading">🚨 Numeri di Emergenza</div>
   <div class="emg-big">
     <div><div class="num"><a href="tel:911" style="color:inherit;text-decoration:none;">911</a></div><div class="lbl">Emergenze Generali<br>Polizia · Ambulanza · Fuoco</div></div>
@@ -1530,20 +1520,19 @@ a{color:var(--orange);text-decoration:none}
 <div id="page-altro" class="page">
   <div class="page-header">
     <h1>📂 Altro</h1>
-    <div class="sub">Clima · Info · Voli · Mall · Bags</div>
+    <div class="sub">Clima · Voli · Mall &amp; Gas · Bags · Doc Share · Info</div>
   </div>
   <div class="altro-tabs">
     <div class="altro-tab active" id="atab-clima" onclick="switchAltroTab('clima')">🌡️ Clima</div>
     <div class="altro-tab" id="atab-voli" onclick="switchAltroTab('voli')">✈️ Voli</div>
-    <div class="altro-tab" id="atab-mall" onclick="switchAltroTab('mall')">🛍️ Mall</div>
-    <div class="altro-tab" id="atab-gas" onclick="switchAltroTab('gas')">⛽ Gas</div>
-    <div class="altro-tab" id="atab-info" onclick="switchAltroTab('info')">ℹ️ Info</div>
+    <div class="altro-tab" id="atab-mallgas" onclick="switchAltroTab('mallgas')">🛍️ Mall &amp; Gas</div>
     <div class="altro-tab" id="atab-bags" onclick="switchAltroTab('bags')">🧳 Bags</div>
+    <div class="altro-tab" id="atab-docshare" onclick="switchAltroTab('docshare')">📁 Doc Share</div>
+    <div class="altro-tab" id="atab-info" onclick="switchAltroTab('info')">ℹ️ Info</div>
   </div>
   <div id="altro-clima" class="altro-panel active"></div>
-  <div id="altro-info" class="altro-panel"></div>
   <div id="altro-voli" class="altro-panel"></div>
-  <div id="altro-mall" class="altro-panel">
+  <div id="altro-mallgas" class="altro-panel">
   <div class="sec-heading">🛍️ Shopping Mall lungo il Percorso</div>
 
   <!-- SAN FRANCISCO -->
@@ -1609,8 +1598,8 @@ a{color:var(--orange);text-decoration:none}
   <div class="warning-box">💡 <strong>Tip:</strong> Negli USA le dimensioni delle valigie si acquistano facilmente nei mall a prezzi competitivi — utile se i bagagli si riempiono durante il viaggio! Considera che il volo di ritorno prevede limiti di peso.</div>
   </div>
 
-  <div id="altro-gas" class="altro-panel">
-  <div class="sec-heading">⛽ Carburante lungo il Percorso</div>
+  <div style="height:1px;background:rgba(255,255,255,0.1);margin:8px 12px 0;"></div>
+  <div class="sec-heading" style="margin-top:4px;">⛽ Carburante lungo il Percorso</div>
 
   <div class="info-section">
     <h3>📌 Come funziona il rifornimento negli USA</h3>
@@ -1785,6 +1774,24 @@ a{color:var(--orange);text-decoration:none}
 
     <button onclick="resetBags()" style="display:block;margin:14px auto 8px;padding:8px 24px;background:rgba(255,165,0,.12);border:1px solid #ffa500;color:#ffa500;font-size:12px;font-weight:700;border-radius:20px;cursor:pointer;">↺ Reset checklist</button>
   </div>
+
+  <div id="altro-docshare" class="altro-panel">
+    <div class="page-header" style="padding-bottom:4px;">
+      <h1>📁 Doc Share</h1>
+      <div class="sub">Documenti condivisi del viaggio</div>
+    </div>
+    <div style="margin:16px 12px;">
+      <a href="https://www.dropbox.com/scl/fo/tignk1mjwxeyecuwhukut/AHlWJOv20KrbRsVq8zEh1Ys?rlkey=ku0q1oejjyed5wzfvekde4v9w&st=nie5gmfz&dl=0" target="_blank" style="display:flex;align-items:center;gap:14px;background:rgba(0,100,255,0.12);border:1px solid rgba(0,100,255,0.35);border-radius:14px;padding:18px 16px;text-decoration:none;color:var(--text);">
+        <span style="font-size:36px;">📂</span>
+        <div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;color:#8ab4f8;">Cartella Dropbox</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:3px;">Tocca per aprire i documenti condivisi →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div id="altro-info" class="altro-panel"></div>
 </div>
 <!-- END ALTRO -->
 
