@@ -214,6 +214,8 @@ a{color:var(--orange);text-decoration:none}
 .weather-source{font-size:11px;color:var(--muted);padding:6px 12px 2px;text-align:right;letter-spacing:.2px}
 .weather-source a{color:var(--muted);text-decoration:underline;text-decoration-color:var(--border)}
 .weather-source a:hover{color:var(--accent)}
+.clima-source{font-size:13px;padding:8px 4px 4px;text-align:left;letter-spacing:.1px}
+.clima-source a{font-size:13px}
 .wd-name{font-size:10px;color:var(--muted);font-family:'Montserrat',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.4px}
 .wd-emoji{font-size:22px;margin:4px 0}
 .wd-temps{font-size:12px;font-weight:600;color:var(--white)}
@@ -2127,7 +2129,7 @@ function initAltro() {
           if (coords) {
             slot.innerHTML = '<div class="weather-loading" style="padding:8px 0;font-size:12px;color:var(--muted);">Caricamento meteo...</div>';
             if (weatherCache[loc]) {
-              renderClimaWeather(weatherCache[loc], slot);
+              renderClimaWeather(weatherCache[loc], slot, coords.label);
             } else {
               var url = 'https://api.open-meteo.com/v1/forecast?latitude=' + coords.lat
                 + '&longitude=' + coords.lon
@@ -2135,7 +2137,7 @@ function initAltro() {
                 + '&timezone=auto&forecast_days=7';
               fetch(url)
                 .then(function(r){ return r.json(); })
-                .then(function(data){ weatherCache[loc]=data; renderClimaWeather(data, slot); })
+                .then(function(data){ weatherCache[loc]=data; renderClimaWeather(data, slot, coords.label); })
                 .catch(function(){ slot.innerHTML = '<div style="font-size:11px;color:var(--muted);padding:6px 0;">⚠️ Meteo non disponibile</div>'; });
             }
           }
@@ -2144,10 +2146,16 @@ function initAltro() {
     });
   });
 
-  function renderClimaWeather(data, slot) {
+  function renderClimaWeather(data, slot, label) {
     var days = data.daily;
     if (!days || !days.time) { slot.innerHTML=''; return; }
     var dow = ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
+    var lat = data.latitude ? data.latitude.toFixed(4) : '';
+    var lon = data.longitude ? data.longitude.toFixed(4) : '';
+    var omLink = lat && lon
+      ? 'https://open-meteo.com/en/docs#latitude=' + lat + '&longitude=' + lon
+      : 'https://open-meteo.com';
+    var locName = label || '';
     var html = '<div class="weather-widget" style="margin:0 0 10px;">'
       + '<div class="weather-header">🌤️ Previsioni 7 giorni</div>'
       + '<div class="weather-days">';
@@ -2164,7 +2172,11 @@ function initAltro() {
         + (pr>10 ? '<div class="wd-precip">💧 '+pr+'%</div>' : '<div class="wd-precip">&nbsp;</div>')
         + '</div>';
     }
-    html += '</div></div>';
+    html += '</div>'
+      + '<div class="weather-source clima-source">'
+      + (locName ? '📍 ' + locName + ' &nbsp;·&nbsp; ' : '')
+      + 'Fonte: <a href="' + omLink + '" target="_blank" rel="noopener">Open-Meteo</a>'
+      + '</div></div>';
     slot.innerHTML = html;
   }
 
