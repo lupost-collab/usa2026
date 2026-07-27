@@ -304,14 +304,16 @@ a{color:var(--orange);text-decoration:none}
 .page-header-inner{flex:1;text-align:center}
 .page-header h1{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:900;color:#fff}
 .page-header .sub{font-size:13px;color:var(--muted);margin-top:4px}
-/* detail-hero home btn */
-.detail-hero-header{
+/* detail-hero home btn row */
+.detail-hero-toprow{
   position:relative;z-index:2;
   display:flex;
   align-items:center;
-  justify-content:flex-end;
-  padding-bottom:4px;
+  gap:10px;
+  margin-bottom:10px;
 }
+.detail-hero-toprow .spacer{width:38px;min-width:38px;flex-shrink:0}
+.detail-hero-toprow .center{flex:1;text-align:center}
 /* ── ITINERARY TIMELINE ── */
 .timeline{padding:16px 12px}
 .tl-item{
@@ -867,10 +869,9 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 1: VOLO ═══════════════════════ -->
 <div id="tappa-t1" class="page">
   <div class="detail-hero">
-    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
-    <div class="day-badge">Giorno 1 · 31 Luglio 2026</div>
+    <div class="detail-hero-toprow"><div class="home-btn" onclick="showPage('home')" title="Home" style="flex-shrink:0;">🏠</div><div class="center"><div class="day-badge">Giorno 1 · 31 Luglio 2026</div>
+      <div class="dsub">Volo intercontinentale · Arrivo in California · Hotel Fiona</div></div><div class="spacer"></div></div>
     <div class="dtitle">✈️ Napoli → San Francisco</div>
-    <div class="dsub">Volo intercontinentale · Arrivo in California · Hotel Fiona</div>
     <div class="meta-chips">
       <span class="meta-chip">✈️ ~13h volo (con scalo)</span>
       <span class="meta-chip">🌍 NAP → FCO/MXP → SFO</span>
@@ -902,10 +903,9 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 2: YOSEMITE ═══════════════════════ -->
 <div id="tappa-t2" class="page">
   <div class="detail-hero">
-    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
-    <div class="day-badge">Giorno 3 · 2 Agosto 2026</div>
+    <div class="detail-hero-toprow"><div class="home-btn" onclick="showPage('home')" title="Home" style="flex-shrink:0;">🏠</div><div class="center"><div class="day-badge">Giorno 3 · 2 Agosto 2026</div>
+      <div class="dsub">194 miglia · 3h51 · Half Dome · El Capitan · Waterfalls</div></div><div class="spacer"></div></div>
     <div class="dtitle">🌲 San Francisco → Yosemite NP</div>
-    <div class="dsub">194 miglia · 3h51 · Half Dome · El Capitan · Waterfalls</div>
     <div class="meta-chips">
       <span class="meta-chip">🚗 194 mi (312 km) · 3h51</span>
       <span class="meta-chip">🛣️ I-580 E → I-205 E → CA-120 E</span>
@@ -940,10 +940,9 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 3: DEATH VALLEY ═══════════════════════ -->
 <div id="tappa-t3" class="page">
   <div class="detail-hero">
-    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
-    <div class="day-badge">Giorno 4 · 3 Agosto 2026</div>
+    <div class="detail-hero-toprow"><div class="home-btn" onclick="showPage('home')" title="Home" style="flex-shrink:0;">🏠</div><div class="center"><div class="day-badge">Giorno 4 · 3 Agosto 2026</div>
+      <div class="dsub">302 miglia · 6h20 · Il luogo più caldo della Terra</div></div><div class="spacer"></div></div>
     <div class="dtitle">🏜️ Yosemite → Mono Lake → Death Valley</div>
-    <div class="dsub">302 miglia · 6h20 · Il luogo più caldo della Terra</div>
     <div class="meta-chips">
       <span class="meta-chip">🚗 302 mi (486 km) · 6h20</span>
       <span class="meta-chip">🛣️ CA-120 E → US-395 S → CA-190</span>
@@ -978,10 +977,9 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 4: LAS VEGAS ═══════════════════════ -->
 <div id="tappa-t4" class="page">
   <div class="detail-hero">
-    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
-    <div class="day-badge">Giorno 5 · 4 Agosto 2026</div>
+    <div class="detail-hero-toprow"><div class="home-btn" onclick="showPage('home')" title="Home" style="flex-shrink:0;">🏠</div><div class="center"><div class="day-badge">Giorno 5 · 4 Agosto 2026</div>
+      <div class="dsub">163 miglia · 3h10 · La Città del Peccato · 1 notte</div></div><div class="spacer"></div></div>
     <div class="dtitle">🎰 Death Valley → Las Vegas</div>
-    <div class="dsub">163 miglia · 3h10 · La Città del Peccato · 1 notte</div>
     <div class="meta-chips">
       <span class="meta-chip">🚗 163 mi (262 km) · 3h10</span>
       <span class="meta-chip">🛣️ US-95 N → I-15 S → Las Vegas Blvd</span>
@@ -1016,10 +1014,9 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 5: GRAND CANYON ═══════════════════════ -->
 <div id="tappa-t5" class="page">
   <div class="detail-hero">
-    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
-    <div class="day-badge">Giorno 6 · 5 Agosto 2026</div>
+    <div class="detail-hero-toprow"><div class="home-btn" onclick="showPage('home')" title="Home" style="flex-shrink:0;">🏠</div><div class="center"><div class="day-badge">Giorno 6 · 5 Agosto 2026</div>
+      <div class="dsub">344 miglia · 5h45 · Primo impatto con il Canyon</div></div><div class="spacer"></div></div>
     <div class="dtitle">🏔️ Las Vegas → Grand Canyon → Williams</div>
-    <div class="dsub">344 miglia · 5h45 · Primo impatto con il Canyon</div>
     <div class="meta-chips">
       <span class="meta-chip">🚗 344 mi (554 km) · 5h45</span>
       <span class="meta-chip">🛣️ US-93 S → I-40 E → AZ-64 N</span>
@@ -1054,10 +1051,9 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 6: MONUMENT VALLEY ═══════════════════════ -->
 <div id="tappa-t6" class="page">
   <div class="detail-hero">
-    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
-    <div class="day-badge">Giorno 7 · 6 Agosto 2026</div>
+    <div class="detail-hero-toprow"><div class="home-btn" onclick="showPage('home')" title="Home" style="flex-shrink:0;">🏠</div><div class="center"><div class="day-badge">Giorno 7 · 6 Agosto 2026</div>
+      <div class="dsub">254 miglia · 4h32 · Desert View Drive + Navajo Nation</div></div><div class="spacer"></div></div>
     <div class="dtitle">🗿 Williams → Desert View → Monument Valley</div>
-    <div class="dsub">254 miglia · 4h32 · Desert View Drive + Navajo Nation</div>
     <div class="meta-chips">
       <span class="meta-chip">🚗 254 mi (409 km) · 4h32</span>
       <span class="meta-chip">🛣️ AZ-64 E → US-89 N → US-160 E → UT-163</span>
@@ -1092,10 +1088,9 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 7: ANTELOPE CANYON ═══════════════════════ -->
 <div id="tappa-t7" class="page">
   <div class="detail-hero">
-    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
-    <div class="day-badge">Giorno 8 · 7 Agosto 2026</div>
+    <div class="detail-hero-toprow"><div class="home-btn" onclick="showPage('home')" title="Home" style="flex-shrink:0;">🏠</div><div class="center"><div class="day-badge">Giorno 8 · 7 Agosto 2026</div>
+      <div class="dsub">217 miglia · 3h40 · Il canyon più fotografato al mondo</div></div><div class="spacer"></div></div>
     <div class="dtitle">🌊 Mexican Hat → Antelope Canyon X → Kanab</div>
-    <div class="dsub">217 miglia · 3h40 · Il canyon più fotografato al mondo</div>
     <div class="meta-chips">
       <span class="meta-chip">🚗 217 mi (349 km) · 3h40</span>
       <span class="meta-chip">🛣️ US-163 N → US-160 W → US-89 N → UT-89</span>
@@ -1130,10 +1125,9 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 8: BRYCE CANYON / SLC ═══════════════════════ -->
 <div id="tappa-t8" class="page">
   <div class="detail-hero">
-    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
-    <div class="day-badge">Giorno 9 · 8 Agosto 2026</div>
+    <div class="detail-hero-toprow"><div class="home-btn" onclick="showPage('home')" title="Home" style="flex-shrink:0;">🏠</div><div class="center"><div class="day-badge">Giorno 9 · 8 Agosto 2026</div>
+      <div class="dsub">345 miglia · 5h12 · Gli hoodoo rossi + Utah capitale</div></div><div class="spacer"></div></div>
     <div class="dtitle">🔴 Kanab → Bryce Canyon → Salt Lake City</div>
-    <div class="dsub">345 miglia · 5h12 · Gli hoodoo rossi + Utah capitale</div>
     <div class="meta-chips">
       <span class="meta-chip">🚗 345 mi (555 km) · 5h12</span>
       <span class="meta-chip">🛣️ UT-89 N → UT-12 E → US-89 N → I-15 N</span>
@@ -1166,10 +1160,9 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 9: YELLOWSTONE ═══════════════════════ -->
 <div id="tappa-t9" class="page">
   <div class="detail-hero">
-    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
-    <div class="day-badge">Giorni 10–11 · 9–10 Agosto 2026</div>
+    <div class="detail-hero-toprow"><div class="home-btn" onclick="showPage('home')" title="Home" style="flex-shrink:0;">🏠</div><div class="center"><div class="day-badge">Giorni 10–11 · 9–10 Agosto 2026</div>
+      <div class="dsub">288 miglia · 4h13 · Il parco geotermico più grande del mondo</div></div><div class="spacer"></div></div>
     <div class="dtitle">🌋 Salt Lake City → Island Park → Yellowstone</div>
-    <div class="dsub">288 miglia · 4h13 · Il parco geotermico più grande del mondo</div>
     <div class="meta-chips">
       <span class="meta-chip">🚗 288 mi (463 km) · 4h13</span>
       <span class="meta-chip">🛣️ I-15 N → US-20 E</span>
@@ -1205,10 +1198,9 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 10: ISLAND PARK → SAN DIEGO ═══════════════════════ -->
 <div id="tappa-t10" class="page">
   <div class="detail-hero">
-    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
-    <div class="day-badge">Giorno 12 · 11 Agosto 2026</div>
+    <div class="detail-hero-toprow"><div class="home-btn" onclick="showPage('home')" title="Home" style="flex-shrink:0;">🏠</div><div class="center"><div class="day-badge">Giorno 12 · 11 Agosto 2026</div>
+      <div class="dsub">131 mi · 2h28 · Volo BZN→SAN · Baymont Wyndham</div></div><div class="spacer"></div></div>
     <div class="dtitle">✈️ Island Park → Bozeman → San Diego</div>
-    <div class="dsub">131 mi · 2h28 · Volo BZN→SAN · Baymont Wyndham</div>
     <div class="meta-chips">
       <span class="meta-chip">🚗 135 mi (217 km) · 2h28</span>
       <span class="meta-chip">✈️ Volo BZN → SAN</span>
@@ -1244,10 +1236,9 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 11: SAN DIEGO (2 notti) ═══════════════════════ -->
 <div id="tappa-t11" class="page">
   <div class="detail-hero">
-    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
-    <div class="day-badge">Giorni 13–14 · 12–13 Agosto 2026</div>
+    <div class="detail-hero-toprow"><div class="home-btn" onclick="showPage('home')" title="Home" style="flex-shrink:0;">🏠</div><div class="center"><div class="day-badge">Giorni 13–14 · 12–13 Agosto 2026</div>
+      <div class="dsub">Spiagge · Balboa Park · Old Town · USS Midway · Gaslamp Quarter</div></div><div class="spacer"></div></div>
     <div class="dtitle">🌊 San Diego (2 notti)</div>
-    <div class="dsub">Spiagge · Balboa Park · Old Town · USS Midway · Gaslamp Quarter</div>
     <div class="meta-chips">
       <span class="meta-chip">🏨 Baymont Wyndham San Diego Downtown (2 notti)</span>
       <span class="meta-chip">🔗 11 Ago: arrivo da Bozeman via volo BZN→SAN</span>
@@ -1273,10 +1264,9 @@ a{color:var(--orange);text-decoration:none}
 <!-- END T11 -->
 <div id="tappa-t12" class="page">
   <div class="detail-hero">
-    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
-    <div class="day-badge">Giorni 14–16 · 13–15 Agosto 2026</div>
+    <div class="detail-hero-toprow"><div class="home-btn" onclick="showPage('home')" title="Home" style="flex-shrink:0;">🏠</div><div class="center"><div class="day-badge">Giorni 14–16 · 13–15 Agosto 2026</div>
+      <div class="dsub">13 Ago: arrivo SAN→SFO · Hotel Fiona · 14 Ago: partenza SFO · 15 Ago: atterraggio a Napoli</div></div><div class="spacer"></div></div>
     <div class="dtitle">🏙️ San Francisco (finale) ✈️ → Napoli</div>
-    <div class="dsub">13 Ago: arrivo SAN→SFO · Hotel Fiona · 14 Ago: partenza SFO · 15 Ago: atterraggio a Napoli</div>
     <div class="meta-chips">
       <span class="meta-chip">✈️ 13 Ago: SAN → SFO (~1h)</span>
       <span class="meta-chip">🚕 Uber/Lyft SFO → Hotel Fiona (~$35–45)</span>
