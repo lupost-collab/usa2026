@@ -38,18 +38,11 @@ a{color:var(--orange);text-decoration:none}
 /* ── PAGES ── */
 .page{display:none;animation:fadeIn .22s ease}
 .page.active{
-  display:flex;
-  flex-direction:column;
-  position:fixed;
-  top:0;left:0;right:0;
-  bottom:88px; /* altezza nav */
-  overflow:hidden;
+  display:block;
+  padding-bottom:96px;
 }
 .page-body{
-  flex:1;
-  overflow-y:auto;
-  -webkit-overflow-scrolling:touch;
-  overscroll-behavior:contain;
+  display:block;
 }
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
