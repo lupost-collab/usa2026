@@ -31,14 +31,26 @@ body{
   font-size:15px;line-height:1.6;
   color:var(--text);background:var(--bg);
   min-height:100vh;
-  padding-bottom:96px;
-  overflow-x:hidden;
+  overflow:hidden;
 }
 a{color:var(--orange);text-decoration:none}
 
 /* ── PAGES ── */
 .page{display:none;animation:fadeIn .22s ease}
-.page.active{display:block}
+.page.active{
+  display:flex;
+  flex-direction:column;
+  position:fixed;
+  top:0;left:0;right:0;
+  bottom:88px; /* altezza nav */
+  overflow:hidden;
+}
+.page-body{
+  flex:1;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior:contain;
+}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── BOTTOM NAV ── */
@@ -662,6 +674,7 @@ a{color:var(--orange);text-decoration:none}
     </div>
   </div>
 </div>
+  </div>
 <!-- END HOME -->
 
 
@@ -674,6 +687,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="sub">Timeline giorno per giorno</div></div>
     <div class="page-header-spacer"></div>
   </div>
+  <div class="page-body">
   <div class="timeline">
     <div class="tl-item" onclick="showTappa('t1')">
       <div class="tl-left"><div class="tl-dot">✈️</div><div class="tl-line"></div></div>
@@ -737,6 +751,7 @@ a{color:var(--orange);text-decoration:none}
     </div>
   </div>
 </div>
+  </div>
 <!-- END ITINERARIO -->
 
 <!-- ═══════════════════════ PAGE: HOTEL ═══════════════════════ -->
@@ -747,6 +762,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="sub">11 strutture · 15 notti</div></div>
     <div class="page-header-spacer"></div>
   </div>
+  <div class="page-body">
   <div style="padding:12px">
     <div class="hotel-card"><div class="hc-night">31 Lug – 2 Ago · <span class="night-count">2 notti</span></div><div class="hc-name">Hotel Fiona</div><div class="hc-addr">📍 140 7th St, San Francisco, CA 94103 · SoMa District</div><a class="maps-btn" href="https://maps.app.goo.gl/mXMn5W2Q3Epq6PeT9" target="_blank">📍 Apri in Maps</a></div>
     <div class="hotel-card"><div class="hc-night">2 Ago · <span class="night-count">1 notte</span></div><div class="hc-name">Chalet Groveland</div><div class="hc-addr">📍 12431 Tannahill Dr, Groveland, CA · ~25 min Big Oak Flat Entrance</div><a class="maps-btn" href="https://maps.app.goo.gl/Yi4qd4Cbptr4TVLM9" target="_blank">📍 Apri in Maps</a></div>
@@ -762,6 +778,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="tip-box" style="margin-top:4px">💡 <strong>Consiglio:</strong> Richiesta carta di credito a garanzia in tutti gli hotel USA. Check-out generalmente alle 11:00 — coordinare con le partenze mattutine.</div>
   </div>
 </div>
+  </div>
 <!-- END HOTEL -->
 
 <!-- ═══════════════════════ PAGE: INFO ═══════════════════════ -->
@@ -772,6 +789,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="sub">Emergenze · Auto · Consigli pratici</div></div>
     <div class="page-header-spacer"></div>
   </div>
+  <div class="page-body">
 
   <div class="sec-heading">🚨 Numeri di Emergenza</div>
   <div class="emg-big">
@@ -849,6 +867,7 @@ a{color:var(--orange);text-decoration:none}
   </div>
   <div class="warning-box">⚠️ <strong>Note Importanti:</strong> In zone remote (Death Valley, Yellowstone, Monument Valley) la copertura può essere assente. Scaricare le mappe offline. Portare acqua abbondante — minimo 2–3 litri a persona per le escursioni. Salvare 911 su tutti i telefoni.</div>
 </div>
+  </div>
 <!-- END INFO -->
 
 <!-- ═══════════════════════ TAPPA 1: VOLO ═══════════════════════ -->
@@ -864,6 +883,7 @@ a{color:var(--orange);text-decoration:none}
       <span class="meta-chip">🏨 Hotel Fiona, SoMa SF (2 notti)</span>
     </div>
   </div>
+  <div class="page-body">
   <div class="back-btn" onclick="goBack()">← Indietro</div>
 <div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
 <div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/74LY4byUqhZA7TvS9" target="_blank">🗺️ SFO → Hotel Fiona (centro SF) · 21 mi · 35 min</a>
@@ -880,6 +900,7 @@ a{color:var(--orange);text-decoration:none}
 
   <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌡️ Abbigliamento SF</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><div class="meteo-chips"><span class="meteo-chip">🌡️ 18–24°C giorno</span><span class="meteo-chip">🌡️ 12–16°C sera</span><span class="meteo-chip">🌫️ Nebbia mattutina</span></div><ul><li>SF è famosa per la nebbia estiva — porta sempre una giacca leggera o felpa</li><li>La sera rinfresca notevolmente</li><li>Sneakers comode per camminare molto</li></ul></div></div>
 </div>
+  </div><!-- close page-body -->
 <!-- END T1 -->
 
 <!-- ═══════════════════════ TAPPA 2: YOSEMITE ═══════════════════════ -->
@@ -895,6 +916,7 @@ a{color:var(--orange);text-decoration:none}
       <span class="meta-chip">🏨 Chalet Groveland, CA</span>
     </div>
   </div>
+  <div class="page-body">
   <div class="back-btn" onclick="goBack()">← Indietro</div>
 <div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
 <div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/S3S62x3hfcKfNUxr7" target="_blank">🗺️ SFO → Groveland (Chalet) · 144 mi · 3h06</a>
@@ -914,6 +936,7 @@ a{color:var(--orange);text-decoration:none}
 
   <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>⚠️ Consigli Pratici</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Timed Entry:</strong> Obbligatorio tra le 6:00 e le 16:00 — prenotare su recreation.gov settimane prima</li><li>Orso avvistamento frequente — non lasciare cibo in auto (multa salata)</li><li>Acqua potabile dalle fontane del parco — portare borraccia riutilizzabile</li><li>Sunscreen fortissima — quota alta + caldo intenso</li></ul></div></div>
 </div>
+  </div><!-- close page-body -->
 <!-- END T2 -->
 
 <!-- ═══════════════════════ TAPPA 3: DEATH VALLEY ═══════════════════════ -->
@@ -929,6 +952,7 @@ a{color:var(--orange);text-decoration:none}
       <span class="meta-chip">🏨 Death Valley Inn, Beatty NV</span>
     </div>
   </div>
+  <div class="page-body">
   <div class="back-btn" onclick="goBack()">← Indietro</div>
 <div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
 <div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/DgrBpVvbBXBatfjbA" target="_blank">🗺️ Groveland → Mono Lake · 91 mi · 2h20</a>
@@ -948,6 +972,7 @@ a{color:var(--orange);text-decoration:none}
 
   <div class="warning-box">⚠️ <strong>Sicurezza Death Valley:</strong> Non fare trekking tra le 10:00 e le 17:00. Tieni sempre 5+ litri d'acqua in auto. Prezzi carburante nel parco tra i più alti degli USA — fare il pieno a Beatty.</div>
 </div>
+  </div><!-- close page-body -->
 <!-- END T3 -->
 
 <!-- ═══════════════════════ TAPPA 4: LAS VEGAS ═══════════════════════ -->
@@ -963,6 +988,7 @@ a{color:var(--orange);text-decoration:none}
       <span class="meta-chip">🏨 The LINQ Las Vegas (2 notti)</span>
     </div>
   </div>
+  <div class="page-body">
   <div class="back-btn" onclick="goBack()">← Indietro</div>
 <div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
 <div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/D7vEwcJQqc7E6wJDA" target="_blank">🗺️ Death Valley → Death Valley Inn (Beatty NV) · 45 mi · 1h00</a>
@@ -982,6 +1008,7 @@ a{color:var(--orange);text-decoration:none}
 
   <div class="tip-box">💡 <strong>Consiglio:</strong> Prenota il parcheggio in anticipo. L'app Uber/Lyft funziona benissimo per girare tra i casinò la notte.</div>
 </div>
+  </div><!-- close page-body -->
 <!-- END T4 -->
 
 <!-- ═══════════════════════ TAPPA 5: GRAND CANYON ═══════════════════════ -->
@@ -997,6 +1024,7 @@ a{color:var(--orange);text-decoration:none}
       <span class="meta-chip">🏨 Rodeway Inn Williams, AZ · Route 66</span>
     </div>
   </div>
+  <div class="page-body">
   <div class="back-btn" onclick="goBack()">← Indietro</div>
 <div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
 <div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/A13RHcXEJxyDHbKC9" target="_blank">🗺️ Las Vegas → Grand Canyon South Rim · 224 mi · 3h25</a>
@@ -1016,6 +1044,7 @@ a{color:var(--orange);text-decoration:none}
 
   <div class="tip-box">💡 <strong>Williams:</strong> Cittadina storica sulla Route 66, atmosfera anni '50. Vale una passeggiata serale nel centro storico dopo cena.</div>
 </div>
+  </div><!-- close page-body -->
 <!-- END T5 -->
 
 <!-- ═══════════════════════ TAPPA 6: MONUMENT VALLEY ═══════════════════════ -->
@@ -1031,6 +1060,7 @@ a{color:var(--orange);text-decoration:none}
       <span class="meta-chip">🏨 Mexican Hat Lodge, UT</span>
     </div>
   </div>
+  <div class="page-body">
   <div class="back-btn" onclick="goBack()">← Indietro</div>
 <div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
 <div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/RRwTTHCXjAGYq4Xx9" target="_blank">🗺️ Williams → Desert View Drive (Grand Canyon East) · 144 mi · 2h20</a>
@@ -1050,6 +1080,7 @@ a{color:var(--orange);text-decoration:none}
 
   <div class="tip-box">📸 <strong>Fotografia:</strong> Le Mittens si fotografano meglio al tramonto (luce arancione calda). John Ford's Point è lo spot western più iconico.</div>
 </div>
+  </div><!-- close page-body -->
 <!-- END T6 -->
 
 <!-- ═══════════════════════ TAPPA 7: ANTELOPE CANYON ═══════════════════════ -->
@@ -1065,6 +1096,7 @@ a{color:var(--orange);text-decoration:none}
       <span class="meta-chip">🏨 Comfort Suites Kanab, UT</span>
     </div>
   </div>
+  <div class="page-body">
   <div class="back-btn" onclick="goBack()">← Indietro</div>
 <div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
 <div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/siSbHiGm2RNJCDSs6" target="_blank">🗺️ Mexican Hat → Antelope Canyon X (Page AZ) · 130 mi · 2h10</a>
@@ -1084,6 +1116,7 @@ a{color:var(--orange);text-decoration:none}
 
   <div class="tip-box">📸 <strong>Antelope Canyon:</strong> Per foto migliori porta un treppiede (consentito) e usa modalità manuale. Le luci e le ombre creano effetti incredibili.</div>
 </div>
+  </div><!-- close page-body -->
 <!-- END T7 -->
 
 <!-- ═══════════════════════ TAPPA 8: BRYCE CANYON / SLC ═══════════════════════ -->
@@ -1099,6 +1132,7 @@ a{color:var(--orange);text-decoration:none}
       <span class="meta-chip">🏨 Park Inn Radisson, Salt Lake City</span>
     </div>
   </div>
+  <div class="page-body">
   <div class="back-btn" onclick="goBack()">← Indietro</div>
 <div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
 <div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/Cne1XseFGJSnYrwk7" target="_blank">🗺️ Kanab → Bryce Canyon NP</a>
@@ -1116,6 +1150,7 @@ a{color:var(--orange);text-decoration:none}
 
   <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌡️ Meteo &amp; Abbigliamento</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><div class="meteo-chips"><span class="meteo-chip">🌡️ 22–30°C giorno</span><span class="meteo-chip">🌡️ 10–16°C notte</span><span class="meteo-chip">⛈️ Temporali poss.</span></div><ul><li>Bryce Canyon a 2.400–2.700 m — notti fresche anche d'estate</li><li>Strati obbligatori: la mattina può essere fredda</li><li>Temporali pomeridiani — partire presto per i trail</li></ul></div></div>
 </div>
+  </div><!-- close page-body -->
 <!-- END T8 -->
 
 <!-- ═══════════════════════ TAPPA 9: YELLOWSTONE ═══════════════════════ -->
@@ -1131,6 +1166,7 @@ a{color:var(--orange);text-decoration:none}
       <span class="meta-chip">🏨 Blue Buffalo Resort, Island Park ID (2 notti)</span>
     </div>
   </div>
+  <div class="page-body">
   <div class="back-btn" onclick="goBack()">← Indietro</div>
 <div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
 <div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/yP3cHaEqrj4bf7iP6" target="_blank">🗺️ Salt Lake City → Blue Buffalo Resort (Island Park) · 288 mi</a>
@@ -1151,6 +1187,7 @@ a{color:var(--orange);text-decoration:none}
 
   <div class="warning-box">🦬 <strong>Sicurezza Yellowstone:</strong> Non avvicinarsi mai alla fauna selvatica. Distanza minima 25 metri dai bisonti, 100 metri dagli orsi. Stare sempre sui sentieri segnalati vicino alle sorgenti termiche — il terreno può cedere improvvisamente.</div>
 </div>
+  </div><!-- close page-body -->
 <!-- END T9 -->
 
 <!-- ═══════════════════════ TAPPA 10: ISLAND PARK → SAN DIEGO ═══════════════════════ -->
@@ -1166,6 +1203,7 @@ a{color:var(--orange);text-decoration:none}
       <span class="meta-chip">🏨 Baymont Wyndham, San Diego (2 notti)</span>
     </div>
   </div>
+  <div class="page-body">
   <div class="back-btn" onclick="goBack()">← Indietro</div>
 <div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
 <div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/UJGWJeUazZ8cZrhh8" target="_blank">🗺️ Blue Buffalo Resort → Aeroporto Bozeman BZN · 131 mi</a>
@@ -1186,6 +1224,7 @@ a{color:var(--orange);text-decoration:none}
 
   <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌡️ Meteo &amp; Abbigliamento</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><div class="meteo-chips"><span class="meteo-chip">🌡️ 24–28°C giorno</span><span class="meteo-chip">🌡️ 18–22°C sera</span><span class="meteo-chip">☀️ Quasi sempre soleggiato</span></div><ul><li>San Diego ha il clima più mite degli USA — "America's Finest City"</li><li>Brezza marina la sera — porta una felpa per le serate sulla spiaggia</li></ul></div></div>
 </div>
+  </div><!-- close page-body -->
 <!-- END T10 -->
 
 <!-- ═══════════════════════ TAPPA 11: SAN DIEGO (2 notti) ═══════════════════════ -->
@@ -1201,6 +1240,7 @@ a{color:var(--orange);text-decoration:none}
       <span class="meta-chip">🌊 12 Ago: giornata libera in città</span>
     </div>
   </div>
+  <div class="page-body">
   <div class="back-btn" onclick="goBack()">← Indietro</div>
 <div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
 <div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/WdQL1fSVCEWS21eB6" target="_blank">🗺️ Aeroporto San Diego SAN → Baymont Wyndham</a>
@@ -1213,6 +1253,7 @@ a{color:var(--orange);text-decoration:none}
   <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🍽️ Dove Mangiare</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Colazione:</strong> Cafe 222 (pancakes all'anguria), Better Buzz Coffee</li><li><strong>Pranzo:</strong> <a href="https://www.google.com/maps/search/Oscars+Mexican+Seafood+San+Diego" target="_blank">Oscar's Mexican Seafood</a> (fish tacos iconici), <a href="https://www.google.com/maps/search/Puesto+San+Diego" target="_blank">Puesto</a></li><li><strong>Cena:</strong> <a href="https://www.google.com/maps/search/Juniper+Ivy+San+Diego" target="_blank">Juniper &amp; Ivy</a>, <a href="https://www.google.com/maps/search/Addison+Restaurant+Del+Mar+San+Diego" target="_blank">Addison</a> (stellato Michelin), <a href="https://www.google.com/maps/search/Searsucker+San+Diego" target="_blank">Searsucker</a></li><li><strong>Birra:</strong> <a href="https://www.google.com/maps/search/Stone+Brewing+World+Bistro+San+Diego" target="_blank">Stone Brewing World Bistro</a>, <a href="https://www.google.com/maps/search/Ballast+Point+Tasting+Room+San+Diego" target="_blank">Ballast Point Tasting Room</a></li></ul></div></div>
   <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌡️ Meteo &amp; Abbigliamento</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><div class="meteo-chips"><span class="meteo-chip">🌡️ 22–28°C giorno</span><span class="meteo-chip">🌡️ 18–22°C sera</span><span class="meteo-chip">☀️ Quasi sempre soleggiato</span></div><ul><li>San Diego ha il clima più mite degli USA — "America's Finest City"</li><li>Brezza marina la sera — porta una felpa per le serate sulla spiaggia</li><li>Costume da bagno e crema solare obbligatori</li></ul></div></div>
 </div>
+  </div><!-- close page-body -->
 <!-- END T11 -->
 <div id="tappa-t12" class="page">
   <div class="detail-hero">
@@ -1227,6 +1268,7 @@ a{color:var(--orange);text-decoration:none}
       <span class="meta-chip">✈️ 14 Ago: SFO → Napoli (NAP) con scalo</span>
     </div>
   </div>
+  <div class="page-body">
   <div class="back-btn" onclick="goBack()">← Indietro</div>
 <div class="maps-routes-title">🗺️ Percorsi Google Maps</div>
 <div class="maps-links-block"><a class="maps-route-btn" href="https://maps.app.goo.gl/3nDHowDdWpSoGojU6" target="_blank">🗺️ SFO → Napoli Capodichino (Volo) · Volo</a>
@@ -1242,6 +1284,7 @@ a{color:var(--orange);text-decoration:none}
 
   <div class="tip-box">🏠 <strong>Fine del viaggio!</strong> Dopo 15 giorni, ~2.373 miglia, 7 stati, 7 parchi nazionali e centinaia di km di paesaggi indimenticabili — si torna a casa. Bon voyage! 🇺🇸→🇮🇹</div>
 </div>
+  </div><!-- close page-body -->
 <!-- END T12 -->
 
 
@@ -1253,6 +1296,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="sub">Orari ufficiali &amp; stato in tempo reale</div></div>
     <div class="page-header-spacer"></div>
   </div>
+  <div class="page-body">
 
   <div class="sec-heading">🗓️ Tutti i Voli</div>
 
@@ -1277,6 +1321,7 @@ a{color:var(--orange);text-decoration:none}
     </div>
   </div>
 </div>
+  </div>
 <!-- END VOLI -->
 
 <!-- ═══════════════════════ PAGE: CLIMA ═══════════════════════ -->
@@ -1287,6 +1332,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="sub">Meteo e consigli per ogni tappa</div></div>
     <div class="page-header-spacer"></div>
   </div>
+  <div class="page-body">
 
   <div class="sec-heading">🗺️ Clima per Tappa</div>
 
@@ -1558,6 +1604,7 @@ a{color:var(--orange);text-decoration:none}
 </div>
   </div>
 </div>
+  </div>
 <!-- END CLIMA -->
 
 <!-- ═══════════════════════ PAGE: MAPPA ═══════════════════════ -->
@@ -1568,8 +1615,10 @@ a{color:var(--orange);text-decoration:none}
     <div class="sub">Il percorso del Road Trip</div></div>
     <div class="page-header-spacer"></div>
   </div>
+  <div class="page-body">
   <div id="trip-map" style="width:100%;height:calc(100vh - 130px);border-radius:12px;overflow:hidden;"></div>
 </div>
+  </div>
 <!-- END MAPPA -->
 
 <!-- ═══════════════════════ PAGE: ALTRO ═══════════════════════ -->
@@ -1580,6 +1629,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="sub">Clima · Voli · Mall &amp; Gas · Bags · Doc Share · Info</div></div>
     <div class="page-header-spacer"></div>
   </div>
+  <div class="page-body">
   <div class="altro-tabs">
     <div class="altro-tab active" id="atab-clima" onclick="switchAltroTab('clima')"><span class="ti">🌡️</span>Clima</div>
     <div class="altro-tab" id="atab-voli" onclick="switchAltroTab('voli')"><span class="ti">✈️</span>Voli</div>
@@ -1856,6 +1906,7 @@ a{color:var(--orange);text-decoration:none}
 
   <div id="altro-info" class="altro-panel"></div>
 </div>
+  </div>
 <!-- END ALTRO -->
 
 <!-- ═══════════════════════ BOTTOM NAV ═══════════════════════ -->
@@ -2261,9 +2312,11 @@ function switchMallGas(sub) {
 function showPage(name) {
   document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
   var target = document.getElementById('page-' + name);
-  if (target) { target.classList.add('active'); window.scrollTo(0, 0); }
-  document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
-  var navEl = document.getElementById('nav-' + name);
+  if (target) {
+    target.classList.add('active');
+    var body = target.querySelector('.page-body');
+    if (body) body.scrollTop = 0; else window.scrollTo(0, 0);
+  }
   if (navEl) navEl.classList.add('active');
   if (name === 'altro') initAltro();
   if (name === 'mappa' && tripMap) { setTimeout(function(){ tripMap.invalidateSize(); }, 50); }
@@ -2276,7 +2329,11 @@ function showTappa(id) {
   tappaPreviousPage = currentPage;
   document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
   var target = document.getElementById('tappa-' + id);
-  if (target) { target.classList.add('active'); window.scrollTo(0, 0); }
+  if (target) {
+    target.classList.add('active');
+    var body = target.querySelector('.page-body');
+    if (body) body.scrollTop = 0; else window.scrollTo(0, 0);
+  }
   document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
   var navEl = document.getElementById('nav-tappe');
   if (navEl) navEl.classList.add('active');
