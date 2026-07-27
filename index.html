@@ -270,38 +270,43 @@ a{color:var(--orange);text-decoration:none}
 .warning-box{background:rgba(200,16,46,.08);border:1px solid rgba(200,16,46,.3);color:#f8a0a8}
 
 /* ── PAGE HEADER ── */
-.page-header{
-  background:linear-gradient(135deg,#07102b,var(--bg3));
-  padding:calc(var(--safe-top) + 20px) 16px 20px;
-  border-bottom:2px solid var(--orange);
-  text-align:center;
-}
-.page-header h1{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:900;color:#fff}
-.page-header .sub{font-size:13px;color:var(--muted);margin-top:4px}
-
 /* ── HOME BUTTON ── */
-#home-fab{
+.home-btn{
   display:none;
-  position:fixed;
-  top:calc(var(--safe-top) + 10px);
-  right:14px;
-  z-index:9999;
-  background:rgba(11,23,53,0.88);
+  background:rgba(11,23,53,0.7);
   border:1.5px solid var(--orange);
   color:var(--orange);
   border-radius:50%;
-  width:40px;height:40px;
+  width:38px;height:38px;
+  min-width:38px;
   font-size:18px;
-  line-height:40px;
+  line-height:36px;
   text-align:center;
   cursor:pointer;
-  box-shadow:0 2px 12px rgba(0,0,0,0.5);
-  backdrop-filter:blur(6px);
-  -webkit-backdrop-filter:blur(6px);
+  box-shadow:0 2px 8px rgba(0,0,0,0.4);
   transition:background .2s,transform .15s;
 }
-#home-fab:active{transform:scale(0.92);background:rgba(232,122,47,0.25)}
-
+.home-btn:active{transform:scale(0.92);background:rgba(232,122,47,0.25)}
+.page-header{
+  background:linear-gradient(135deg,#07102b,var(--bg3));
+  padding:calc(var(--safe-top) + 14px) 16px 14px;
+  border-bottom:2px solid var(--orange);
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.page-header-spacer{width:38px;min-width:38px;flex-shrink:0}
+.page-header-inner{flex:1;text-align:center}
+.page-header h1{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:900;color:#fff}
+.page-header .sub{font-size:13px;color:var(--muted);margin-top:4px}
+/* detail-hero home btn */
+.detail-hero-header{
+  position:relative;z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  padding-bottom:4px;
+}
 /* ── ITINERARY TIMELINE ── */
 .timeline{padding:16px 12px}
 .tl-item{
@@ -478,9 +483,6 @@ a{color:var(--orange);text-decoration:none}
 <!-- Leaflet JS caricato in modo lazy (solo quando serve la mappa) -->
 </head>
 <body>
-
-<!-- ═══════════════════════ HOME FAB ═══════════════════════ -->
-<div id="home-fab" onclick="showPage('home')" title="Torna alla Home">🏠</div>
 
 <!-- ═══════════════════════ PAGE: HOME ═══════════════════════ -->
 <div id="page-home" class="page active">
@@ -667,8 +669,11 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ PAGE: ITINERARIO ═══════════════════════ -->
 <div id="page-itinerario" class="page">
   <div class="page-header">
-    <h1><svg width="28" height="28" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;margin-right:6px"><rect x="1" y="4" width="24" height="20" rx="3" fill="#1a2a5e" stroke="#4caf50" stroke-width="1.5"/><rect x="1" y="4" width="24" height="7" rx="3" fill="#4caf50"/><rect x="1" y="8" width="24" height="3" fill="#4caf50"/><line x1="7" y1="1" x2="7" y2="7" stroke="#4caf50" stroke-width="2" stroke-linecap="round"/><line x1="19" y1="1" x2="19" y2="7" stroke="#4caf50" stroke-width="2" stroke-linecap="round"/><text x="13" y="20" text-anchor="middle" font-size="9" font-weight="900" font-family="Montserrat,sans-serif" fill="white">28</text></svg> Itinerario</h1>
+    <div class="page-header-spacer"></div>
+    <div class="page-header-inner"><h1><svg width="28" height="28" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;margin-right:6px"><rect x="1" y="4" width="24" height="20" rx="3" fill="#1a2a5e" stroke="#4caf50" stroke-width="1.5"/><rect x="1" y="4" width="24" height="7" rx="3" fill="#4caf50"/><rect x="1" y="8" width="24" height="3" fill="#4caf50"/><line x1="7" y1="1" x2="7" y2="7" stroke="#4caf50" stroke-width="2" stroke-linecap="round"/><line x1="19" y1="1" x2="19" y2="7" stroke="#4caf50" stroke-width="2" stroke-linecap="round"/><text x="13" y="20" text-anchor="middle" font-size="9" font-weight="900" font-family="Montserrat,sans-serif" fill="white">28</text></svg> Itinerario</h1>
     <div class="sub">Timeline giorno per giorno</div>
+    <div class="home-btn" onclick="showPage('home')" title="Home">🏠</div>
+  </div>
   </div>
   <div class="timeline">
     <div class="tl-item" onclick="showTappa('t1')">
@@ -738,8 +743,11 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ PAGE: HOTEL ═══════════════════════ -->
 <div id="page-hotel" class="page">
   <div class="page-header">
-    <h1>🏨 Hotel &amp; Alloggi</h1>
+    <div class="page-header-spacer"></div>
+    <div class="page-header-inner"><h1>🏨 Hotel &amp; Alloggi</h1>
     <div class="sub">11 strutture · 15 notti</div>
+    <div class="home-btn" onclick="showPage('home')" title="Home">🏠</div>
+  </div>
   </div>
   <div style="padding:12px">
     <div class="hotel-card"><div class="hc-night">31 Lug – 2 Ago · <span class="night-count">2 notti</span></div><div class="hc-name">Hotel Fiona</div><div class="hc-addr">📍 140 7th St, San Francisco, CA 94103 · SoMa District</div><a class="maps-btn" href="https://maps.app.goo.gl/mXMn5W2Q3Epq6PeT9" target="_blank">📍 Apri in Maps</a></div>
@@ -761,8 +769,11 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ PAGE: INFO ═══════════════════════ -->
 <div id="page-info" class="page">
   <div class="page-header">
-    <h1>ℹ️ Info Utili</h1>
+    <div class="page-header-spacer"></div>
+    <div class="page-header-inner"><h1>ℹ️ Info Utili</h1>
     <div class="sub">Emergenze · Auto · Consigli pratici</div>
+    <div class="home-btn" onclick="showPage('home')" title="Home">🏠</div>
+  </div>
   </div>
 
   <div class="sec-heading">🚨 Numeri di Emergenza</div>
@@ -846,6 +857,7 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 1: VOLO ═══════════════════════ -->
 <div id="tappa-t1" class="page">
   <div class="detail-hero">
+    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
     <div class="day-badge">Giorno 1 · 31 Luglio 2026</div>
     <div class="dtitle">✈️ Napoli → San Francisco</div>
     <div class="dsub">Volo intercontinentale · Arrivo in California · Hotel Fiona</div>
@@ -876,6 +888,7 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 2: YOSEMITE ═══════════════════════ -->
 <div id="tappa-t2" class="page">
   <div class="detail-hero">
+    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
     <div class="day-badge">Giorno 3 · 2 Agosto 2026</div>
     <div class="dtitle">🌲 San Francisco → Yosemite NP</div>
     <div class="dsub">194 miglia · 3h51 · Half Dome · El Capitan · Waterfalls</div>
@@ -909,6 +922,7 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 3: DEATH VALLEY ═══════════════════════ -->
 <div id="tappa-t3" class="page">
   <div class="detail-hero">
+    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
     <div class="day-badge">Giorno 4 · 3 Agosto 2026</div>
     <div class="dtitle">🏜️ Yosemite → Mono Lake → Death Valley</div>
     <div class="dsub">302 miglia · 6h20 · Il luogo più caldo della Terra</div>
@@ -942,6 +956,7 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 4: LAS VEGAS ═══════════════════════ -->
 <div id="tappa-t4" class="page">
   <div class="detail-hero">
+    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
     <div class="day-badge">Giorno 5 · 4 Agosto 2026</div>
     <div class="dtitle">🎰 Death Valley → Las Vegas</div>
     <div class="dsub">163 miglia · 3h10 · La Città del Peccato · 1 notte</div>
@@ -975,6 +990,7 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 5: GRAND CANYON ═══════════════════════ -->
 <div id="tappa-t5" class="page">
   <div class="detail-hero">
+    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
     <div class="day-badge">Giorno 6 · 5 Agosto 2026</div>
     <div class="dtitle">🏔️ Las Vegas → Grand Canyon → Williams</div>
     <div class="dsub">344 miglia · 5h45 · Primo impatto con il Canyon</div>
@@ -1008,6 +1024,7 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 6: MONUMENT VALLEY ═══════════════════════ -->
 <div id="tappa-t6" class="page">
   <div class="detail-hero">
+    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
     <div class="day-badge">Giorno 7 · 6 Agosto 2026</div>
     <div class="dtitle">🗿 Williams → Desert View → Monument Valley</div>
     <div class="dsub">254 miglia · 4h32 · Desert View Drive + Navajo Nation</div>
@@ -1041,6 +1058,7 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 7: ANTELOPE CANYON ═══════════════════════ -->
 <div id="tappa-t7" class="page">
   <div class="detail-hero">
+    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
     <div class="day-badge">Giorno 8 · 7 Agosto 2026</div>
     <div class="dtitle">🌊 Mexican Hat → Antelope Canyon X → Kanab</div>
     <div class="dsub">217 miglia · 3h40 · Il canyon più fotografato al mondo</div>
@@ -1074,6 +1092,7 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 8: BRYCE CANYON / SLC ═══════════════════════ -->
 <div id="tappa-t8" class="page">
   <div class="detail-hero">
+    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
     <div class="day-badge">Giorno 9 · 8 Agosto 2026</div>
     <div class="dtitle">🔴 Kanab → Bryce Canyon → Salt Lake City</div>
     <div class="dsub">345 miglia · 5h12 · Gli hoodoo rossi + Utah capitale</div>
@@ -1105,6 +1124,7 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 9: YELLOWSTONE ═══════════════════════ -->
 <div id="tappa-t9" class="page">
   <div class="detail-hero">
+    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
     <div class="day-badge">Giorni 10–11 · 9–10 Agosto 2026</div>
     <div class="dtitle">🌋 Salt Lake City → Island Park → Yellowstone</div>
     <div class="dsub">288 miglia · 4h13 · Il parco geotermico più grande del mondo</div>
@@ -1139,6 +1159,7 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 10: ISLAND PARK → SAN DIEGO ═══════════════════════ -->
 <div id="tappa-t10" class="page">
   <div class="detail-hero">
+    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
     <div class="day-badge">Giorno 12 · 11 Agosto 2026</div>
     <div class="dtitle">✈️ Island Park → Bozeman → San Diego</div>
     <div class="dsub">131 mi · 2h28 · Volo BZN→SAN · Baymont Wyndham</div>
@@ -1173,6 +1194,7 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ TAPPA 11: SAN DIEGO (2 notti) ═══════════════════════ -->
 <div id="tappa-t11" class="page">
   <div class="detail-hero">
+    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
     <div class="day-badge">Giorni 13–14 · 12–13 Agosto 2026</div>
     <div class="dtitle">🌊 San Diego (2 notti)</div>
     <div class="dsub">Spiagge · Balboa Park · Old Town · USS Midway · Gaslamp Quarter</div>
@@ -1197,6 +1219,7 @@ a{color:var(--orange);text-decoration:none}
 <!-- END T11 -->
 <div id="tappa-t12" class="page">
   <div class="detail-hero">
+    <div style="display:flex;justify-content:flex-end;position:relative;z-index:2;padding-bottom:4px;"><div class="home-btn" onclick="showPage('home')" title="Home">🏠</div></div>
     <div class="day-badge">Giorni 14–16 · 13–15 Agosto 2026</div>
     <div class="dtitle">🏙️ San Francisco (finale) ✈️ → Napoli</div>
     <div class="dsub">13 Ago: arrivo SAN→SFO · Hotel Fiona · 14 Ago: partenza SFO · 15 Ago: atterraggio a Napoli</div>
@@ -1228,8 +1251,11 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ PAGE: VOLI ═══════════════════════ -->
 <div id="page-voli" class="page">
   <div class="page-header">
-    <h1>✈️ I Nostri Voli</h1>
+    <div class="page-header-spacer"></div>
+    <div class="page-header-inner"><h1>✈️ I Nostri Voli</h1>
     <div class="sub">Orari ufficiali &amp; stato in tempo reale</div>
+    <div class="home-btn" onclick="showPage('home')" title="Home">🏠</div>
+  </div>
   </div>
 
   <div class="sec-heading">🗓️ Tutti i Voli</div>
@@ -1260,8 +1286,11 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ PAGE: CLIMA ═══════════════════════ -->
 <div id="page-clima" class="page">
   <div class="page-header">
-    <h1>🌡️ Clima &amp; Abbigliamento</h1>
+    <div class="page-header-spacer"></div>
+    <div class="page-header-inner"><h1>🌡️ Clima &amp; Abbigliamento</h1>
     <div class="sub">Meteo e consigli per ogni tappa</div>
+    <div class="home-btn" onclick="showPage('home')" title="Home">🏠</div>
+  </div>
   </div>
 
   <div class="sec-heading">🗺️ Clima per Tappa</div>
@@ -1539,8 +1568,11 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ PAGE: MAPPA ═══════════════════════ -->
 <div id="page-mappa" class="page">
   <div class="page-header">
-    <h1>🗺️ Mappa Itinerario</h1>
+    <div class="page-header-spacer"></div>
+    <div class="page-header-inner"><h1>🗺️ Mappa Itinerario</h1>
     <div class="sub">Il percorso del Road Trip</div>
+    <div class="home-btn" onclick="showPage('home')" title="Home">🏠</div>
+  </div>
   </div>
   <div id="trip-map" style="width:100%;height:calc(100vh - 130px);border-radius:12px;overflow:hidden;"></div>
 </div>
@@ -1549,8 +1581,11 @@ a{color:var(--orange);text-decoration:none}
 <!-- ═══════════════════════ PAGE: ALTRO ═══════════════════════ -->
 <div id="page-altro" class="page">
   <div class="page-header">
-    <h1>📂 Altro</h1>
+    <div class="page-header-spacer"></div>
+    <div class="page-header-inner"><h1>📂 Altro</h1>
     <div class="sub">Clima · Voli · Mall &amp; Gas · Bags · Doc Share · Info</div>
+    <div class="home-btn" onclick="showPage('home')" title="Home">🏠</div>
+  </div>
   </div>
   <div class="altro-tabs">
     <div class="altro-tab active" id="atab-clima" onclick="switchAltroTab('clima')"><span class="ti">🌡️</span>Clima</div>
@@ -2241,8 +2276,7 @@ function showPage(name) {
   if (name === 'mappa' && tripMap) { setTimeout(function(){ tripMap.invalidateSize(); }, 50); }
   previousPage = currentPage;
   currentPage = name;
-  var fab = document.getElementById('home-fab');
-  if (fab) fab.style.display = (name === 'home') ? 'none' : 'block';
+  document.querySelectorAll('.home-btn').forEach(function(b){ b.style.display = (name === 'home') ? 'none' : 'block'; });
 }
 
 function showTappa(id) {
@@ -2255,8 +2289,7 @@ function showTappa(id) {
   if (navEl) navEl.classList.add('active');
   previousPage = currentPage;
   currentPage = 'tappa-' + id;
-  var fab = document.getElementById('home-fab');
-  if (fab) fab.style.display = 'block';
+  document.querySelectorAll('.home-btn').forEach(function(b){ b.style.display = 'block'; });
 
   // Load weather for this tappa
   var locKey = TAPPA_WEATHER[id];
