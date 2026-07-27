@@ -427,21 +427,19 @@ a{color:var(--orange);text-decoration:none}
 .valigeria-item:last-child{border-bottom:none}
 .valigeria-item-icon{font-size:16px;flex-shrink:0;width:22px;text-align:center}
 
-/* ── BAGS CHECKLIST ── */
 .bags-cat{margin:8px 12px 0;background:var(--card);border-radius:10px;overflow:hidden}
-.bags-cat-title{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;color:var(--orange);padding:9px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
-.bags-cat-title .badge{margin-left:auto;font-size:11px;background:rgba(255,165,0,.15);color:var(--orange);padding:2px 8px;border-radius:20px;white-space:nowrap}
-.bags-item{display:flex;align-items:flex-start;gap:10px;padding:9px 14px;border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
+.bags-cat-title{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;color:#ffa500;padding:9px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.bags-cat-title .badge{margin-left:auto;font-size:11px;background:rgba(255,165,0,.15);color:#ffa500;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.bags-item{display:flex;align-items:flex-start;gap:10px;padding:9px 14px;border-bottom:1px solid var(--border);cursor:pointer;user-select:none;-webkit-user-select:none}
 .bags-item:last-child{border-bottom:none}
-.bags-item.checked{opacity:.45}
+.bags-item.checked{opacity:.4}
 .bags-item.checked .bags-label{text-decoration:line-through}
-.bags-cb{width:20px;height:20px;min-width:20px;border:2px solid var(--orange);border-radius:5px;display:flex;align-items:center;justify-content:center;margin-top:1px;transition:background .15s}
-.bags-item.checked .bags-cb{background:var(--orange)}
-.bags-cb-tick{display:none;color:#fff;font-size:13px;font-weight:900;line-height:1}
+.bags-cb{width:20px;height:20px;min-width:20px;border:2px solid #ffa500;border-radius:5px;display:flex;align-items:center;justify-content:center;margin-top:2px;transition:background .15s;flex-shrink:0}
+.bags-item.checked .bags-cb{background:#ffa500}
+.bags-cb-tick{display:none;color:#fff;font-size:14px;font-weight:900;line-height:1}
 .bags-item.checked .bags-cb-tick{display:block}
 .bags-label{font-size:13px;color:var(--text);line-height:1.5}
-.bags-note{font-size:11.5px;color:var(--lblue);margin-top:2px}
-.bags-reset{display:block;margin:14px auto 4px;padding:8px 22px;background:rgba(255,165,0,.12);border:1px solid var(--orange);color:var(--orange);font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;border-radius:20px;cursor:pointer}
+.bags-note{font-size:11px;color:var(--lblue);margin-top:2px}
 </style>
 </head>
 <body>
@@ -961,7 +959,7 @@ a{color:var(--orange);text-decoration:none}
 
   <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🏔️ Grand Canyon — Cosa Vedere</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Mather Point</strong> — belvedere principale, vista iconica sul Canyon (South Rim)</li><li><strong>Bright Angel Trail</strong> — sentiero più famoso: scendere fino a Indian Garden (3.2 mi a/r)</li><li><strong>Rim Trail</strong> — percorso pianeggiante lungo il bordo del canyon (13 km)</li><li><strong>Desert View Watchtower</strong> — torre storica a est del rim, vista a 360°</li><li><strong>Yavapai Geology Museum</strong> — spiegazione della formazione del canyon</li><li><strong>Helicopter tour</strong> — da prenotare in anticipo, esperienza indimenticabile</li></ul></div></div>
 
-  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🍽️ Dove Mangiare</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Colazione:</strong> hotel a Las Vegas (partenza presto) o gas station snack</li><li><strong>Pranzo:</strong> <a href="https://www.google.com/maps/search/Bright+Angel+Restaurant+Grand+Canyon" target="_blank">Bright Angel Restaurant</a> (dentro il parco) o picnic al Mather Point</li><li><strong>Cena Williams:</strong> <a href="https://www.google.com/maps/search/Red+Raven+Restaurant+Williams+AZ" target="_blank">Red Raven Restaurant</a>, <a href="https://www.google.com/maps/search/Rod's+Steak+House+Williams+AZ" target="_blank">Rod's Steak House</a>, <a href="https://www.google.com/maps/search/Cruiser's+Cafe+Williams+AZ" target="_blank">Cruiser's Café Bar &amp; Grill</a> o <a href="https://www.google.com/maps/search/Old+Smokys+Restaurant+Williams+AZ" target="_blank">Old Smoky's Restaurant</a> (Rte 66 vibes)</li></ul></div></div>
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🍽️ Dove Mangiare</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Colazione:</strong> hotel a Las Vegas (partenza presto) o gas station snack</li><li><strong>Pranzo:</strong> <a href="https://www.google.com/maps/search/Bright+Angel+Restaurant+Grand+Canyon" target="_blank">Bright Angel Restaurant</a> (dentro il parco) o picnic al Mather Point</li><li><strong>Cena Williams:</strong> <a href="https://www.google.com/maps/search/Red+Raven+Restaurant+Williams+AZ" target="_blank">Red Raven Restaurant</a>, <a href="https://www.google.com/maps/search/Rod's+Steak+House+Williams+AZ" target="_blank">Rod's Steak House</a>, <a href="https://www.google.com/maps/search/Cruisers+Cafe+Williams+AZ" target="_blank">Cruiser's Café Bar &amp; Grill</a> o <a href="https://www.google.com/maps/search/Old+Smokys+Restaurant+Williams+AZ" target="_blank">Old Smoky's Restaurant</a> (Rte 66 vibes)</li></ul></div></div>
 
   <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌡️ Meteo &amp; Abbigliamento</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><div class="meteo-chips"><span class="meteo-chip">🌡️ 28–35°C South Rim</span><span class="meteo-chip">⛈️ Temporali pomeridiani</span><span class="meteo-chip">🧊 Fresco di notte</span></div><ul><li>South Rim a 2.100m — più fresco di Las Vegas ma caldo di giorno</li><li>Temporali pomeridiani frequenti in agosto (monsoni)</li><li>Abbigliamento a strati: caldo di giorno, fresco la sera a Williams</li></ul></div></div>
 
@@ -1027,7 +1025,7 @@ a{color:var(--orange);text-decoration:none}
 
   <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌊 Antelope Canyon — Info Tour</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Antelope Canyon X</strong> (Lower Antelope Canyon) — prenotazione obbligatoria online</li><li>Tour guidato da ranger Navajo: ~1h30, $100-120/persona incluso ingresso Navajo Nation</li><li>I raggi di luce entrano dall'alto tra le 10:00 e le 14:00 in estate</li><li><strong>Horseshoe Bend</strong> — a 10 min da Antelope Canyon, ingresso $10/veicolo, camminata 1.5 mi a/r</li><li>Portare fotocamera: i colori arancio-rosso delle pareti di arenaria sono indimenticabili</li></ul></div></div>
 
-  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🍽️ Dove Mangiare</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Colazione:</strong> <a href="https://www.google.com/maps/search/Mexican+Hat+Lodge+Restaurant+UT" target="_blank">Mexican Hat Lodge</a> o snack in auto</li><li><strong>Pranzo:</strong> <a href="https://www.google.com/maps/search/Wahweap+Marina+Page+AZ" target="_blank">Wahweap Marina snack bar</a> (Lake Powell) o Subway a Page</li><li><strong>Cena:</strong> <a href="https://www.google.com/maps/search/Kanab+Creek+Bakery+UT" target="_blank">Kanab Creek Bakery</a>, <a href="https://www.google.com/maps/search/Renegade+Restaurant+Saloon+Page+AZ" target="_blank">Renegade Restaurant &amp; Saloon</a>, <a href="https://www.google.com/maps/search/Big+John's+Texas+BBQ+Page+AZ" target="_blank">Big John's Texas BBQ</a>, <a href="https://www.google.com/maps/search/The+Rocking+V+Cafe+Kanab+UT" target="_blank">The Rocking V Café</a> o <a href="https://www.google.com/maps/search/Vermillion+45+Restaurant+Kanab+UT" target="_blank">Vermillion 45</a></li></ul></div></div>
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🍽️ Dove Mangiare</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Colazione:</strong> <a href="https://www.google.com/maps/search/Mexican+Hat+Lodge+Restaurant+UT" target="_blank">Mexican Hat Lodge</a> o snack in auto</li><li><strong>Pranzo:</strong> <a href="https://www.google.com/maps/search/Wahweap+Marina+Page+AZ" target="_blank">Wahweap Marina snack bar</a> (Lake Powell) o Subway a Page</li><li><strong>Cena:</strong> <a href="https://www.google.com/maps/search/Kanab+Creek+Bakery+UT" target="_blank">Kanab Creek Bakery</a>, <a href="https://www.google.com/maps/search/Renegade+Restaurant+Saloon+Page+AZ" target="_blank">Renegade Restaurant &amp; Saloon</a>, <a href="https://www.google.com/maps/search/Big+Johns+Texas+BBQ+Page+AZ" target="_blank">Big John's Texas BBQ</a>, <a href="https://www.google.com/maps/search/The+Rocking+V+Cafe+Kanab+UT" target="_blank">The Rocking V Café</a> o <a href="https://www.google.com/maps/search/Vermillion+45+Restaurant+Kanab+UT" target="_blank">Vermillion 45</a></li></ul></div></div>
 
   <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌡️ Meteo &amp; Abbigliamento</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><div class="meteo-chips"><span class="meteo-chip">🌡️ 35–42°C Page</span><span class="meteo-chip">🌡️ 30–38°C Kanab</span><span class="meteo-chip">⛈️ Monsoni possibili</span></div><ul><li>Antelope Canyon: fresco dentro le fessure del canyon (zona ombreggiata)</li><li>Horseshoe Bend: caldo intenso, nessuna ombra — cappello e crema solare obbligatori</li></ul></div></div>
 
@@ -1155,7 +1153,7 @@ a{color:var(--orange);text-decoration:none}
 
   <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌊 11 Ago: Arrivo a San Diego</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li>Volo da <strong>Bozeman (BZN)</strong> → <strong>San Diego (SAN)</strong> (~2h40)</li><li>Checkout Blue Buffalo Resort Island Park → trasferimento aeroporto Bozeman</li><li>Arrivo a San Diego: check-in Baymont Wyndham Downtown</li><li>Prima sera: cena a Gaslamp Quarter o Old Town</li></ul></div></div>
   <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌉 12 Ago: Giornata Libera a San Diego</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Coronado Beach:</strong> spiaggia iconica con vista downtown</li><li><strong>Balboa Park:</strong> il parco più grande di SD — musei, zoo, giardini</li><li><strong>USS Midway Museum:</strong> portaerei storica ormeggiata nel porto</li><li><strong>Old Town San Diego:</strong> storia californiana, ristoranti messicani autentici</li><li><strong>Gaslamp Quarter:</strong> cena e vita notturna nel quartiere storico</li><li><strong>La Jolla Cove:</strong> scogliere, leoni marini, snorkeling</li></ul></div></div>
-  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🍽️ Dove Mangiare</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Colazione:</strong> Cafe 222 (pancakes all'anguria), Better Buzz Coffee</li><li><strong>Pranzo:</strong> <a href="https://www.google.com/maps/search/Oscar's+Mexican+Seafood+San+Diego" target="_blank">Oscar's Mexican Seafood</a> (fish tacos iconici), <a href="https://www.google.com/maps/search/Puesto+San+Diego" target="_blank">Puesto</a></li><li><strong>Cena:</strong> <a href="https://www.google.com/maps/search/Juniper+Ivy+San+Diego" target="_blank">Juniper &amp; Ivy</a>, <a href="https://www.google.com/maps/search/Addison+Restaurant+Del+Mar+San+Diego" target="_blank">Addison</a> (stellato Michelin), <a href="https://www.google.com/maps/search/Searsucker+San+Diego" target="_blank">Searsucker</a></li><li><strong>Birra:</strong> <a href="https://www.google.com/maps/search/Stone+Brewing+World+Bistro+San+Diego" target="_blank">Stone Brewing World Bistro</a>, <a href="https://www.google.com/maps/search/Ballast+Point+Tasting+Room+San+Diego" target="_blank">Ballast Point Tasting Room</a></li></ul></div></div>
+  <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🍽️ Dove Mangiare</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><ul><li><strong>Colazione:</strong> Cafe 222 (pancakes all'anguria), Better Buzz Coffee</li><li><strong>Pranzo:</strong> <a href="https://www.google.com/maps/search/Oscars+Mexican+Seafood+San+Diego" target="_blank">Oscar's Mexican Seafood</a> (fish tacos iconici), <a href="https://www.google.com/maps/search/Puesto+San+Diego" target="_blank">Puesto</a></li><li><strong>Cena:</strong> <a href="https://www.google.com/maps/search/Juniper+Ivy+San+Diego" target="_blank">Juniper &amp; Ivy</a>, <a href="https://www.google.com/maps/search/Addison+Restaurant+Del+Mar+San+Diego" target="_blank">Addison</a> (stellato Michelin), <a href="https://www.google.com/maps/search/Searsucker+San+Diego" target="_blank">Searsucker</a></li><li><strong>Birra:</strong> <a href="https://www.google.com/maps/search/Stone+Brewing+World+Bistro+San+Diego" target="_blank">Stone Brewing World Bistro</a>, <a href="https://www.google.com/maps/search/Ballast+Point+Tasting+Room+San+Diego" target="_blank">Ballast Point Tasting Room</a></li></ul></div></div>
   <div class="collapsible"><div class="collapsible-header" onclick="toggleSection(this)"><span>🌡️ Meteo &amp; Abbigliamento</span><span class="collapsible-icon">▼</span></div><div class="collapsible-body"><div class="meteo-chips"><span class="meteo-chip">🌡️ 22–28°C giorno</span><span class="meteo-chip">🌡️ 18–22°C sera</span><span class="meteo-chip">☀️ Quasi sempre soleggiato</span></div><ul><li>San Diego ha il clima più mite degli USA — "America's Finest City"</li><li>Brezza marina la sera — porta una felpa per le serate sulla spiaggia</li><li>Costume da bagno e crema solare obbligatori</li></ul></div></div>
 </div>
 <!-- END T11 -->
@@ -1688,6 +1686,95 @@ a{color:var(--orange);text-decoration:none}
   <div class="tip-box">💡 <strong>GasBuddy:</strong> Scaricala prima di partire — mostra i prezzi aggiornati in tempo reale. Disponibile offline per zone senza segnale.</div>
   </div>
 
+  <div id="altro-bags" class="altro-panel">
+    <div class="sec-heading">🧳 Bags — Checklist Bagaglio</div>
+    <div style="padding:0 12px 6px;font-size:12px;color:var(--muted)">Tocca ogni voce per spuntarla. Lo stato viene salvato nel browser.</div>
+
+    <div class="bags-cat" id="cat-abbigliamento">
+      <div class="bags-cat-title">👕 Abbigliamento <span class="badge" id="badge-abbigliamento">0/12</span></div>
+      <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">T-shirt leggere (5-6)</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Camicia maniche lunghe (2-3)</div><div class="bags-note">Protegge dal sole in escursione</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Felpa o pile medio (1-2)</div><div class="bags-note">Yosemite, Bryce, Yellowstone: scende a 10°C la sera</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Giacca a vento leggera (1)</div><div class="bags-note">Yellowstone e alta quota</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Pantaloni lunghi leggeri (2)</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Pantaloncini (3-4)</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Costume da bagno (2)</div><div class="bags-note">Las Vegas hotel pools e soste</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Biancheria (7-8 giorni)</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Calzini tecnici da trekking (3-4 paia)</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">⚠️ Scarpe da trekking</div><div class="bags-note">Fondamentali per Yosemite, Grand Canyon, Bryce, Yellowstone</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Ciabatte / sandali leggeri</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">☀️ Cappello a tesa larga</div><div class="bags-note">Death Valley e canyon</div></div></div>
+    </div>
+
+    <div class="bags-cat" id="cat-sole">
+      <div class="bags-cat-title">☀️ Sole · Caldo · Protezione <span class="badge" id="badge-sole">0/5</span></div>
+      <div class="bags-item" onclick="toggleBags(this,'sole')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Crema solare SPF 50+</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'sole')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Burrocacao con protezione solare</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'sole')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Occhiali da sole (lenti polarizzate)</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'sole')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Gaiter / buff copri-collo</div><div class="bags-note">Death Valley e canyon sabbiosi</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'sole')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">⚠️ Borraccia termica 1L a testa</div><div class="bags-note">Critico in Death Valley</div></div></div>
+    </div>
+
+    <div class="bags-cat" id="cat-hike">
+      <div class="bags-cat-title">🥾 Escursionismo <span class="badge" id="badge-hike">0/4</span></div>
+      <div class="bags-item" onclick="toggleBags(this,'hike')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Zaino da day-hike 20-25L (1-2 nel gruppo)</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'hike')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Bastoncini telescopici (opzionali)</div><div class="bags-note">Utili a Bryce per i tornanti</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'hike')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Cerotti e kit anti-vesciche (Compeed)</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'hike')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Fascia / ginocchiera (se necessario)</div></div></div>
+    </div>
+
+    <div class="bags-cat" id="cat-farmaci">
+      <div class="bags-cat-title">💊 Farmaci · Salute <span class="badge" id="badge-farmaci">0/9</span></div>
+      <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Antidolorifici (ibuprofene, paracetamolo)</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Antidiarroici</div><div class="bags-note">Cambi frequenti di alimentazione</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Antistaminici</div><div class="bags-note">Pollini e polveri nei deserti</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">⚠️ Spray antizanzare</div><div class="bags-note">Yellowstone: pieno di insetti la sera</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Pomata cortisonica leggera</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Cerotti vari</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">⚠️ Elettroliti / sali reidratanti</div><div class="bags-note">Urgente per Death Valley</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Gel disinfettante mani</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Diamox (mal di altitudine)</div><div class="bags-note">Bryce e SLC a ~2.500m — chiedere al medico</div></div></div>
+    </div>
+
+    <div class="bags-cat" id="cat-tech">
+      <div class="bags-cat-title">📱 Elettronica <span class="badge" id="badge-tech">0/7</span></div>
+      <div class="bags-item" onclick="toggleBags(this,'tech')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Adattatore americano Type A/B (2-3)</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'tech')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Powerbank 20.000 mAh</div><div class="bags-note">GPS e app consumano tantissimo in auto</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'tech')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Cavetti USB per tutti i dispositivi</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'tech')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Multi-presa USB da auto</div><div class="bags-note">Fondamentale per 6 persone in auto</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'tech')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Macchina fotografica + schede SD extra</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'tech')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Auricolari</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'tech')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Supporto smartphone da auto (2)</div></div></div>
+    </div>
+
+    <div class="bags-cat" id="cat-road">
+      <div class="bags-cat-title">🚗 Road Trip <span class="badge" id="badge-road">0/6</span></div>
+      <div class="bags-item" onclick="toggleBags(this,'road')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Occhiali da sole da guida anti-riflesso</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'road')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Coperta leggera</div><div class="bags-note">L'aria condizionata negli USA è aggressiva</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'road')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Cuscino da viaggio per passeggeri</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'road')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Borsa termica / borsetta frigo</div><div class="bags-note">Per acqua e snack in Death Valley</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'road')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Sacchetto spazzatura in auto</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'road')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Snack energetici per trasferimenti lunghi</div></div></div>
+    </div>
+
+    <div class="bags-cat" id="cat-docs">
+      <div class="bags-cat-title">📄 Documenti <span class="badge" id="badge-docs">0/6</span></div>
+      <div class="bags-item" onclick="toggleBags(this,'docs')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Passaporto (valido 6+ mesi oltre rientro)</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'docs')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">⚠️ ESTA (stampato + copia digitale)</div><div class="bags-note">Da richiedere online prima della partenza</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'docs')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Patente + Patente Internazionale</div><div class="bags-note">Spesso richiesta al noleggio</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'docs')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Conferme prenotazioni hotel (offline)</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'docs')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Numero polizza assicurazione viaggio</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'docs')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Numero emergenze carta di credito</div></div></div>
+    </div>
+
+    <div class="bags-cat" id="cat-soldi">
+      <div class="bags-cat-title">💳 Soldi <span class="badge" id="badge-soldi">0/2</span></div>
+      <div class="bags-item" onclick="toggleBags(this,'soldi')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Carta senza commissioni estero (Revolut, Wise...)</div><div class="bags-note">Le pompe self-service richiedono spesso ZIP code USA</div></div></div>
+      <div class="bags-item" onclick="toggleBags(this,'soldi')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Dollari in contanti</div><div class="bags-note">Per tips e posti senza POS</div></div></div>
+    </div>
+
+    <button onclick="resetBags()" style="display:block;margin:14px auto 8px;padding:8px 24px;background:rgba(255,165,0,.12);border:1px solid #ffa500;color:#ffa500;font-size:12px;font-weight:700;border-radius:20px;cursor:pointer;">↺ Reset checklist</button>
+  </div>
 </div>
 <!-- END ALTRO -->
 
@@ -1964,148 +2051,40 @@ function initAltro() {
   if (pageVoli  && panelVoli)  { while(pageVoli.firstChild)  panelVoli.appendChild(pageVoli.firstChild);   pageVoli.style.display='none';  }
 }
 
-  <div id="altro-bags" class="altro-panel">
-    <div class="sec-heading">🧳 Bags — Checklist Bagaglio</div>
-    <div style="padding:0 12px 4px;font-size:12px;color:var(--muted)">Tocca ogni voce per spuntarla. Lo stato viene salvato nel browser.</div>
-    <div id="bags-wrap" style="padding:0 0 16px">
-
-      <!-- ABBIGLIAMENTO -->
-      <div class="bags-cat" id="cat-abbigliamento">
-        <div class="bags-cat-title">👕 Abbigliamento <span class="badge" id="badge-abbigliamento">0 / 12</span></div>
-        <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">T-shirt leggere (5-6)</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Camicia maniche lunghe (2-3)</div><div class="bags-note">Protegge dal sole in escursione</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Felpa o pile medio (1-2)</div><div class="bags-note">Yosemite, Bryce, Yellowstone: scende a 10°C la sera</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Giacca a vento leggera (1)</div><div class="bags-note">Yellowstone e alta quota</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Pantaloni lunghi leggeri (2)</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Pantaloncini (3-4)</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Costume da bagno (2)</div><div class="bags-note">Las Vegas hotel pools e soste</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Biancheria (7-8 giorni)</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Calzini tecnici da trekking (3-4 paia)</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">⚠️ Scarpe da trekking</div><div class="bags-note">Fondamentali per Yosemite, Grand Canyon, Bryce, Yellowstone</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Ciabatte / sandali leggeri</div><div class="bags-note">Hotel e città</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'abbigliamento')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">☀️ Cappello a tesa larga</div><div class="bags-note">Death Valley e canyon sono impietosi</div></div></div>
-      </div>
-
-      <!-- SOLE / PROTEZIONE -->
-      <div class="bags-cat" id="cat-sole">
-        <div class="bags-cat-title">☀️ Sole · Caldo · Protezione <span class="badge" id="badge-sole">0 / 5</span></div>
-        <div class="bags-item" onclick="toggleBags(this,'sole')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Crema solare SPF 50+</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'sole')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Burrocacao con protezione solare</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'sole')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Occhiali da sole (lenti polarizzate)</div><div class="bags-note">Ideali nei canyon</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'sole')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Gaiter / buff copri-collo</div><div class="bags-note">Death Valley e canyon sabbiosi</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'sole')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">⚠️ Borraccia termica 1L a testa</div><div class="bags-note">Critico in Death Valley</div></div></div>
-      </div>
-
-      <!-- ESCURSIONISMO -->
-      <div class="bags-cat" id="cat-hike">
-        <div class="bags-cat-title">🥾 Escursionismo <span class="badge" id="badge-hike">0 / 4</span></div>
-        <div class="bags-item" onclick="toggleBags(this,'hike')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Zaino da day-hike 20-25L (1-2 nel gruppo)</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'hike')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Bastoncini telescopici (opzionali)</div><div class="bags-note">Utili a Bryce per i tornanti</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'hike')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Cerotti e kit anti-vesciche (Compeed)</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'hike')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Fascia / ginocchiera (se necessario)</div></div></div>
-      </div>
-
-      <!-- FARMACI -->
-      <div class="bags-cat" id="cat-farmaci">
-        <div class="bags-cat-title">💊 Farmaci · Salute <span class="badge" id="badge-farmaci">0 / 9</span></div>
-        <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Antidolorifici (ibuprofene, paracetamolo)</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Antidiarroici</div><div class="bags-note">Cambi frequenti di alimentazione</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Antistaminici</div><div class="bags-note">Pollini e polveri nei deserti</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">⚠️ Spray antizanzare</div><div class="bags-note">Yellowstone: pieno di insetti la sera</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Pomata cortisonica leggera</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Cerotti vari</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">⚠️ Elettroliti / sali reidratanti</div><div class="bags-note">Urgente per Death Valley</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Gel disinfettante mani</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'farmaci')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Diamox (mal di altitudine)</div><div class="bags-note">Bryce e SLC a ~2.500m — chiedere al medico</div></div></div>
-      </div>
-
-      <!-- ELETTRONICA -->
-      <div class="bags-cat" id="cat-tech">
-        <div class="bags-cat-title">📱 Elettronica <span class="badge" id="badge-tech">0 / 7</span></div>
-        <div class="bags-item" onclick="toggleBags(this,'tech')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Adattatore americano Type A/B (2-3 nel gruppo)</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'tech')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Powerbank 20.000 mAh</div><div class="bags-note">GPS e app consumano tantissimo in auto</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'tech')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Cavetti USB per tutti i dispositivi</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'tech')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Multi-presa USB da auto</div><div class="bags-note">Fondamentale per 6 persone in auto</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'tech')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Macchina fotografica + schede SD extra</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'tech')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Auricolari</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'tech')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Supporto smartphone da auto (2)</div></div></div>
-      </div>
-
-      <!-- ROAD TRIP -->
-      <div class="bags-cat" id="cat-road">
-        <div class="bags-cat-title">🚗 Road Trip <span class="badge" id="badge-road">0 / 6</span></div>
-        <div class="bags-item" onclick="toggleBags(this,'road')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Occhiali da sole da guida anti-riflesso</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'road')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Coperta leggera</div><div class="bags-note">L'aria condizionata negli USA è aggressiva</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'road')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Cuscino da viaggio per passeggeri</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'road')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Borsa termica / borsetta frigo</div><div class="bags-note">Per acqua e snack in Death Valley</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'road')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Sacchetto spazzatura in auto</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'road')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Snack energetici per trasferimenti lunghi</div></div></div>
-      </div>
-
-      <!-- DOCUMENTI -->
-      <div class="bags-cat" id="cat-docs">
-        <div class="bags-cat-title">📄 Documenti <span class="badge" id="badge-docs">0 / 6</span></div>
-        <div class="bags-item" onclick="toggleBags(this,'docs')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Passaporto (valido 6+ mesi oltre rientro)</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'docs')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">⚠️ ESTA (stampato + copia digitale)</div><div class="bags-note">Da richiedere online prima della partenza</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'docs')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Patente + Patente Internazionale</div><div class="bags-note">Spesso richiesta al noleggio</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'docs')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Conferme prenotazioni hotel (offline)</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'docs')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Numero polizza assicurazione viaggio</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'docs')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Numero emergenze carta di credito</div></div></div>
-      </div>
-
-      <!-- SOLDI -->
-      <div class="bags-cat" id="cat-soldi">
-        <div class="bags-cat-title">💳 Soldi <span class="badge" id="badge-soldi">0 / 2</span></div>
-        <div class="bags-item" onclick="toggleBags(this,'soldi')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Carta senza commissioni estero (Revolut, Wise...)</div><div class="bags-note">Le pompe self-service richiedono spesso ZIP code USA</div></div></div>
-        <div class="bags-item" onclick="toggleBags(this,'soldi')"><div class="bags-cb"><span class="bags-cb-tick">✓</span></div><div><div class="bags-label">Dollari in contanti</div><div class="bags-note">Per tips e posti senza POS</div></div></div>
-      </div>
-
-      <button class="bags-reset" onclick="resetBags()">↺ Reset checklist</button>
-    </div>
-  </div>
-
-
-  // ── BAGS CHECKLIST ──
-  var BAGS_KEY = 'bags_checked_v1';
-  function bagsGetChecked() { try { return JSON.parse(localStorage.getItem(BAGS_KEY) || '{}'); } catch(e) { return {}; } }
-  function bagsSave(state) { localStorage.setItem(BAGS_KEY, JSON.stringify(state)); }
+  // BAGS CHECKLIST
+  var BAGS_KEY = 'bags_v1';
+  function bagsState() { try { return JSON.parse(localStorage.getItem(BAGS_KEY)||'{}'); } catch(e){return {};} }
   function toggleBags(el, cat) {
-    var state = bagsGetChecked();
+    var state = bagsState();
     var items = el.closest('.bags-cat').querySelectorAll('.bags-item');
     var idx = Array.prototype.indexOf.call(items, el);
-    var key = cat + '_' + idx;
-    if (state[key]) { delete state[key]; el.classList.remove('checked'); }
-    else { state[key] = 1; el.classList.add('checked'); }
-    bagsSave(state);
-    updateBagsBadge(cat);
+    var key = cat+'_'+idx;
+    if(state[key]){delete state[key];el.classList.remove('checked');}
+    else{state[key]=1;el.classList.add('checked');}
+    localStorage.setItem(BAGS_KEY, JSON.stringify(state));
+    bagsBadge(cat);
   }
-  function updateBagsBadge(cat) {
-    var catEl = document.getElementById('cat-' + cat);
-    if (!catEl) return;
-    var items = catEl.querySelectorAll('.bags-item');
-    var state = bagsGetChecked();
-    var checked = 0;
-    items.forEach(function(item, idx) {
-      var key = cat + '_' + idx;
-      if (state[key]) { item.classList.add('checked'); checked++; } else { item.classList.remove('checked'); }
-    });
-    var badge = document.getElementById('badge-' + cat);
-    if (badge) badge.textContent = checked + ' / ' + items.length;
+  function bagsBadge(cat) {
+    var el = document.getElementById('cat-'+cat); if(!el) return;
+    var items = el.querySelectorAll('.bags-item');
+    var state = bagsState(); var n=0;
+    items.forEach(function(it,i){ if(state[cat+'_'+i]){it.classList.add('checked');n++;}else{it.classList.remove('checked');} });
+    var b=document.getElementById('badge-'+cat); if(b) b.textContent=n+'/'+items.length;
   }
   function resetBags() {
     localStorage.removeItem(BAGS_KEY);
-    ['abbigliamento','sole','hike','farmaci','tech','road','docs','soldi'].forEach(updateBagsBadge);
+    ['abbigliamento','sole','hike','farmaci','tech','road','docs','soldi'].forEach(bagsBadge);
   }
   function initBags() {
-    ['abbigliamento','sole','hike','farmaci','tech','road','docs','soldi'].forEach(updateBagsBadge);
+    ['abbigliamento','sole','hike','farmaci','tech','road','docs','soldi'].forEach(bagsBadge);
   }
 
-function switchAltroTab(tab) {
+  function switchAltroTab(tab) {
   document.querySelectorAll('.altro-tab').forEach(function(t) { t.classList.remove('active'); });
   document.querySelectorAll('.altro-panel').forEach(function(p) { p.classList.remove('active'); });
   document.getElementById('atab-' + tab).classList.add('active');
   document.getElementById('altro-' + tab).classList.add('active');
-  if (tab === 'bags') initBags();
+  if(tab==='bags') initBags();
 }
 function showPage(name) {
   document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
