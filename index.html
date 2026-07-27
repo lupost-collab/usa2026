@@ -390,7 +390,11 @@ a{color:var(--orange);text-decoration:none}
 }
 .clima-temp-hi{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:900;color:var(--orange);line-height:1}
 .clima-temp-lo{font-size:11px;color:var(--muted);margin-top:1px}
-.clima-card-body{padding:12px 14px}
+.clima-card-header{cursor:pointer;user-select:none}
+.clima-card-body{padding:12px 14px;display:none}
+.clima-card.open .clima-card-body{display:block}
+.clima-chevron{margin-left:8px;flex-shrink:0;font-size:14px;transition:transform .25s;color:var(--muted)}
+.clima-card.open .clima-chevron{transform:rotate(180deg)}
 .clima-desc{font-size:13px;color:var(--text);line-height:1.6;margin-bottom:10px}
 .clima-abbigliamento{list-style:none;padding:0;margin:0 0 8px}
 .clima-abbigliamento li{
@@ -2100,6 +2104,17 @@ function initAltro() {
   function initBags() {
     ['abbigliamento','sole','hike','farmaci','tech','road','docs','soldi'].forEach(bagsBadge);
   }
+
+  // CLIMA COLLAPSIBLE
+  document.querySelectorAll('.clima-card-header').forEach(function(hdr){
+    var chevron = document.createElement('span');
+    chevron.className = 'clima-chevron';
+    chevron.textContent = '▼';
+    hdr.appendChild(chevron);
+    hdr.addEventListener('click', function(){
+      hdr.closest('.clima-card').classList.toggle('open');
+    });
+  });
 
   function switchAltroTab(tab) {
   document.querySelectorAll('.altro-tab').forEach(function(t) { t.classList.remove('active'); });
