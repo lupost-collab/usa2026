@@ -2355,6 +2355,7 @@ function initAltro() {
   document.getElementById('atab-' + tab).classList.add('active');
   document.getElementById('altro-' + tab).classList.add('active');
   if(tab==='bags') initBags();
+  if(tab==='mallgas') switchMallGas('mall');
 }
 function switchMallGas(sub) {
   var mallEl = document.getElementById('mg-mall');
@@ -2362,11 +2363,11 @@ function switchMallGas(sub) {
   var btnMall = document.getElementById('mgtab-mall');
   var btnGas  = document.getElementById('mgtab-gas');
   if(sub==='mall'){
-    mallEl.style.display=''; gasEl.style.display='none';
+    mallEl.style.display='block'; gasEl.style.display='none';
     btnMall.style.background='var(--orange)'; btnMall.style.color='#fff';
     btnGas.style.background='var(--card)';    btnGas.style.color='var(--muted)';
   } else {
-    gasEl.style.display='';  mallEl.style.display='none';
+    gasEl.style.display='block';  mallEl.style.display='none';
     btnGas.style.background='var(--orange)';  btnGas.style.color='#fff';
     btnMall.style.background='var(--card)';   btnMall.style.color='var(--muted)';
   }
