@@ -73,9 +73,8 @@ a{color:var(--orange);text-decoration:none}
 .nav-item.active .nav-icon{transform:scale(1.1)}
 .nav-item:active{transform:scale(.94);background:rgba(255,255,255,.07)}
 /* ── ALTRO SUB-TABS ── */
-.altro-tabs{display:flex;gap:5px;padding:10px 12px 0;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.altro-tabs::-webkit-scrollbar{display:none}
-.altro-tab{flex:0 0 auto;display:flex;align-items:center;justify-content:center;text-align:center;white-space:nowrap;padding:8px 10px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--card);color:var(--muted);font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all .18s}
+.altro-tabs{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;padding:10px 10px 0}
+.altro-tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;white-space:normal;padding:6px 2px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--card);color:var(--muted);font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;cursor:pointer;transition:all .18s;line-height:1.2}
 .altro-tab.active{background:var(--orange);color:#fff;border-color:var(--orange)}
 .altro-panel{display:none}
 .altro-panel.active{display:block}
@@ -1524,12 +1523,12 @@ a{color:var(--orange);text-decoration:none}
     <div class="sub">Clima · Voli · Mall &amp; Gas · Bags · Doc Share · Info</div>
   </div>
   <div class="altro-tabs">
-    <div class="altro-tab active" id="atab-clima" onclick="switchAltroTab('clima')">🌡️ Clima</div>
-    <div class="altro-tab" id="atab-voli" onclick="switchAltroTab('voli')">✈️ Voli</div>
-    <div class="altro-tab" id="atab-mallgas" onclick="switchAltroTab('mallgas')">🛍️ Mall &amp; Gas</div>
-    <div class="altro-tab" id="atab-bags" onclick="switchAltroTab('bags')">🧳 Bags</div>
-    <div class="altro-tab" id="atab-docshare" onclick="switchAltroTab('docshare')">📁 Doc Share</div>
-    <div class="altro-tab" id="atab-info" onclick="switchAltroTab('info')">ℹ️ Info</div>
+    <div class="altro-tab active" id="atab-clima" onclick="switchAltroTab('clima')">🌡️<br>Clima</div>
+    <div class="altro-tab" id="atab-voli" onclick="switchAltroTab('voli')">✈️<br>Voli</div>
+    <div class="altro-tab" id="atab-mallgas" onclick="switchAltroTab('mallgas')">🛍️<br>Mall&amp;Gas</div>
+    <div class="altro-tab" id="atab-bags" onclick="switchAltroTab('bags')">🧳<br>Bags</div>
+    <div class="altro-tab" id="atab-docshare" onclick="switchAltroTab('docshare')">📁<br>Docs</div>
+    <div class="altro-tab" id="atab-info" onclick="switchAltroTab('info')">ℹ️<br>Info</div>
   </div>
   <div id="altro-clima" class="altro-panel active"></div>
   <div id="altro-voli" class="altro-panel"></div>
