@@ -1951,11 +1951,11 @@ function renderWeather(data, label, containerId, chipId) {
   var lat = data.latitude ? data.latitude.toFixed(4) : '';
   var lon = data.longitude ? data.longitude.toFixed(4) : '';
   var omLink = lat && lon
-    ? 'https://open-meteo.com/en/docs#latitude=' + lat + '&longitude=' + lon
-    : 'https://open-meteo.com';
+    ? 'https://wttr.in/' + lat + ',' + lon + '?lang=it'
+    : 'https://wttr.in';
   el.innerHTML = '<div class="weather-header">🌤️ Meteo ' + label + ' — 7 giorni</div>'
     + '<div class="weather-days">' + daysHtml + '</div>'
-    + '<div class="weather-source">📍 ' + label + ' &nbsp;·&nbsp; Fonte: <a href="' + omLink + '" target="_blank" rel="noopener">Open-Meteo</a></div>';
+    + '<div class="weather-source">📍 ' + label + ' &nbsp;·&nbsp; Fonte: <a href="' + omLink + '" target="_blank" rel="noopener">wttr.in</a></div>';
 }
 
 // ── LOAD HOME WEATHER CHIPS ──
@@ -2153,8 +2153,8 @@ function initAltro() {
     var lat = data.latitude ? data.latitude.toFixed(4) : '';
     var lon = data.longitude ? data.longitude.toFixed(4) : '';
     var omLink = lat && lon
-      ? 'https://open-meteo.com/en/docs#latitude=' + lat + '&longitude=' + lon
-      : 'https://open-meteo.com';
+      ? 'https://wttr.in/' + lat + ',' + lon + '?lang=it'
+      : 'https://wttr.in';
     var locName = label || '';
     var html = '<div class="weather-widget" style="margin:0 0 10px;">'
       + '<div class="weather-header">🌤️ Previsioni 7 giorni</div>'
@@ -2175,7 +2175,7 @@ function initAltro() {
     html += '</div>'
       + '<div class="weather-source clima-source">'
       + (locName ? '📍 ' + locName + ' &nbsp;·&nbsp; ' : '')
-      + 'Fonte: <a href="' + omLink + '" target="_blank" rel="noopener">Open-Meteo</a>'
+      + 'Fonte: <a href="' + omLink + '" target="_blank" rel="noopener">wttr.in</a>'
       + '</div></div>';
     slot.innerHTML = html;
   }
