@@ -49,13 +49,19 @@ a{color:var(--orange);text-decoration:none}
   padding-bottom:100px;
 }
 
-/* ── STICKY HEADER PER TRIP E HOTEL ── */
-#page-itinerario .page-header,
-#page-hotel .page-header {
+#page-altro .page-header {
   flex-shrink:0;
   position:sticky;
   top:0;
   z-index:10;
+}
+#page-altro .altro-tabs {
+  flex-shrink:0;
+  position:sticky;
+  top:0;
+  z-index:9;
+  background:var(--bg);
+  padding-bottom:6px;
 }
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
@@ -1676,8 +1682,8 @@ a{color:var(--orange);text-decoration:none}
     <div class="sub">Clima · Voli · Mall &amp; Gas · Bags · Doc Share · Info</div></div>
     <div class="page-header-spacer"></div>
   </div>
-  <div class="page-body">
-  <div class="altro-tabs">
+  <div class="page-body" style="display:flex;flex-direction:column;">
+  <div class="altro-tabs" style="flex-shrink:0;">
     <div class="altro-tab active" id="atab-clima" onclick="switchAltroTab('clima')"><span class="ti">🌡️</span>Clima</div>
     <div class="altro-tab" id="atab-voli" onclick="switchAltroTab('voli')"><span class="ti">✈️</span>Voli</div>
     <div class="altro-tab" id="atab-mallgas" onclick="switchAltroTab('mallgas')"><span class="ti">🛍️</span>Mall&amp;Gas</div>
@@ -1685,6 +1691,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="altro-tab" id="atab-bags" onclick="switchAltroTab('bags')"><span class="ti">🧳</span>Bags</div>
     <div class="altro-tab" id="atab-info" onclick="switchAltroTab('info')"><span class="ti">ℹ️</span>Info</div>
   </div>
+  <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;">
   <div id="altro-clima" class="altro-panel active"></div>
   <div id="altro-voli" class="altro-panel"></div>
   <div id="altro-mallgas" class="altro-panel">
@@ -1941,7 +1948,7 @@ a{color:var(--orange);text-decoration:none}
 
   <div id="altro-docshare" class="altro-panel">
     <div style="margin:24px 16px 16px;">
-      <a href="https://www.dropbox.com/scl/fo/tignk1mjwxeyecuwhukut/AHlWJOv20KrbRsVq8zEh1Ys?rlkey=ku0q1oejjyed5wzfvekde4v9w&st=nie5gmfz&dl=0" target="_blank" style="display:flex;align-items:center;gap:14px;background:rgba(0,100,255,0.12);border:1px solid rgba(0,100,255,0.35);border-radius:14px;padding:20px 18px;text-decoration:none;color:var(--text);">
+      <a href="https://www.dropbox.com/scl/fo/tignk1mjwxeyecuwhukut/AHlWJOv20KrbRsVq8zEh1Ys?rlkey=ku0q1oejjyed5wzfvekde4v9w&st=nie5gmfz&dl=0" onclick="window.location.href=this.href;return false;" target="_blank" style="display:flex;align-items:center;gap:14px;background:rgba(0,100,255,0.12);border:1px solid rgba(0,100,255,0.35);border-radius:14px;padding:20px 18px;text-decoration:none;color:var(--text);">
         <span style="font-size:40px;">📂</span>
         <div>
           <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:#8ab4f8;">Documenti Condivisi</div>
@@ -1953,7 +1960,7 @@ a{color:var(--orange);text-decoration:none}
 
   <div id="altro-info" class="altro-panel"></div>
 </div>
-  </div>
+  </div></div><!-- close scroll-wrapper + page-body -->
 <!-- END ALTRO -->
 
 <!-- ═══════════════════════ BOTTOM NAV ═══════════════════════ -->
