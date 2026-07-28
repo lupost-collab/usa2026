@@ -2474,10 +2474,9 @@ document.addEventListener('click', function(e) {
     if (isMobile) {
       window.location.href = url;
     } else {
-      // Converte comgooglemaps:// → https://maps.google.com/
-      var webUrl = url
-        .replace('comgooglemaps://', 'https://maps.google.com/')
-        .replace('maps.google.com//maps', 'maps.google.com/maps');
+      // Estrai solo i parametri dopo comgooglemaps:// o comgooglemaps://maps.google.com/
+      var params = url.replace(/^comgooglemaps:\/\/(maps\.google\.com\/)?/, '');
+      var webUrl = 'https://maps.google.com/' + params;
       window.open(webUrl, '_blank');
     }
     return;
