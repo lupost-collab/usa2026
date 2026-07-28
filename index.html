@@ -2469,11 +2469,20 @@ document.addEventListener('click', function(e) {
   e.preventDefault();
   e.stopPropagation();
   if (url.indexOf('comgooglemaps://') === 0) {
-    // Apre Google Maps nativa (richiede app installata su iOS)
-    window.location.href = url;
+    // Su mobile apre Google Maps nativa, su desktop fallback a URL web
+    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      window.location.href = url;
+    } else {
+      // Converte comgooglemaps:// → https://maps.google.com/
+      var webUrl = url
+        .replace('comgooglemaps://', 'https://maps.google.com/')
+        .replace('maps.google.com//maps', 'maps.google.com/maps');
+      window.open(webUrl, '_blank');
+    }
     return;
   }
-  window.location.href = url;
+  window.open(url, '_blank');
 }, true);
 
 // ── PWA MANIFEST ──
