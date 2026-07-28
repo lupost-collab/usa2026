@@ -1682,7 +1682,7 @@ a{color:var(--orange);text-decoration:none}
     </div>
     <div class="page-header-spacer"></div>
   </div>
-  <div class="page-body" style="display:flex;flex-direction:column;overflow:hidden;">
+  <div class="page-body" style="display:flex;flex-direction:column;">
   <div class="altro-tabs" style="flex-shrink:0;">
     <div class="altro-tab active" id="atab-clima" onclick="switchAltroTab('clima')"><span class="ti">🌡️</span>Clima</div>
     <div class="altro-tab" id="atab-voli" onclick="switchAltroTab('voli')"><span class="ti">✈️</span>Voli</div>
@@ -1692,7 +1692,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="altro-tab" id="atab-info" onclick="switchAltroTab('info')"><span class="ti">ℹ️</span>Info</div>
   </div>
   <!-- sotto-tab Mall / Gas: sticky fuori dallo scroll -->
-  <div id="mallgas-subtabs" style="display:none;flex-shrink:0;padding:6px 12px 4px;background:var(--bg);">
+  <div id="mallgas-subtabs" style="display:none;flex-shrink:0;padding:6px 12px 4px;background:var(--bg);position:sticky;top:0;z-index:10;">
     <div style="display:flex;border-radius:8px;overflow:hidden;border:1px solid var(--border);">
       <button id="mgtab-mall" onclick="switchMallGas('mall')" style="flex:1;padding:9px 0;background:var(--orange);color:#fff;border:none;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;cursor:pointer;">🛍️ Mall</button>
       <button id="mgtab-gas"  onclick="switchMallGas('gas')"  style="flex:1;padding:9px 0;background:var(--card);color:var(--muted);border:none;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;cursor:pointer;">⛽ Gas</button>
