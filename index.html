@@ -2469,15 +2469,15 @@ document.addEventListener('click', function(e) {
   e.preventDefault();
   e.stopPropagation();
   if (url.indexOf('comgooglemaps://') === 0) {
-    // Su mobile apre Google Maps nativa, su desktop fallback a URL web
+    var params = url.replace(/^comgooglemaps:\/\/(maps\.google\.com\/)?/, '');
+    var webUrl = 'https://maps.google.com/' + params;
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    // Su mobile prova l'app nativa, poi fallback al web dopo 500ms
     if (isMobile) {
       window.location.href = url;
+      setTimeout(function(){ window.location.href = webUrl; }, 500);
     } else {
-      // Estrai solo i parametri dopo comgooglemaps:// o comgooglemaps://maps.google.com/
-      var params = url.replace(/^comgooglemaps:\/\/(maps\.google\.com\/)?/, '');
-      var webUrl = 'https://maps.google.com/' + params;
-      window.open(webUrl, '_blank');
+      window.location.href = webUrl;
     }
     return;
   }
