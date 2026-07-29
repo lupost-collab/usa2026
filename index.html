@@ -121,7 +121,7 @@ a{color:var(--orange);text-decoration:none}
 .altro-tab br + *,.altro-tab-icon{font-size:18px}
 .altro-tab .ti{font-size:20px;margin-bottom:2px;display:block}
 .altro-tab.active{background:var(--orange);color:#fff;border-color:var(--orange)}
-.altro-panel{display:none;overflow-y:auto;}
+.altro-panel{display:none;overflow-y:auto;flex:1;min-height:0;}
 .altro-panel.active{display:block;}
 #altro-docshare.active{display:flex;flex-direction:column;align-items:center;padding-top:12px;}
 
@@ -1702,7 +1702,7 @@ a{color:var(--orange);text-decoration:none}
     </div>
     <div class="page-header-spacer"></div>
   </div>
-  <div class="page-body" style="display:flex;flex-direction:column;">
+  <div class="page-body" style="display:flex;flex-direction:column;overflow:hidden;">
   <div class="altro-tabs" style="flex-shrink:0;">
     <div class="altro-tab active" id="atab-clima" onclick="switchAltroTab('clima')"><span class="ti">🌡️</span>Clima</div>
     <div class="altro-tab" id="atab-voli" onclick="switchAltroTab('voli')"><span class="ti">✈️</span>Voli</div>
@@ -1710,8 +1710,8 @@ a{color:var(--orange);text-decoration:none}
     <div class="altro-tab" id="atab-docshare" onclick="switchAltroTab('docshare')"><span class="ti"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Dropbox_Icon.svg/120px-Dropbox_Icon.svg.png" style="width:20px;height:20px;object-fit:contain;vertical-align:middle;"></span>Docs</div>
     <div class="altro-tab" id="atab-bags" onclick="switchAltroTab('bags')"><span class="ti">🧳</span>Bags</div>
     <div class="altro-tab" id="atab-spese" onclick="switchAltroTab('spese')"><span class="ti">💰</span>Spese</div>
-    <div class="altro-tab" id="atab-info" onclick="switchAltroTab('info')"><span class="ti">ℹ️</span>Info</div>
     <div class="altro-tab" id="atab-valuta" onclick="switchAltroTab('valuta')"><span class="ti">💱</span>Valuta</div>
+    <div class="altro-tab" id="atab-info" onclick="switchAltroTab('info')"><span class="ti">ℹ️</span>Info</div>
   </div>
   <!-- sotto-tab Mall / Gas: sticky fuori dallo scroll -->
   <div id="mallgas-subtabs" style="display:none;flex-shrink:0;padding:6px 12px 4px;background:var(--bg);position:sticky;top:0;z-index:10;">
