@@ -149,7 +149,7 @@ a{color:var(--orange);text-decoration:none}
 .altro-tab .ti{font-size:20px;margin-bottom:2px;display:block}
 .altro-tab.active{background:var(--orange);color:#fff;border-color:var(--orange)}
 .altro-panel{display:none;}
-.altro-panel.active{display:block;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1;min-height:0;padding-bottom:100px;}
+.altro-panel.active{display:block;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1;min-height:0;padding:0 0 100px 0;}
 #page-altro .page-body{display:flex;flex-direction:column;overflow:hidden;flex:1;min-height:0;padding-bottom:0;}
 #altro-docshare.active{display:flex;flex-direction:column;align-items:center;}
 #page-altro .altro-tabs{flex-shrink:0;}
@@ -2452,9 +2452,9 @@ function initAltro() {
   var panelClima = document.getElementById('altro-clima');
   var panelInfo  = document.getElementById('altro-info');
   var panelVoli  = document.getElementById('altro-voli');
-  if (pageClima && panelClima) { var pb=pageClima.querySelector('.page-body'); if(pb){while(pb.firstChild) panelClima.appendChild(pb.firstChild);} pageClima.style.display='none'; }
-  if (pageInfo  && panelInfo)  { var pb=pageInfo.querySelector('.page-body');  if(pb){while(pb.firstChild) panelInfo.appendChild(pb.firstChild);}  pageInfo.style.display='none';  }
-  if (pageVoli  && panelVoli)  { var pb=pageVoli.querySelector('.page-body');  if(pb){while(pb.firstChild) panelVoli.appendChild(pb.firstChild);}  pageVoli.style.display='none';  }
+  if (pageClima && panelClima) { var h=pageClima.querySelector('.page-header'); if(h) h.remove(); var pb=pageClima.querySelector('.page-body'); if(pb){while(pb.firstChild) panelClima.appendChild(pb.firstChild);} pageClima.style.display='none'; }
+  if (pageInfo  && panelInfo)  { var h=pageInfo.querySelector('.page-header');  if(h) h.remove(); var pb=pageInfo.querySelector('.page-body');  if(pb){while(pb.firstChild) panelInfo.appendChild(pb.firstChild);}  pageInfo.style.display='none';  }
+  if (pageVoli  && panelVoli)  { var h=pageVoli.querySelector('.page-header');  if(h) h.remove(); var pb=pageVoli.querySelector('.page-body');  if(pb){while(pb.firstChild) panelVoli.appendChild(pb.firstChild);}  pageVoli.style.display='none';  }
 }
 
   // ── SPESE VIAGGIO ──
