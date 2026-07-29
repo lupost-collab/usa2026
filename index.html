@@ -52,7 +52,11 @@ a{color:var(--orange);text-decoration:none}
 }
 
 /* DEBUG TEMPORANEO */
-#page-altro .altro-panel.active { border-top: 3px solid red !important; }
+/* Rimuove ogni spazio sopra al primo elemento in ogni panel */
+#page-altro .altro-panel > *:first-child {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
 /* Nasconde i titoli delle sotto-pagine quando iniettate in altro-panel */
 .altro-panel .page-header { display: none !important; }
 .injected-page { display: block !important; height: auto !important; min-height: 0 !important; }
