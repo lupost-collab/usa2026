@@ -51,35 +51,46 @@ a{color:var(--orange);text-decoration:none}
   padding-bottom:100px;
 }
 
-/* Nasconde i titoli delle sotto-pagine quando iniettate in altro-panel */
-.altro-panel .page-header { display: none !important; }
-.altro-panel .sec-heading:first-child { margin-top: 0; }
-/* Nasconde l'header principale di page-altro (sostituito dai tab) */
-#page-altro > .page-header { display: none !important; }
-#page-altro .altro-tabs {
+/* ── PAGINA ALTRO: layout pulito ── */
+/* Nasconde i titoli delle pagine iniettate nei panel */
+.altro-panel .page-header { display:none !important; }
+
+/* page-altro: flex colonna, occupa tutto lo schermo */
+#page-altro.active {
+  display:flex;
+  flex-direction:column;
+  height:100vh;
+  overflow:hidden;
+}
+/* Nasconde il page-header di page-altro (i tab lo sostituiscono) */
+#page-altro > .page-header { display:none !important; }
+/* Barra tab: non shrinka */
+#page-altro > .altro-tabs {
   flex-shrink:0;
   z-index:9;
   background:var(--bg);
-  padding-bottom:6px;
+  padding:8px 12px 6px;
 }
-/* FIX SCROLL: page-body di Altro contiene solo i panel, ognuno scrolla */
-#page-altro .altro-tabs {
-  flex-shrink:0;
-}
-#page-altro .page-body {
+/* page-body di page-altro: flex 1, non scrolla da sola */
+#page-altro > .page-body {
   flex:1;
   min-height:0;
   overflow:hidden;
-  display:flex;
-  flex-direction:column;
   padding:0;
+  display:block;
+  position:relative;
 }
+/* Ogni panel nascosto di default */
+#page-altro .altro-panel {
+  display:none;
+}
+/* Panel attivo: occupa tutto, scrolla */
 #page-altro .altro-panel.active {
-  flex:1;
-  min-height:0;
+  display:block;
+  height:100%;
   overflow-y:auto;
   -webkit-overflow-scrolling:touch;
-  padding:0 0 80px 0;
+  padding-bottom:80px;
 }
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
@@ -140,9 +151,8 @@ a{color:var(--orange);text-decoration:none}
 .altro-tab br + *,.altro-tab-icon{font-size:18px}
 .altro-tab .ti{font-size:20px;margin-bottom:2px;display:block}
 .altro-tab.active{background:var(--orange);color:#fff;border-color:var(--orange)}
-.altro-panel{display:none;}
-.altro-panel.active{display:block;}
-#altro-docshare.active{display:flex;flex-direction:column;align-items:center;padding-top:12px;}
+/* .altro-panel{} gestito da #page-altro .altro-panel sopra */
+#altro-docshare.active{display:flex;flex-direction:column;align-items:center;}
 
 /* ── HERO HOME ── */
 .home-hero{
@@ -1715,12 +1725,6 @@ a{color:var(--orange);text-decoration:none}
 
 <!-- ═══════════════════════ PAGE: ALTRO ═══════════════════════ -->
 <div id="page-altro" class="page">
-  <div class="page-header">
-    <div class="home-btn" onclick="showPage('home')" title="Home">🏠</div>
-    <div class="page-header-inner"><h1>📂 Altro</h1>
-    </div>
-    <div class="page-header-spacer"></div>
-  </div>
   <div class="altro-tabs">
     <div class="altro-tab active" id="atab-clima" onclick="switchAltroTab('clima')"><span class="ti">🌡️</span>Clima</div>
     <div class="altro-tab" id="atab-voli" onclick="switchAltroTab('voli')"><span class="ti">✈️</span>Voli</div>
