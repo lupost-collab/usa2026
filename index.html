@@ -51,49 +51,50 @@ a{color:var(--orange);text-decoration:none}
   padding-bottom:100px;
 }
 
-/* DEBUG TEMPORANEO */
-/* Rimuove ogni spazio sopra al primo elemento in ogni panel */
-#page-altro .altro-panel > *:first-child {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-/* Nasconde i titoli delle sotto-pagine quando iniettate in altro-panel */
+/* ── PAGINA ALTRO: layout flex senza spazi ── */
+/* Nasconde header pagine iniettate */
 .altro-panel .page-header { display: none !important; }
 .injected-page { display: block !important; height: auto !important; min-height: 0 !important; }
 .injected-page .page-header { display: none !important; }
 .injected-page .page-body { display: block !important; overflow: visible !important; flex: none !important; padding-bottom: 0 !important; }
-#page-altro .altro-panel.active > *:first-child,
-#page-altro .altro-panel.active > .injected-page > .page-body > *:first-child {
-  padding-top: 4px !important;
-  margin-top: 0 !important;
+/* Tab icone: nessun padding verticale extra */
+#page-altro .altro-tabs {
+  flex-shrink: 0;
+  z-index: 9;
+  background: var(--bg);
+  padding: 4px 12px 4px !important;
+  margin: 0 !important;
 }
-#page-altro .altro-tabs {  padding:4px 12px 4px !important;
-  flex-shrink:0;
-  z-index:9;
-  background:var(--bg);
-  padding:4px 12px 4px !important;
-}
+/* Header pagina Altro: rispetta il notch */
 #page-altro .page-header {
-  padding-top:calc(var(--safe-top) + 10px);
-  padding-bottom:8px;
+  padding-top: calc(var(--safe-top) + 10px);
+  padding-bottom: 8px;
 }
-/* page-body dentro page-altro: flex colonna, overflow hidden per clippare il panel */
+/* page-body: flex colonna, nessun padding */
 #page-altro > .page-body {
-  display:flex !important;
-  flex-direction:column !important;
-  flex:1 !important;
-  min-height:0 !important;
-  overflow:hidden !important;
-  padding-bottom:0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
-/* Il panel attivo occupa tutto lo spazio rimanente e scrolla */
+/* Panel attivo: scroll, nessun padding/margin top */
 #page-altro .altro-panel.active {
-  display:block !important;
-  flex:1 !important;
-  min-height:0 !important;
-  overflow-y:auto !important;
-  -webkit-overflow-scrolling:touch !important;
-  padding-bottom:100px !important;
+  display: block !important;
+  flex: 1 !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  padding: 0 0 100px 0 !important;
+  margin: 0 !important;
+}
+/* Rimuove margini top da tutti gli elementi figli */
+#page-altro .altro-panel > *:first-child,
+#page-altro .altro-panel > *:first-of-type {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
@@ -155,10 +156,7 @@ a{color:var(--orange);text-decoration:none}
 .altro-tab .ti{font-size:20px;margin-bottom:2px;display:block}
 .altro-tab.active{background:var(--orange);color:#fff;border-color:var(--orange)}
 .altro-panel{display:none;}
-.altro-panel.active{display:block;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1;min-height:0;padding:0 0 100px 0;margin-top:0;}
-#page-altro .page-body{display:flex;flex-direction:column;overflow:hidden;flex:1;min-height:0;padding-bottom:0;}
 #altro-docshare.active{display:flex;flex-direction:column;align-items:center;}
-#page-altro .altro-tabs{flex-shrink:0;}
 
 /* ── HERO HOME ── */
 .home-hero{
