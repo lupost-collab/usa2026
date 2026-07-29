@@ -53,15 +53,7 @@ a{color:var(--orange);text-decoration:none}
 
 /* Nasconde i titoli delle sotto-pagine quando iniettate in altro-panel */
 .altro-panel .page-header { display: none !important; }
-.altro-panel .page-body {
-  overflow: visible !important;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  min-height: 0 !important;
-  flex: none !important;
-}
-.altro-panel .sec-heading:first-child,
-.altro-panel .page-body > .sec-heading:first-child { margin-top: 0; padding-top: 6px; }
+.altro-panel .sec-heading:first-child { padding-top: 6px; }
 #page-altro .altro-tabs {
   flex-shrink:0;
   z-index:9;
@@ -2435,9 +2427,9 @@ function initAltro() {
   var panelClima = document.getElementById('altro-clima');
   var panelInfo  = document.getElementById('altro-info');
   var panelVoli  = document.getElementById('altro-voli');
-  if (pageClima && panelClima) { while(pageClima.firstChild) panelClima.appendChild(pageClima.firstChild); pageClima.style.display='none'; }
-  if (pageInfo  && panelInfo)  { while(pageInfo.firstChild)  panelInfo.appendChild(pageInfo.firstChild);   pageInfo.style.display='none';  }
-  if (pageVoli  && panelVoli)  { while(pageVoli.firstChild)  panelVoli.appendChild(pageVoli.firstChild);   pageVoli.style.display='none';  }
+  if (pageClima && panelClima) { var pb=pageClima.querySelector('.page-body'); if(pb){while(pb.firstChild) panelClima.appendChild(pb.firstChild);} pageClima.style.display='none'; }
+  if (pageInfo  && panelInfo)  { var pb=pageInfo.querySelector('.page-body');  if(pb){while(pb.firstChild) panelInfo.appendChild(pb.firstChild);}  pageInfo.style.display='none';  }
+  if (pageVoli  && panelVoli)  { var pb=pageVoli.querySelector('.page-body');  if(pb){while(pb.firstChild) panelVoli.appendChild(pb.firstChild);}  pageVoli.style.display='none';  }
 }
 
   // ── SPESE VIAGGIO ──
