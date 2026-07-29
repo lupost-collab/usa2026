@@ -53,7 +53,15 @@ a{color:var(--orange);text-decoration:none}
 
 /* Nasconde i titoli delle sotto-pagine quando iniettate in altro-panel */
 .altro-panel .page-header { display: none !important; }
-.altro-panel .sec-heading:first-child { margin-top: 8px; }
+.altro-panel .page-body {
+  overflow: visible !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  min-height: 0 !important;
+  flex: none !important;
+}
+.altro-panel .sec-heading:first-child,
+.altro-panel .page-body > .sec-heading:first-child { margin-top: 0; padding-top: 6px; }
 #page-altro .altro-tabs {
   flex-shrink:0;
   z-index:9;
