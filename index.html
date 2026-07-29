@@ -70,6 +70,12 @@ a{color:var(--orange);text-decoration:none}
 .pin-btn{background:var(--card);color:#fff;border:1px solid var(--border);border-radius:12px;font-size:22px;font-family:'Montserrat',sans-serif;font-weight:700;padding:14px 0;cursor:pointer;transition:background .12s;}
 .pin-btn:active{background:var(--orange);color:#fff;}
 .pin-btn-del{background:rgba(255,85,85,.12);color:#ff5555;border-color:rgba(255,85,85,.3);}
+.sf-person-btn{background:var(--card);color:#ccc;border:1px solid var(--border);border-radius:8px;padding:7px 4px;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;text-align:center;}
+.sf-person-btn.active{background:var(--orange);color:#fff;border-color:var(--orange);}
+.spese-subtotals{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:10px 12px;border-bottom:1px solid var(--border);}
+.spese-sub-card{background:var(--card);border-radius:10px;padding:8px 6px;text-align:center;}
+.spese-sub-name{font-size:11px;color:var(--muted);font-weight:600;margin-bottom:3px;}
+.spese-sub-amt{font-size:14px;font-weight:800;color:var(--orange);}
 .spese-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);}
 .spese-item-cat{font-size:22px;flex-shrink:0;margin-top:2px;}
 .spese-item-body{flex:1;min-width:0;}
@@ -2034,6 +2040,15 @@ a{color:var(--orange);text-decoration:none}
           </div>
         </div>
         <div style="margin-bottom:8px;">
+          <label style="font-size:11px;color:var(--muted);">Chi ha pagato</label>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:5px;">
+            <button class="sf-person-btn active" id="sfp-Luca" onclick="sfSelectPerson('Luca')">🧔 Luca</button>
+            <button class="sf-person-btn" id="sfp-Anto" onclick="sfSelectPerson('Anto')">👩 Anto</button>
+            <button class="sf-person-btn" id="sfp-Paola" onclick="sfSelectPerson('Paola')">👩‍🦱 Paola</button>
+            <button class="sf-person-btn" id="sfp-Max" onclick="sfSelectPerson('Max')">🧑 Max</button>
+          </div>
+        </div>
+        <div style="margin-bottom:8px;">
           <label style="font-size:11px;color:var(--muted);">Categoria</label>
           <select id="sf-cat" style="width:100%;box-sizing:border-box;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 10px;color:#fff;font-size:14px;margin-top:3px;">
             <option value="🍔 Cibo">🍔 Cibo</option>
@@ -2055,6 +2070,14 @@ a{color:var(--orange);text-decoration:none}
           <button onclick="speseAddItem()" style="flex:1;background:var(--orange);color:#fff;border:none;border-radius:8px;padding:10px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;cursor:pointer;">Aggiungi</button>
           <button onclick="speseCloseForm()" style="flex:1;background:var(--card);color:var(--muted);border:1px solid var(--border);border-radius:8px;padding:10px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;cursor:pointer;">Annulla</button>
         </div>
+      </div>
+
+      <!-- SUBTOTALI PER PERSONA -->
+      <div class="spese-subtotals" id="spese-subtotals">
+        <div class="spese-sub-card"><div class="spese-sub-name">🧔 Luca</div><div class="spese-sub-amt" id="sub-Luca">$0</div></div>
+        <div class="spese-sub-card"><div class="spese-sub-name">👩 Anto</div><div class="spese-sub-amt" id="sub-Anto">$0</div></div>
+        <div class="spese-sub-card"><div class="spese-sub-name">👩‍🦱 Paola</div><div class="spese-sub-amt" id="sub-Paola">$0</div></div>
+        <div class="spese-sub-card"><div class="spese-sub-name">🧑 Max</div><div class="spese-sub-amt" id="sub-Max">$0</div></div>
       </div>
 
       <!-- LISTA SPESE -->
@@ -2452,10 +2475,22 @@ function initAltro() {
   }
   function speseSave(arr) { localStorage.setItem(SPESE_DATA_KEY, JSON.stringify(arr)); }
 
+  var sfCurrentPerson = 'Luca';
+
+  function sfSelectPerson(name) {
+    sfCurrentPerson = name;
+    ['Luca','Anto','Paola','Max'].forEach(function(n){
+      document.getElementById('sfp-'+n).classList.toggle('active', n === name);
+    });
+  }
+
   function speseOpenForm() {
     var f = document.getElementById('spese-form');
     f.style.display = 'block';
-    // pre-compila la data di oggi
+    sfCurrentPerson = 'Luca';
+    ['Luca','Anto','Paola','Max'].forEach(function(n){
+      document.getElementById('sfp-'+n).classList.toggle('active', n === 'Luca');
+    });
     var today = new Date();
     var dd = String(today.getDate()).padStart(2,'0');
     var mm = String(today.getMonth()+1).padStart(2,'0');
@@ -2475,7 +2510,7 @@ function initAltro() {
     var desc = document.getElementById('sf-desc').value.trim() || cat;
     var data = document.getElementById('sf-data').value;
     var arr = speseData();
-    arr.unshift({ id: Date.now(), importo: importo, cat: cat, desc: desc, data: data });
+    arr.unshift({ id: Date.now(), importo: importo, cat: cat, desc: desc, data: data, persona: sfCurrentPerson });
     speseSave(arr);
     speseCloseForm();
     speseRender();
@@ -2492,6 +2527,12 @@ function initAltro() {
     var totale = arr.reduce(function(s,x){ return s + x.importo; }, 0);
     document.getElementById('spese-totale').textContent = '$' + totale.toFixed(2);
     document.getElementById('spese-count').textContent = arr.length + (arr.length === 1 ? ' voce' : ' voci');
+    // subtotali per persona
+    var persone = ['Luca','Anto','Paola','Max'];
+    persone.forEach(function(p){
+      var sub = arr.filter(function(x){ return x.persona === p; }).reduce(function(s,x){ return s+x.importo; },0);
+      document.getElementById('sub-'+p).textContent = '$'+sub.toFixed(2);
+    });
     var lista = document.getElementById('spese-lista');
     var empty = document.getElementById('spese-empty');
     if (arr.length === 0) { empty.style.display = 'block'; lista.innerHTML = ''; lista.appendChild(empty); return; }
@@ -2501,13 +2542,14 @@ function initAltro() {
       var parts = item.cat.split(' ');
       var emoji = parts[0];
       var dateFmt = item.data ? item.data.split('-').reverse().join('/') : '';
+      var personaTag = item.persona ? ' · <span style="color:var(--orange);font-weight:700;">'+item.persona+'</span>' : '';
       var div = document.createElement('div');
       div.className = 'spese-item';
       div.innerHTML =
         '<div class="spese-item-cat">'+emoji+'</div>'+
         '<div class="spese-item-body">'+
           '<div class="spese-item-desc">'+item.desc+'</div>'+
-          '<div class="spese-item-meta">'+item.cat.replace(emoji,'').trim()+' · '+dateFmt+'</div>'+
+          '<div class="spese-item-meta">'+item.cat.replace(emoji,'').trim()+' · '+dateFmt+personaTag+'</div>'+
         '</div>'+
         '<div class="spese-item-amount">$'+item.importo.toFixed(2)+'</div>'+
         '<button class="spese-item-del" onclick="speseDelete('+item.id+')">🗑</button>';
