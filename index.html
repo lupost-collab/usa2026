@@ -67,11 +67,11 @@ a{color:var(--orange);text-decoration:none}
   padding-top: 4px !important;
   margin-top: 0 !important;
 }
-#page-altro .altro-tabs {
+#page-altro .altro-tabs {  padding:4px 12px 4px !important;
   flex-shrink:0;
   z-index:9;
   background:var(--bg);
-  padding:4px 12px 0;
+  padding:4px 12px 4px !important;
 }
 #page-altro .page-header {
   padding-top:calc(var(--safe-top) + 10px);
@@ -149,13 +149,13 @@ a{color:var(--orange);text-decoration:none}
 .nav-item.active .nav-icon{transform:scale(1.1)}
 .nav-item:active{transform:scale(.94);background:rgba(255,255,255,.07)}
 /* ── ALTRO SUB-TABS ── */
-.altro-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:8px 12px 0}
+.altro-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:4px 12px 4px}
 .altro-tab{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;white-space:normal;padding:5px 4px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--card);color:var(--muted);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .18s;line-height:1.4}
 .altro-tab br + *,.altro-tab-icon{font-size:18px}
 .altro-tab .ti{font-size:20px;margin-bottom:2px;display:block}
 .altro-tab.active{background:var(--orange);color:#fff;border-color:var(--orange)}
 .altro-panel{display:none;}
-.altro-panel.active{display:block;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1;min-height:0;padding:0 0 100px 0;}
+.altro-panel.active{display:block;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1;min-height:0;padding:0 0 100px 0;margin-top:0;}
 #page-altro .page-body{display:flex;flex-direction:column;overflow:hidden;flex:1;min-height:0;padding-bottom:0;}
 #altro-docshare.active{display:flex;flex-direction:column;align-items:center;}
 #page-altro .altro-tabs{flex-shrink:0;}
@@ -2744,6 +2744,21 @@ function initAltro() {
   if (tab === 'mallgas') switchMallGas('mall');
   if (tab === 'spese') speseInit();
   if (tab === 'valuta') vcInit();
+  // Debug: log spacing
+  setTimeout(function() {
+    var tabs = document.querySelector('#page-altro .altro-tabs');
+    var panel = document.querySelector('#page-altro .altro-panel.active');
+    var mallSub = document.getElementById('mallgas-subtabs');
+    if (tabs && panel) {
+      var tB = tabs.getBoundingClientRect().bottom;
+      var pT = panel.getBoundingClientRect().top;
+      var msDisplay = mallSub ? window.getComputedStyle(mallSub).display : 'N/A';
+      var msH = mallSub ? mallSub.getBoundingClientRect().height : 0;
+      var fc = panel.firstElementChild;
+      var fcInfo = fc ? (fc.tagName+'.'+fc.className+' mTop='+window.getComputedStyle(fc).marginTop+' pTop='+window.getComputedStyle(fc).paddingTop) : 'none';
+      console.log('[ALTRO DEBUG] tab='+tab+' tabs.bottom='+tB+' panel.top='+pT+' gap='+(pT-tB)+' mallsub='+msDisplay+'(h='+msH+') fc='+fcInfo);
+    }
+  }, 80);
 }
 function switchMallGas(sub) {
   var mallEl  = document.getElementById('mg-mall');
