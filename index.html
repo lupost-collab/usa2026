@@ -1735,17 +1735,17 @@ a{color:var(--orange);text-decoration:none}
     <div class="altro-tab" id="atab-valuta" onclick="switchAltroTab('valuta')"><span class="ti">💱</span>Valuta</div>
     <div class="altro-tab" id="atab-info" onclick="switchAltroTab('info')"><span class="ti">ℹ️</span>Info</div>
   </div>
-  <!-- sotto-tab Mall / Gas: sticky fuori dallo scroll -->
-  <div id="mallgas-subtabs" style="display:none;flex-shrink:0;padding:6px 12px 4px;background:var(--bg);position:sticky;top:0;z-index:10;">
+  <div class="page-body">
+  <div id="altro-clima" class="altro-panel active"></div>
+  <div id="altro-voli" class="altro-panel"></div>
+  <div id="altro-mallgas" class="altro-panel">
+  <!-- sotto-tab Mall / Gas: sticky in cima al panel -->
+  <div id="mallgas-subtabs" style="padding:6px 12px 4px;background:var(--bg);position:sticky;top:0;z-index:10;">
     <div style="display:flex;border-radius:8px;overflow:hidden;border:1px solid var(--border);">
       <button id="mgtab-mall" onclick="switchMallGas('mall')" style="flex:1;padding:9px 0;background:var(--orange);color:#fff;border:none;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;cursor:pointer;">🛍️ Mall</button>
       <button id="mgtab-gas"  onclick="switchMallGas('gas')"  style="flex:1;padding:9px 0;background:var(--card);color:var(--muted);border:none;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;cursor:pointer;">⛽ Gas</button>
     </div>
   </div>
-  <div class="page-body">
-  <div id="altro-clima" class="altro-panel active"></div>
-  <div id="altro-voli" class="altro-panel"></div>
-  <div id="altro-mallgas" class="altro-panel">
 
   <div id="mg-mall">
   <div class="sec-heading">🛍️ Shopping Mall lungo il Percorso</div>
@@ -2735,7 +2735,7 @@ function initAltro() {
   panel.classList.add('active');
   panel.scrollTop = 0;
   var mallgasSub = document.getElementById('mallgas-subtabs');
-  if (mallgasSub) mallgasSub.style.display = (tab === 'mallgas') ? 'block' : 'none';
+  if (mallgasSub) mallgasSub.style.display = 'block'; // sempre visibile se nel panel
   if (tab === 'bags') initBags();
   if (tab === 'mallgas') switchMallGas('mall');
   if (tab === 'spese') speseInit();
