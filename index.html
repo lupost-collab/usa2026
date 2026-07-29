@@ -2436,9 +2436,17 @@ function initAltro() {
   var panelClima = document.getElementById('altro-clima');
   var panelInfo  = document.getElementById('altro-info');
   var panelVoli  = document.getElementById('altro-voli');
-  if (pageClima && panelClima) { while(pageClima.firstChild) panelClima.appendChild(pageClima.firstChild); pageClima.style.display='none'; }
-  if (pageInfo  && panelInfo)  { while(pageInfo.firstChild)  panelInfo.appendChild(pageInfo.firstChild);   pageInfo.style.display='none';  }
-  if (pageVoli  && panelVoli)  { while(pageVoli.firstChild)  panelVoli.appendChild(pageVoli.firstChild);   pageVoli.style.display='none';  }
+  function movePageToPanel(page, panel) {
+    var hdr = page.querySelector('.page-header');
+    if (hdr) hdr.remove();
+    var body = page.querySelector('.page-body');
+    var src = body || page;
+    while (src.firstChild) panel.appendChild(src.firstChild);
+    page.style.display = 'none';
+  }
+  if (pageClima && panelClima) movePageToPanel(pageClima, panelClima);
+  if (pageInfo  && panelInfo)  movePageToPanel(pageInfo,  panelInfo);
+  if (pageVoli  && panelVoli)  movePageToPanel(pageVoli,  panelVoli);
 }
 
   // ── SPESE VIAGGIO ──
