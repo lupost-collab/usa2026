@@ -122,8 +122,10 @@ a{color:var(--orange);text-decoration:none}
 .altro-tab .ti{font-size:20px;margin-bottom:2px;display:block}
 .altro-tab.active{background:var(--orange);color:#fff;border-color:var(--orange)}
 .altro-panel{display:none;}
-.altro-panel.active{display:block;overflow-y:auto;flex:1;min-height:0;}
+.altro-panel.active{display:block;overflow-y:auto;}
 #page-altro .page-body{overflow:hidden;}
+#page-altro .page-body{display:flex;flex-direction:column;}
+#page-altro .altro-panel.active{flex:1;min-height:0;}
 #altro-docshare.active{display:flex;flex-direction:column;align-items:center;padding-top:12px;}
 
 /* ── HERO HOME ── */
@@ -1703,7 +1705,7 @@ a{color:var(--orange);text-decoration:none}
     </div>
     <div class="page-header-spacer"></div>
   </div>
-  <div class="page-body" style="display:flex;flex-direction:column;">
+  <div class="page-body">
   <div class="altro-tabs" style="flex-shrink:0;">
     <div class="altro-tab active" id="atab-clima" onclick="switchAltroTab('clima')"><span class="ti">🌡️</span>Clima</div>
     <div class="altro-tab" id="atab-voli" onclick="switchAltroTab('voli')"><span class="ti">✈️</span>Voli</div>
