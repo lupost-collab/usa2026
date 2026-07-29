@@ -1705,6 +1705,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="altro-tab" id="atab-bags" onclick="switchAltroTab('bags')"><span class="ti">🧳</span>Bags</div>
     <div class="altro-tab" id="atab-spese" onclick="switchAltroTab('spese')"><span class="ti">💰</span>Spese</div>
     <div class="altro-tab" id="atab-info" onclick="switchAltroTab('info')"><span class="ti">ℹ️</span>Info</div>
+    <div class="altro-tab" id="atab-valuta" onclick="switchAltroTab('valuta')"><span class="ti">💱</span>Valuta</div>
   </div>
   <!-- sotto-tab Mall / Gas: sticky fuori dallo scroll -->
   <div id="mallgas-subtabs" style="display:none;flex-shrink:0;padding:6px 12px 4px;background:var(--bg);position:sticky;top:0;z-index:10;">
@@ -2065,6 +2066,47 @@ a{color:var(--orange);text-decoration:none}
   </div>
 
   <div id="altro-info" class="altro-panel"></div>
+
+  <div id="altro-valuta" class="altro-panel" style="padding:16px 12px;">
+    <div style="text-align:center;margin-bottom:12px;">
+      <div id="valuta-rate" style="font-size:28px;font-weight:700;color:var(--accent);">…</div>
+      <div id="valuta-updated" style="font-size:11px;color:var(--muted);margin-top:2px;">aggiornamento in corso…</div>
+    </div>
+
+    <!-- EUR → USD -->
+    <div style="background:var(--card-bg);border-radius:12px;padding:14px 12px;margin-bottom:10px;">
+      <div style="font-size:12px;color:var(--muted);margin-bottom:6px;">🇪🇺 Euro → 🇺🇸 Dollaro</div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="font-size:18px;">€</span>
+        <input id="vc-eur" type="number" inputmode="decimal" placeholder="0.00"
+          style="flex:1;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:17px;"
+          oninput="vcConvert('eur')">
+        <span style="font-size:14px;color:var(--muted);">=</span>
+        <input id="vc-usd-from-eur" type="number" inputmode="decimal" placeholder="0.00" readonly
+          style="flex:1;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--card-bg2,#2a2a2a);color:var(--accent);font-size:17px;font-weight:600;">
+        <span style="font-size:18px;">$</span>
+      </div>
+    </div>
+
+    <!-- USD → EUR -->
+    <div style="background:var(--card-bg);border-radius:12px;padding:14px 12px;">
+      <div style="font-size:12px;color:var(--muted);margin-bottom:6px;">🇺🇸 Dollaro → 🇪🇺 Euro</div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="font-size:18px;">$</span>
+        <input id="vc-usd" type="number" inputmode="decimal" placeholder="0.00"
+          style="flex:1;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:17px;"
+          oninput="vcConvert('usd')">
+        <span style="font-size:14px;color:var(--muted);">=</span>
+        <input id="vc-eur-from-usd" type="number" inputmode="decimal" placeholder="0.00" readonly
+          style="flex:1;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--card-bg2,#2a2a2a);color:var(--accent);font-size:17px;font-weight:600;">
+        <span style="font-size:18px;">€</span>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:14px;">
+      <button onclick="vcFetch()" style="padding:8px 22px;border-radius:20px;border:1px solid var(--accent);background:transparent;color:var(--accent);font-size:13px;cursor:pointer;">🔄 Aggiorna tasso</button>
+    </div>
+  </div>
 </div>
   </div></div><!-- close scroll-wrapper + page-body -->
 <!-- END ALTRO -->
@@ -2473,6 +2515,43 @@ function initAltro() {
     });
   }
 
+  // ── CONVERTITORE VALUTA ──
+  var vcRate = null;
+  var vcFetched = false;
+
+  function vcInit() {
+    if (!vcFetched) vcFetch();
+  }
+
+  function vcFetch() {
+    document.getElementById('valuta-updated').textContent = 'aggiornamento in corso…';
+    document.getElementById('valuta-rate').textContent = '…';
+    fetch('https://api.exchangerate-api.com/v4/latest/EUR')
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        vcRate = d.rates.USD;
+        var now = new Date();
+        document.getElementById('valuta-rate').textContent = '1 € = ' + vcRate.toFixed(4) + ' $';
+        document.getElementById('valuta-updated').textContent = 'aggiornato il ' + now.toLocaleDateString('it-IT') + ' alle ' + now.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'});
+        vcFetched = true;
+        vcConvert(null);
+      })
+      .catch(function(){
+        document.getElementById('valuta-updated').textContent = 'errore nel recupero del tasso ⚠️';
+      });
+  }
+
+  function vcConvert(dir) {
+    if (!vcRate) return;
+    if (dir === 'eur') {
+      var v = parseFloat(document.getElementById('vc-eur').value);
+      document.getElementById('vc-usd-from-eur').value = isNaN(v) ? '' : (v * vcRate).toFixed(2);
+    } else if (dir === 'usd') {
+      var v = parseFloat(document.getElementById('vc-usd').value);
+      document.getElementById('vc-eur-from-usd').value = isNaN(v) ? '' : (v / vcRate).toFixed(2);
+    }
+  }
+
   // BAGS CHECKLIST
   var BAGS_KEY = 'bags_v1';
   function bagsState() { try { return JSON.parse(localStorage.getItem(BAGS_KEY)||'{}'); } catch(e){return {};} }
@@ -2581,6 +2660,7 @@ function initAltro() {
   if (tab === 'bags') initBags();
   if (tab === 'mallgas') switchMallGas('mall');
   if (tab === 'spese') speseInit();
+  if (tab === 'valuta') vcInit();
 }
 function switchMallGas(sub) {
   var mallEl  = document.getElementById('mg-mall');
