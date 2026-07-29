@@ -64,6 +64,20 @@ a{color:var(--orange);text-decoration:none}
 }
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
+/* ── PIN & SPESE ── */
+.pin-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--orange);background:transparent;transition:background .15s;}
+.pin-dot.filled{background:var(--orange);}
+.pin-btn{background:var(--card);color:#fff;border:1px solid var(--border);border-radius:12px;font-size:22px;font-family:'Montserrat',sans-serif;font-weight:700;padding:14px 0;cursor:pointer;transition:background .12s;}
+.pin-btn:active{background:var(--orange);color:#fff;}
+.pin-btn-del{background:rgba(255,85,85,.12);color:#ff5555;border-color:rgba(255,85,85,.3);}
+.spese-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);}
+.spese-item-cat{font-size:22px;flex-shrink:0;margin-top:2px;}
+.spese-item-body{flex:1;min-width:0;}
+.spese-item-desc{font-size:14px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.spese-item-meta{font-size:11px;color:var(--muted);margin-top:2px;}
+.spese-item-amount{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:800;color:var(--orange);white-space:nowrap;}
+.spese-item-del{background:none;border:none;color:rgba(255,85,85,.6);font-size:18px;padding:4px;cursor:pointer;flex-shrink:0;}
+
 /* ── BOTTOM NAV ── */
 .bottom-nav{
   position:fixed;bottom:0;left:0;right:0;
@@ -1689,6 +1703,7 @@ a{color:var(--orange);text-decoration:none}
     <div class="altro-tab" id="atab-mallgas" onclick="switchAltroTab('mallgas')"><span class="ti">🛍️</span>Mall&amp;Gas</div>
     <div class="altro-tab" id="atab-docshare" onclick="switchAltroTab('docshare')"><span class="ti"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Dropbox_Icon.svg/120px-Dropbox_Icon.svg.png" style="width:20px;height:20px;object-fit:contain;vertical-align:middle;"></span>Docs</div>
     <div class="altro-tab" id="atab-bags" onclick="switchAltroTab('bags')"><span class="ti">🧳</span>Bags</div>
+    <div class="altro-tab" id="atab-spese" onclick="switchAltroTab('spese')"><span class="ti">💰</span>Spese</div>
     <div class="altro-tab" id="atab-info" onclick="switchAltroTab('info')"><span class="ti">ℹ️</span>Info</div>
   </div>
   <!-- sotto-tab Mall / Gas: sticky fuori dallo scroll -->
@@ -1957,6 +1972,95 @@ a{color:var(--orange);text-decoration:none}
           <div style="font-size:12px;color:var(--muted);margin-top:4px;">Tocca per aprire la cartella Dropbox →</div>
         </div>
       </a>
+    </div>
+  </div>
+
+  <div id="altro-spese" class="altro-panel">
+
+    <!-- PIN LOCK -->
+    <div id="spese-lock" style="display:flex;flex-direction:column;align-items:center;padding:40px 24px 24px;">
+      <div style="font-size:40px;margin-bottom:12px;">🔐</div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:18px;font-weight:800;color:#fff;margin-bottom:6px;">Spese Viaggio</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:28px;">Inserisci il PIN a 4 cifre</div>
+      <div id="spese-dots" style="display:flex;gap:14px;margin-bottom:24px;">
+        <div class="pin-dot" id="pdot0"></div>
+        <div class="pin-dot" id="pdot1"></div>
+        <div class="pin-dot" id="pdot2"></div>
+        <div class="pin-dot" id="pdot3"></div>
+      </div>
+      <div id="spese-pin-error" style="color:#ff5555;font-size:13px;min-height:18px;margin-bottom:10px;"></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:240px;">
+        <button class="pin-btn" onclick="spesePin('1')">1</button>
+        <button class="pin-btn" onclick="spesePin('2')">2</button>
+        <button class="pin-btn" onclick="spesePin('3')">3</button>
+        <button class="pin-btn" onclick="spesePin('4')">4</button>
+        <button class="pin-btn" onclick="spesePin('5')">5</button>
+        <button class="pin-btn" onclick="spesePin('6')">6</button>
+        <button class="pin-btn" onclick="spesePin('7')">7</button>
+        <button class="pin-btn" onclick="spesePin('8')">8</button>
+        <button class="pin-btn" onclick="spesePin('9')">9</button>
+        <button class="pin-btn pin-btn-del" onclick="spesePin('C')" style="grid-column:1;">✕</button>
+        <button class="pin-btn" onclick="spesePin('0')">0</button>
+        <button class="pin-btn pin-btn-ok" onclick="spesePin('OK')" style="background:var(--orange);color:#fff;">✓</button>
+      </div>
+      <div style="margin-top:20px;font-size:11px;color:var(--muted);">PIN predefinito: <strong style="color:#aaa;">1234</strong> — modificabile nelle impostazioni</div>
+    </div>
+
+    <!-- MAIN SPESE (nascosto finché PIN non corretto) -->
+    <div id="spese-main" style="display:none;padding:0 0 80px;">
+
+      <!-- TOTALE HEADER -->
+      <div style="background:linear-gradient(135deg,rgba(255,102,0,.18),rgba(255,102,0,.05));border-bottom:1px solid var(--border);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div style="font-size:11px;color:var(--muted);font-family:'Montserrat',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.5px;">Totale Spese</div>
+          <div id="spese-totale" style="font-family:'Montserrat',sans-serif;font-size:28px;font-weight:900;color:var(--orange);">$0.00</div>
+          <div id="spese-count" style="font-size:11px;color:var(--muted);">0 voci</div>
+        </div>
+        <button onclick="speseOpenForm()" style="background:var(--orange);color:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:0 2px 8px rgba(255,102,0,.4);">+</button>
+      </div>
+
+      <!-- FORM AGGIUNTA (nascosto di default) -->
+      <div id="spese-form" style="display:none;background:var(--card);border-bottom:1px solid var(--border);padding:14px 16px;">
+        <div style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#fff;margin-bottom:10px;">➕ Nuova Spesa</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+          <div>
+            <label style="font-size:11px;color:var(--muted);">Importo ($)</label>
+            <input id="sf-importo" type="number" step="0.01" placeholder="0.00" style="width:100%;box-sizing:border-box;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 10px;color:#fff;font-size:15px;margin-top:3px;">
+          </div>
+          <div>
+            <label style="font-size:11px;color:var(--muted);">Data</label>
+            <input id="sf-data" type="date" style="width:100%;box-sizing:border-box;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 10px;color:#fff;font-size:14px;margin-top:3px;">
+          </div>
+        </div>
+        <div style="margin-bottom:8px;">
+          <label style="font-size:11px;color:var(--muted);">Categoria</label>
+          <select id="sf-cat" style="width:100%;box-sizing:border-box;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 10px;color:#fff;font-size:14px;margin-top:3px;">
+            <option value="🍔 Cibo">🍔 Cibo</option>
+            <option value="⛽ Carburante">⛽ Carburante</option>
+            <option value="🏨 Alloggio">🏨 Alloggio</option>
+            <option value="🎢 Attività">🎢 Attività</option>
+            <option value="🛍️ Shopping">🛍️ Shopping</option>
+            <option value="🚗 Noleggio/Auto">🚗 Noleggio/Auto</option>
+            <option value="✈️ Voli">✈️ Voli</option>
+            <option value="💊 Farmaci/Salute">💊 Farmaci/Salute</option>
+            <option value="📦 Altro">📦 Altro</option>
+          </select>
+        </div>
+        <div style="margin-bottom:12px;">
+          <label style="font-size:11px;color:var(--muted);">Descrizione</label>
+          <input id="sf-desc" type="text" placeholder="es. Pranzo In-N-Out Burger" style="width:100%;box-sizing:border-box;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 10px;color:#fff;font-size:14px;margin-top:3px;">
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button onclick="speseAddItem()" style="flex:1;background:var(--orange);color:#fff;border:none;border-radius:8px;padding:10px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;cursor:pointer;">Aggiungi</button>
+          <button onclick="speseCloseForm()" style="flex:1;background:var(--card);color:var(--muted);border:1px solid var(--border);border-radius:8px;padding:10px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;cursor:pointer;">Annulla</button>
+        </div>
+      </div>
+
+      <!-- LISTA SPESE -->
+      <div id="spese-lista" style="padding:8px 12px;">
+        <div id="spese-empty" style="text-align:center;padding:40px 20px;color:var(--muted);font-size:14px;">Nessuna spesa ancora 💸<br><span style="font-size:12px;">Tocca + per aggiungere</span></div>
+      </div>
+
     </div>
   </div>
 
@@ -2255,6 +2359,120 @@ function initAltro() {
   if (pageVoli  && panelVoli)  { while(pageVoli.firstChild)  panelVoli.appendChild(pageVoli.firstChild);   pageVoli.style.display='none';  }
 }
 
+  // ── SPESE VIAGGIO ──
+  var SPESE_PIN_KEY = 'spese_pin_v1';
+  var SPESE_DATA_KEY = 'spese_data_v1';
+  var speseUnlocked = false;
+  var spesePinBuffer = '';
+
+  function speseInit() {
+    speseUnlocked = false;
+    spesePinBuffer = '';
+    document.getElementById('spese-lock').style.display = 'flex';
+    document.getElementById('spese-main').style.display = 'none';
+    document.getElementById('spese-pin-error').textContent = '';
+    ['pdot0','pdot1','pdot2','pdot3'].forEach(function(id){ document.getElementById(id).classList.remove('filled'); });
+  }
+
+  function spesePin(k) {
+    if (k === 'C') {
+      spesePinBuffer = '';
+      ['pdot0','pdot1','pdot2','pdot3'].forEach(function(id){ document.getElementById(id).classList.remove('filled'); });
+      document.getElementById('spese-pin-error').textContent = '';
+      return;
+    }
+    if (k === 'OK' || spesePinBuffer.length >= 4) {
+      if (k !== 'OK' && spesePinBuffer.length < 4) { spesePinBuffer += k; }
+      if (spesePinBuffer.length < 4) { document.getElementById('spese-pin-error').textContent = 'Inserisci 4 cifre'; return; }
+      var saved = localStorage.getItem(SPESE_PIN_KEY) || '1234';
+      if (spesePinBuffer === saved) {
+        speseUnlocked = true;
+        document.getElementById('spese-lock').style.display = 'none';
+        document.getElementById('spese-main').style.display = 'block';
+        speseRender();
+      } else {
+        document.getElementById('spese-pin-error').textContent = 'PIN errato ❌';
+        spesePinBuffer = '';
+        ['pdot0','pdot1','pdot2','pdot3'].forEach(function(id){ document.getElementById(id).classList.remove('filled'); });
+      }
+      return;
+    }
+    spesePinBuffer += k;
+    var idx = spesePinBuffer.length - 1;
+    document.getElementById('pdot'+idx).classList.add('filled');
+    if (spesePinBuffer.length === 4) {
+      setTimeout(function(){ spesePin('OK'); }, 120);
+    }
+  }
+
+  function speseData() {
+    try { return JSON.parse(localStorage.getItem(SPESE_DATA_KEY) || '[]'); } catch(e){ return []; }
+  }
+  function speseSave(arr) { localStorage.setItem(SPESE_DATA_KEY, JSON.stringify(arr)); }
+
+  function speseOpenForm() {
+    var f = document.getElementById('spese-form');
+    f.style.display = 'block';
+    // pre-compila la data di oggi
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2,'0');
+    var mm = String(today.getMonth()+1).padStart(2,'0');
+    document.getElementById('sf-data').value = today.getFullYear()+'-'+mm+'-'+dd;
+    document.getElementById('sf-importo').focus();
+  }
+  function speseCloseForm() {
+    document.getElementById('spese-form').style.display = 'none';
+    document.getElementById('sf-importo').value = '';
+    document.getElementById('sf-desc').value = '';
+  }
+
+  function speseAddItem() {
+    var importo = parseFloat(document.getElementById('sf-importo').value);
+    if (isNaN(importo) || importo <= 0) { alert('Importo non valido'); return; }
+    var cat = document.getElementById('sf-cat').value;
+    var desc = document.getElementById('sf-desc').value.trim() || cat;
+    var data = document.getElementById('sf-data').value;
+    var arr = speseData();
+    arr.unshift({ id: Date.now(), importo: importo, cat: cat, desc: desc, data: data });
+    speseSave(arr);
+    speseCloseForm();
+    speseRender();
+  }
+
+  function speseDelete(id) {
+    var arr = speseData().filter(function(x){ return x.id !== id; });
+    speseSave(arr);
+    speseRender();
+  }
+
+  function speseRender() {
+    var arr = speseData();
+    var totale = arr.reduce(function(s,x){ return s + x.importo; }, 0);
+    document.getElementById('spese-totale').textContent = '$' + totale.toFixed(2);
+    document.getElementById('spese-count').textContent = arr.length + (arr.length === 1 ? ' voce' : ' voci');
+    var lista = document.getElementById('spese-lista');
+    var empty = document.getElementById('spese-empty');
+    if (arr.length === 0) { empty.style.display = 'block'; lista.innerHTML = ''; lista.appendChild(empty); return; }
+    empty.style.display = 'none';
+    lista.innerHTML = '';
+    arr.forEach(function(item) {
+      var parts = item.cat.split(' ');
+      var emoji = parts[0];
+      var dateFmt = item.data ? item.data.split('-').reverse().join('/') : '';
+      var div = document.createElement('div');
+      div.className = 'spese-item';
+      div.innerHTML =
+        '<div class="spese-item-cat">'+emoji+'</div>'+
+        '<div class="spese-item-body">'+
+          '<div class="spese-item-desc">'+item.desc+'</div>'+
+          '<div class="spese-item-meta">'+item.cat.replace(emoji,'').trim()+' · '+dateFmt+'</div>'+
+        '</div>'+
+        '<div class="spese-item-amount">$'+item.importo.toFixed(2)+'</div>'+
+        '<button class="spese-item-del" onclick="speseDelete('+item.id+')">🗑</button>';
+      lista.appendChild(div);
+    });
+  }
+
   // BAGS CHECKLIST
   var BAGS_KEY = 'bags_v1';
   function bagsState() { try { return JSON.parse(localStorage.getItem(BAGS_KEY)||'{}'); } catch(e){return {};} }
@@ -2362,6 +2580,7 @@ function initAltro() {
   if (mallgasSub) mallgasSub.style.display = (tab === 'mallgas') ? 'block' : 'none';
   if (tab === 'bags') initBags();
   if (tab === 'mallgas') switchMallGas('mall');
+  if (tab === 'spese') speseInit();
 }
 function switchMallGas(sub) {
   var mallEl  = document.getElementById('mg-mall');
