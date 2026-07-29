@@ -51,50 +51,14 @@ a{color:var(--orange);text-decoration:none}
   padding-bottom:100px;
 }
 
-/* ── PAGINA ALTRO: layout flex senza spazi ── */
-/* Nasconde header pagine iniettate */
+/* Nasconde i titoli delle sotto-pagine quando iniettate in altro-panel */
 .altro-panel .page-header { display: none !important; }
-.injected-page { display: block !important; height: auto !important; min-height: 0 !important; }
-.injected-page .page-header { display: none !important; }
-.injected-page .page-body { display: block !important; overflow: visible !important; flex: none !important; padding-bottom: 0 !important; }
-/* Tab icone: nessun padding verticale extra */
+.altro-panel .sec-heading:first-child { margin-top: 8px; }
 #page-altro .altro-tabs {
-  flex-shrink: 0;
-  z-index: 9;
-  background: var(--bg);
-  padding: 4px 12px 4px !important;
-  margin: 0 !important;
-}
-/* Header pagina Altro: rispetta il notch */
-#page-altro .page-header {
-  padding-top: calc(var(--safe-top) + 10px);
-  padding-bottom: 8px;
-}
-/* page-body: flex colonna, nessun padding */
-#page-altro > .page-body {
-  display: flex !important;
-  flex-direction: column !important;
-  flex: 1 !important;
-  min-height: 0 !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-/* Panel attivo: scroll, nessun padding/margin top */
-#page-altro .altro-panel.active {
-  display: block !important;
-  flex: 1 !important;
-  min-height: 0 !important;
-  overflow-y: auto !important;
-  -webkit-overflow-scrolling: touch !important;
-  padding: 0 0 100px 0 !important;
-  margin: 0 !important;
-}
-/* Rimuove margini top da tutti gli elementi figli */
-#page-altro .altro-panel > *:first-child,
-#page-altro .altro-panel > *:first-of-type {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
+  flex-shrink:0;
+  z-index:9;
+  background:var(--bg);
+  padding-bottom:6px;
 }
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
@@ -150,13 +114,17 @@ a{color:var(--orange);text-decoration:none}
 .nav-item.active .nav-icon{transform:scale(1.1)}
 .nav-item:active{transform:scale(.94);background:rgba(255,255,255,.07)}
 /* ── ALTRO SUB-TABS ── */
-.altro-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:4px 12px 4px}
+.altro-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:8px 12px 6px}
 .altro-tab{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;white-space:normal;padding:5px 4px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--card);color:var(--muted);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .18s;line-height:1.4}
 .altro-tab br + *,.altro-tab-icon{font-size:18px}
 .altro-tab .ti{font-size:20px;margin-bottom:2px;display:block}
 .altro-tab.active{background:var(--orange);color:#fff;border-color:var(--orange)}
 .altro-panel{display:none;}
-#altro-docshare.active{display:flex;flex-direction:column;align-items:center;}
+.altro-panel.active{display:block;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+#page-altro .page-body{overflow:hidden;}
+#page-altro .page-body{display:flex;flex-direction:column;}
+#page-altro .altro-panel.active{flex:1;min-height:0;}
+#altro-docshare.active{display:flex;flex-direction:column;align-items:center;padding-top:12px;}
 
 /* ── HERO HOME ── */
 .home-hero{
@@ -207,7 +175,7 @@ a{color:var(--orange);text-decoration:none}
 .sec-heading{
   font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;
   color:var(--muted);text-transform:uppercase;letter-spacing:.8px;
-  padding:4px 16px 6px;
+  padding:12px 16px 6px;
 }
 
 /* ── TAPPA LIST ITEMS ── */
@@ -1913,7 +1881,7 @@ a{color:var(--orange);text-decoration:none}
   </div><!-- close altro-mallgas -->
 
   <div id="altro-bags" class="altro-panel">
-    <div class="sec-heading" style="padding-top:4px">🧳 Bags — Checklist Bagaglio</div>
+    <div class="sec-heading">🧳 Bags — Checklist Bagaglio</div>
     <div style="padding:0 12px 6px;font-size:12px;color:var(--muted)">Tocca ogni voce per spuntarla. Lo stato viene salvato nel browser.</div>
 
     <div class="bags-cat" id="cat-abbigliamento">
@@ -2003,7 +1971,7 @@ a{color:var(--orange);text-decoration:none}
   </div>
 
   <div id="altro-docshare" class="altro-panel">
-    <div style="display:flex;justify-content:center;margin:4px 16px 16px;">
+    <div style="margin:8px 16px 16px;display:flex;justify-content:center;">
       <a href="https://www.dropbox.com/scl/fo/tignk1mjwxeyecuwhukut/AHlWJOv20KrbRsVq8zEh1Ys?rlkey=ku0q1oejjyed5wzfvekde4v9w&st=nie5gmfz&dl=0" onclick="window.location.href=this.href;return false;" target="_blank" style="display:flex;flex-direction:column;align-items:center;gap:12px;background:rgba(0,100,255,0.12);border:1px solid rgba(0,100,255,0.35);border-radius:14px;padding:28px 32px;text-decoration:none;color:var(--text);max-width:320px;width:100%;text-align:center;">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Dropbox_Icon.svg/120px-Dropbox_Icon.svg.png" alt="Dropbox" style="width:56px;height:56px;object-fit:contain;">
         <div>
@@ -2015,8 +1983,9 @@ a{color:var(--orange);text-decoration:none}
   </div>
 
   <div id="altro-spese" class="altro-panel">
+
     <!-- PIN LOCK -->
-    <div id="spese-lock" style="display:flex;flex-direction:column;align-items:center;padding:4px 24px 24px;">
+    <div id="spese-lock" style="display:flex;flex-direction:column;align-items:center;padding:40px 24px 24px;">
       <div style="font-size:40px;margin-bottom:12px;">🔐</div>
       <div style="font-family:'Montserrat',sans-serif;font-size:18px;font-weight:800;color:#fff;margin-bottom:6px;">Spese Viaggio</div>
       <div style="font-size:13px;color:var(--muted);margin-bottom:28px;">Inserisci il PIN a 4 cifre</div>
@@ -2122,7 +2091,7 @@ a{color:var(--orange);text-decoration:none}
   <div id="altro-info" class="altro-panel"></div>
 
   <div id="altro-valuta" class="altro-panel">
-    <div style="padding:4px 12px 80px;">
+    <div style="padding:16px 12px 80px;">
 
     <!-- TASSO CENTRALE -->
     <div style="text-align:center;background:linear-gradient(135deg,rgba(255,102,0,.18),rgba(255,102,0,.05));border-radius:14px;padding:16px 12px;margin-bottom:14px;border:1px solid rgba(255,102,0,.2);">
@@ -2456,9 +2425,9 @@ function initAltro() {
   var panelClima = document.getElementById('altro-clima');
   var panelInfo  = document.getElementById('altro-info');
   var panelVoli  = document.getElementById('altro-voli');
-  if (pageClima && panelClima) { var h=pageClima.querySelector('.page-header'); if(h) h.remove(); var pb=pageClima.querySelector('.page-body'); if(pb){while(pb.firstChild) panelClima.appendChild(pb.firstChild);} pageClima.style.display='none'; }
-  if (pageInfo  && panelInfo)  { var h=pageInfo.querySelector('.page-header');  if(h) h.remove(); var pb=pageInfo.querySelector('.page-body');  if(pb){while(pb.firstChild) panelInfo.appendChild(pb.firstChild);}  pageInfo.style.display='none';  }
-  if (pageVoli  && panelVoli)  { var h=pageVoli.querySelector('.page-header');  if(h) h.remove(); var pb=pageVoli.querySelector('.page-body');  if(pb){while(pb.firstChild) panelVoli.appendChild(pb.firstChild);}  pageVoli.style.display='none';  }
+  if (pageClima && panelClima) { while(pageClima.firstChild) panelClima.appendChild(pageClima.firstChild); pageClima.style.display='none'; }
+  if (pageInfo  && panelInfo)  { while(pageInfo.firstChild)  panelInfo.appendChild(pageInfo.firstChild);   pageInfo.style.display='none';  }
+  if (pageVoli  && panelVoli)  { while(pageVoli.firstChild)  panelVoli.appendChild(pageVoli.firstChild);   pageVoli.style.display='none';  }
 }
 
   // ── SPESE VIAGGIO ──
@@ -2742,21 +2711,6 @@ function initAltro() {
   if (tab === 'mallgas') switchMallGas('mall');
   if (tab === 'spese') speseInit();
   if (tab === 'valuta') vcInit();
-  // Debug: log spacing
-  setTimeout(function() {
-    var tabs = document.querySelector('#page-altro .altro-tabs');
-    var panel = document.querySelector('#page-altro .altro-panel.active');
-    var mallSub = document.getElementById('mallgas-subtabs');
-    if (tabs && panel) {
-      var tB = tabs.getBoundingClientRect().bottom;
-      var pT = panel.getBoundingClientRect().top;
-      var msDisplay = mallSub ? window.getComputedStyle(mallSub).display : 'N/A';
-      var msH = mallSub ? mallSub.getBoundingClientRect().height : 0;
-      var fc = panel.firstElementChild;
-      var fcInfo = fc ? (fc.tagName+'.'+fc.className+' mTop='+window.getComputedStyle(fc).marginTop+' pTop='+window.getComputedStyle(fc).paddingTop) : 'none';
-      console.log('[ALTRO DEBUG] tab='+tab+' tabs.bottom='+tB+' panel.top='+pT+' gap='+(pT-tB)+' mallsub='+msDisplay+'(h='+msH+') fc='+fcInfo);
-    }
-  }, 80);
 }
 function switchMallGas(sub) {
   var mallEl  = document.getElementById('mg-mall');
