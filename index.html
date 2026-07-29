@@ -2701,7 +2701,9 @@ function initAltro() {
   document.querySelectorAll('.altro-tab').forEach(function(t) { t.classList.remove('active'); });
   document.querySelectorAll('.altro-panel').forEach(function(p) { p.classList.remove('active'); });
   document.getElementById('atab-' + tab).classList.add('active');
-  document.getElementById('altro-' + tab).classList.add('active');
+  var panel = document.getElementById('altro-' + tab);
+  panel.classList.add('active');
+  panel.scrollTop = 0;
   var mallgasSub = document.getElementById('mallgas-subtabs');
   if (mallgasSub) mallgasSub.style.display = (tab === 'mallgas') ? 'block' : 'none';
   if (tab === 'bags') initBags();
