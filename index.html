@@ -56,13 +56,16 @@ a{color:var(--orange);text-decoration:none}
 .injected-page { display: block !important; height: auto !important; min-height: 0 !important; }
 .injected-page .page-header { display: none !important; }
 .injected-page .page-body { display: block !important; overflow: visible !important; flex: none !important; padding-bottom: 0 !important; }
-#page-altro .altro-panel.active > .sec-heading:first-child,
-#page-altro .altro-panel.active > .injected-page > .page-body > .sec-heading:first-child { padding-top: 4px !important; }
+#page-altro .altro-panel.active > *:first-child,
+#page-altro .altro-panel.active > .injected-page > .page-body > *:first-child {
+  padding-top: 4px !important;
+  margin-top: 0 !important;
+}
 #page-altro .altro-tabs {
   flex-shrink:0;
   z-index:9;
   background:var(--bg);
-  padding:4px 12px 4px;
+  padding:4px 12px 0;
 }
 #page-altro .page-header {
   padding-top:calc(var(--safe-top) + 10px);
@@ -140,7 +143,7 @@ a{color:var(--orange);text-decoration:none}
 .nav-item.active .nav-icon{transform:scale(1.1)}
 .nav-item:active{transform:scale(.94);background:rgba(255,255,255,.07)}
 /* ── ALTRO SUB-TABS ── */
-.altro-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:8px 12px 6px}
+.altro-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:8px 12px 0}
 .altro-tab{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;white-space:normal;padding:5px 4px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--card);color:var(--muted);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .18s;line-height:1.4}
 .altro-tab br + *,.altro-tab-icon{font-size:18px}
 .altro-tab .ti{font-size:20px;margin-bottom:2px;display:block}
@@ -200,7 +203,7 @@ a{color:var(--orange);text-decoration:none}
 .sec-heading{
   font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;
   color:var(--muted);text-transform:uppercase;letter-spacing:.8px;
-  padding:12px 16px 6px;
+  padding:4px 16px 6px;
 }
 
 /* ── TAPPA LIST ITEMS ── */
