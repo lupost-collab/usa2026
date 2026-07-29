@@ -60,19 +60,12 @@ a{color:var(--orange);text-decoration:none}
   background:var(--bg);
   padding-bottom:6px;
 }
-/* FIX SCROLL: page-body di Altro non scrolla, scrolla solo il panel */
-#page-altro > .page-body {
-  display:flex !important;
-  flex-direction:column !important;
-  overflow:hidden !important;
-  padding-bottom:0 !important;
+/* FIX SCROLL: page-body di Altro contiene solo i panel, scrolla normalmente */
+#page-altro .altro-tabs {
+  flex-shrink:0;
 }
-#page-altro .altro-tabs { flex-shrink:0 !important; }
 #page-altro .altro-panel.active {
-  flex:1 !important;
-  min-height:0 !important;
-  overflow-y:auto !important;
-  -webkit-overflow-scrolling:touch !important;
+  display:block;
 }
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
@@ -1714,8 +1707,7 @@ a{color:var(--orange);text-decoration:none}
     </div>
     <div class="page-header-spacer"></div>
   </div>
-  <div class="page-body">
-  <div class="altro-tabs" style="flex-shrink:0;">
+  <div class="altro-tabs">
     <div class="altro-tab active" id="atab-clima" onclick="switchAltroTab('clima')"><span class="ti">🌡️</span>Clima</div>
     <div class="altro-tab" id="atab-voli" onclick="switchAltroTab('voli')"><span class="ti">✈️</span>Voli</div>
     <div class="altro-tab" id="atab-mallgas" onclick="switchAltroTab('mallgas')"><span class="ti">🛍️</span>Mall&amp;Gas</div>
@@ -1732,6 +1724,7 @@ a{color:var(--orange);text-decoration:none}
       <button id="mgtab-gas"  onclick="switchMallGas('gas')"  style="flex:1;padding:9px 0;background:var(--card);color:var(--muted);border:none;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;cursor:pointer;">⛽ Gas</button>
     </div>
   </div>
+  <div class="page-body">
   <div id="altro-clima" class="altro-panel active"></div>
   <div id="altro-voli" class="altro-panel"></div>
   <div id="altro-mallgas" class="altro-panel">
