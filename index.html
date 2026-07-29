@@ -60,6 +60,20 @@ a{color:var(--orange);text-decoration:none}
   background:var(--bg);
   padding-bottom:6px;
 }
+/* FIX SCROLL: page-body di Altro non scrolla, scrolla solo il panel */
+#page-altro > .page-body {
+  display:flex !important;
+  flex-direction:column !important;
+  overflow:hidden !important;
+  padding-bottom:0 !important;
+}
+#page-altro .altro-tabs { flex-shrink:0 !important; }
+#page-altro .altro-panel.active {
+  flex:1 !important;
+  min-height:0 !important;
+  overflow-y:auto !important;
+  -webkit-overflow-scrolling:touch !important;
+}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── PIN & SPESE ── */
@@ -120,10 +134,7 @@ a{color:var(--orange);text-decoration:none}
 .altro-tab .ti{font-size:20px;margin-bottom:2px;display:block}
 .altro-tab.active{background:var(--orange);color:#fff;border-color:var(--orange)}
 .altro-panel{display:none;}
-.altro-panel.active{display:block;overflow-y:auto;-webkit-overflow-scrolling:touch;}
-#page-altro .page-body{overflow:hidden;}
-#page-altro .page-body{display:flex;flex-direction:column;}
-#page-altro .altro-panel.active{flex:1;min-height:0;}
+.altro-panel.active{display:block;}
 #altro-docshare.active{display:flex;flex-direction:column;align-items:center;padding-top:12px;}
 
 /* ── HERO HOME ── */
