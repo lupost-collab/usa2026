@@ -189,7 +189,7 @@ a{color:var(--orange);text-decoration:none}
 .hero-clock-city{font-size:10px;color:var(--muted);font-family:'Montserrat',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.5px;}
 .hero-clock-time{font-size:20px;font-weight:900;color:#fff;font-family:'Montserrat',sans-serif;line-height:1.1;}
 .hero-clock-tz{font-size:9px;color:var(--muted);font-family:'Montserrat',sans-serif;}
-.hero-clock-sep{font-size:22px;color:rgba(255,140,0,.4);font-weight:300;}
+.hero-clock-sep{font-size:32px;}
 .hero-dates{
   display:inline-block;background:rgba(255,140,0,.15);
   border:1px solid rgba(255,140,0,.4);border-radius:20px;
@@ -3105,7 +3105,7 @@ function initMap() {
   };
 
   function fmtTime(date, tz) {
-    return date.toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit', second:'2-digit', timeZone: tz});
+    return date.toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit', timeZone: tz});
   }
 
   var locTz = 'America/Los_Angeles'; // default finché non rilevata
