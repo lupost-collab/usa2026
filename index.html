@@ -2058,7 +2058,7 @@ a{color:var(--orange);text-decoration:none}
     </div>
 
     <!-- MAIN SPESE (nascosto finché PIN non corretto) -->
-    <div id="spese-main" style="display:none;">
+    <div id="spese-main" style="display:none;height:100%;display:flex;flex-direction:column;overflow:hidden;">
 
       <!-- TOTALE HEADER -->
       <div style="background:linear-gradient(135deg,rgba(255,102,0,.18),rgba(255,102,0,.05));border-bottom:1px solid var(--border);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;">
@@ -2125,7 +2125,7 @@ a{color:var(--orange);text-decoration:none}
       </div>
 
       <!-- LISTA SPESE -->
-      <div id="spese-lista" style="padding:8px 12px 80px;">
+      <div id="spese-lista" style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:8px 12px 80px;">
         <div id="spese-empty" style="text-align:center;padding:40px 20px;color:var(--muted);font-size:14px;">Nessuna spesa ancora 💸<br><span style="font-size:12px;">Tocca + per aggiungere</span></div>
       </div>
 
@@ -2511,7 +2511,7 @@ function initAltro() {
       if (spesePinBuffer === saved) {
         speseUnlocked = true;
         document.getElementById('spese-lock').style.display = 'none';
-        document.getElementById('spese-main').style.display = 'block';
+        document.getElementById('spese-main').style.display = 'flex';
         speseRender();
       } else {
         document.getElementById('spese-pin-error').textContent = 'PIN errato ❌';
