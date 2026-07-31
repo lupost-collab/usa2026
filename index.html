@@ -2600,9 +2600,12 @@ function initAltro() {
     });
     var lista = document.getElementById('spese-lista');
     var empty = document.getElementById('spese-empty');
-    if (arr.length === 0) { empty.style.display = 'block'; lista.innerHTML = ''; lista.appendChild(empty); return; }
+    // Rimuovi dal lista i div delle voci precedenti (lascia #spese-empty intatto)
+    Array.prototype.slice.call(lista.children).forEach(function(ch){
+      if (ch.id !== 'spese-empty') lista.removeChild(ch);
+    });
+    if (arr.length === 0) { empty.style.display = 'block'; return; }
     empty.style.display = 'none';
-    lista.innerHTML = '';
     arr.forEach(function(item) {
       var parts = item.cat.split(' ');
       var emoji = parts[0];
