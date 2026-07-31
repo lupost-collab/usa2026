@@ -2575,7 +2575,8 @@ function initAltro() {
   }
 
   function speseDelete(id) {
-    var arr = speseData().filter(function(x){ return x.id !== id; });
+    var idNum = Number(id);
+    var arr = speseData().filter(function(x){ return Number(x.id) !== idNum; });
     speseSave(arr);
     speseRender();
   }
