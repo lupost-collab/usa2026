@@ -2592,37 +2592,41 @@ function initAltro() {
     var totale = arr.reduce(function(s,x){ return s + x.importo; }, 0);
     document.getElementById('spese-totale').textContent = '$' + totale.toFixed(2);
     document.getElementById('spese-count').textContent = arr.length + (arr.length === 1 ? ' voce' : ' voci');
-    // subtotali per persona
     var persone = ['Luca','Anto','Paola','Max'];
     persone.forEach(function(p){
       var sub = arr.filter(function(x){ return x.persona === p; }).reduce(function(s,x){ return s+x.importo; },0);
       document.getElementById('sub-'+p).textContent = '$'+sub.toFixed(2);
     });
     var lista = document.getElementById('spese-lista');
-    var empty = document.getElementById('spese-empty');
-    // Rimuovi dal lista i div delle voci precedenti (lascia #spese-empty intatto)
-    Array.prototype.slice.call(lista.children).forEach(function(ch){
-      if (ch.id !== 'spese-empty') lista.removeChild(ch);
-    });
-    if (arr.length === 0) { empty.style.display = 'block'; return; }
-    empty.style.display = 'none';
+    if (arr.length === 0) {
+      lista.innerHTML = '<div style="text-align:center;padding:40px 20px;color:var(--muted);font-size:14px;">Nessuna spesa ancora \uD83D\uDCB8<br><span style="font-size:12px;">Tocca + per aggiungere</span></div>';
+      return;
+    }
+    var html = '';
     arr.forEach(function(item) {
       var parts = item.cat.split(' ');
       var emoji = parts[0];
+      var catLabel = item.cat.replace(emoji,'').trim();
       var dateFmt = item.data ? item.data.split('-').reverse().join('/') : '';
-      var personaTag = item.persona ? ' · <span style="color:var(--orange);font-weight:700;">'+item.persona+'</span>' : '';
-      var div = document.createElement('div');
-      div.className = 'spese-item';
-      div.innerHTML =
-        '<div class="spese-item-cat">'+emoji+'</div>'+
-        '<div class="spese-item-body">'+
-          '<div class="spese-item-desc">'+item.desc+'</div>'+
-          '<div class="spese-item-meta">'+item.cat.replace(emoji,'').trim()+' · '+dateFmt+personaTag+'</div>'+
-        '</div>'+
-        '<div class="spese-item-amount">$'+item.importo.toFixed(2)+'</div>'+
-        '<button class="spese-item-del" onclick="speseDelete('+item.id+')">🗑</button>';
-      lista.appendChild(div);
+      var personaTag = item.persona ? ' \u00B7 <span style="color:var(--orange);font-weight:700;">'+item.persona+'</span>' : '';
+      html +=
+        '<div class="spese-item" data-id="'+item.id+'">'+
+          '<div class="spese-item-cat">'+emoji+'</div>'+
+          '<div class="spese-item-body">'+
+            '<div class="spese-item-desc">'+item.desc+'</div>'+
+            '<div class="spese-item-meta">'+catLabel+' \u00B7 '+dateFmt+personaTag+'</div>'+
+          '</div>'+
+          '<div class="spese-item-amount">$'+item.importo.toFixed(2)+'</div>'+
+          '<button class="spese-item-del" data-id="'+item.id+'" type="button">\uD83D\uDDD1</button>'+
+        '</div>';
     });
+    lista.innerHTML = html;
+    lista.onclick = function(e) {
+      var btn = e.target;
+      if (btn.classList.contains('spese-item-del')) {
+        speseDelete(btn.getAttribute('data-id'));
+      }
+    };
   }
 
   // ── CONVERTITORE VALUTA ──
